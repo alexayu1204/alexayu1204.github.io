@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haoting (Alexa) Yu - Resume</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- AOS CSS for Animations -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <style>
+    /* CSS Variables for Light and Dark Themes */
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #343a40;
+      --primary-color: #007bff;
+      --secondary-color: #6c757d;
+      --card-bg: #ffffff;
+      --footer-bg: #ffffff;
+      --button-bg: #007bff;
+      --button-hover-bg: #0056b3;
+    }
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --primary-color: #bb86fc;
+      --secondary-color: #b0bec5;
+      --card-bg: #1e1e1e;
+      --footer-bg: #1e1e1e;
+      --button-bg: #bb86fc;
+      --button-hover-bg: #985eff;
+    }
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .main-container {
+      max-width: 1100px;
+      margin: 80px auto 40px;
+      padding: 20px;
+    }
+    /* Navbar Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: var(--bg-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+    .navbar .nav-link {
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .navbar .nav-link:hover {
+      color: var(--primary-color);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .navbar-brand:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    /* Dark Mode Toggle */
+    .theme-toggle {
+      cursor: pointer;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    .theme-toggle:hover {
+      color: var(--primary-color);
+    }
+    /* Header Section */
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 2.5rem;
+      white-space: nowrap;
+      animation: fadeInDown 1s ease-out;
+    }
+    .social-icons {
+      margin-bottom: 15px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .social-icons a {
+      color: var(--secondary-color);
+      margin: 0 12px;
+      font-size: 1.8rem;
+      transition: color 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: var(--primary-color);
+      transform: scale(1.2);
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      font-weight: 500;
+      animation: fadeInUp 1.2s ease-out;
+    }
+    /* Info Cards */
+    .info-card {
+      background: var(--card-bg);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .info-card h3 {
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      scroll-margin-top: 100px;
+    }
+    .info-card h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 3px;
+      background: var(--primary-color);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s ease;
+    }
+    .info-card h3.aos-animate::after {
+      transform: scaleX(1.2);
+    }
+    /* Skills Section */
+    .skills ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .skills ul li {
+      background: #e9ecef;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+    }
+    .skills ul li:hover {
+      transform: scale(1.1);
+      background: var(--primary-color);
+      color: #fff;
+    }
+    /* Resume Buttons */
+    .resume-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .resume-buttons .btn {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .resume-buttons .btn i {
+      margin-right: 8px;
+    }
+    .resume-buttons .btn-primary:hover,
+    .resume-buttons .btn-secondary:hover {
+      transform: scale(1.05);
+    }
+    /* Back-to-Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      display: none;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, transform 0.3s;
+      z-index: 1000;
+    }
+    #backToTop:hover {
+      background-color: var(--button-hover-bg);
+      transform: scale(1.1);
+    }
+    /* Footer Styles */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--footer-bg);
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+      margin-top: 40px;
+      transition: background-color 0.3s;
+    }
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <!-- Fixed Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <!-- Clickable Name / Resume Download -->
+      <a class="navbar-brand" href="resume.pdf" download aria-label="Download Resume">Haoting (Alexa) Yu</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="#work">Work Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Technical Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item">
+            <!-- Dark Mode Toggle -->
+            <span class="nav-link theme-toggle" id="theme-toggle" role="button" aria-label="Toggle Dark Mode">
+              <i class="fas fa-moon"></i>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <!-- Header Section -->
+    <section class="header" id="header">
+      <h1 data-aos="fade-in">Haoting (Alexa) Yu</h1>
+      <div class="social-icons">
+        <!-- Email -->
+        <a href="mailto:alexy1204@yahoo.com" aria-label="Email" data-bs-toggle="tooltip" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <!-- Phone (clickable on mobile) -->
+        <a href="tel:+447831223687" aria-label="Phone" data-bs-toggle="tooltip" title="Call Me">
+          <i class="fas fa-phone"></i>
+        </a>
+        <!-- Portfolio / Art e-Portfolio -->
+        <a href="https://alexy1204.wixsite.com/website" target="_blank" aria-label="Portfolio" data-bs-toggle="tooltip" title="Visit Portfolio">
+          <i class="fas fa-globe"></i>
+        </a>
+      </div>
+      <p>Laboratory Quality Engineer | Data Scientist | Mathematics Enthusiast</p>
+    </section>
+
+    <!-- About Me -->
+    <section class="info-card" id="about">
+      <h3 id="about-header" data-aos="fade-up">About Me</h3>
+      <p>
+        I am a dedicated professional with a strong foundation in mathematics, data science, and quality engineering. Currently pursuing an MSc in Operational Research with Data Science at the University of Edinburgh and working as a Laboratory Quality Engineer, I enjoy using analytical and machine learning techniques to solve real‐world problems and enhance operational efficiency.
+      </p>
+    </section>
+
+    <!-- Work Experience -->
+    <section class="info-card" id="work">
+      <h3 id="work-header" data-aos="fade-up">Work Experience</h3>
+      <div class="accordion" id="workExperienceAccordion">
+        <!-- Fugro -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="workHeading1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse1" aria-expanded="false" aria-controls="workCollapse1">
+              Laboratory Quality Engineer – Fugro <span class="ms-2 text-muted" style="font-size: 0.9rem;">Aug 2024 – Present</span>
+            </button>
+          </h2>
+          <div id="workCollapse1" class="accordion-collapse collapse" aria-labelledby="workHeading1" data-bs-parent="#workExperienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Calibrate transducers and manage the Microsoft Access database to ensure measurement accuracy and streamlined lab operations.</li>
+                <li>Developed a Python script to automate data processing in Origin, boosting efficiency and reproducibility of geotechnical analyses.</li>
+                <li>Initiated an inter-lab comparison project using R to benchmark international lab performance and enhance quality control.</li>
+                <li>Created a baseline machine learning model with YOLO v9 in Python for soil particle detection, advancing automation in sediment analysis.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- HD Education -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="workHeading2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse2" aria-expanded="false" aria-controls="workCollapse2">
+              Mathematics Science Instructor – HD Education <span class="ms-2 text-muted" style="font-size: 0.9rem;">May 2022 – Oct 2024</span>
+            </button>
+          </h2>
+          <div id="workCollapse2" class="accordion-collapse collapse" aria-labelledby="workHeading2" data-bs-parent="#workExperienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Provided one-on-one and group tutoring for undergraduate students in calculus, algebra, and statistics.</li>
+                <li>Developed tailored learning strategies to simplify complex mathematical concepts and improve exam readiness.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- UBC Teaching Assistant -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="workHeading3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse3" aria-expanded="false" aria-controls="workCollapse3">
+              Math Department Teaching Assistant – UBC Faculty of Science <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2021 – May 2022</span>
+            </button>
+          </h2>
+          <div id="workCollapse3" class="accordion-collapse collapse" aria-labelledby="workHeading3" data-bs-parent="#workExperienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Prepared course content and weekly lab assignments for undergraduate mathematics courses.</li>
+                <li>Assisted students individually and in small groups to enhance understanding of course material.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- UBC Doctoral Exams Assistant -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="workHeading4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse4" aria-expanded="false" aria-controls="workCollapse4">
+              Doctoral Examinations Student Assistant – UBC Faculty of Graduate and Postdoctoral Studies <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2021 – May 2022</span>
+            </button>
+          </h2>
+          <div id="workCollapse4" class="accordion-collapse collapse" aria-labelledby="workHeading4" data-bs-parent="#workExperienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Managed administrative tasks and supported faculty using Microsoft Excel for data management.</li>
+                <li>Ensured accuracy in data collection and analysis for the doctoral examination process.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Ipsos Strategy3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="workHeading5">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse5" aria-expanded="false" aria-controls="workCollapse5">
+              Consultant Intern – Ipsos Strategy3 <span class="ms-2 text-muted" style="font-size: 0.9rem;">May 2021 – Aug 2021</span>
+            </button>
+          </h2>
+          <div id="workCollapse5" class="accordion-collapse collapse" aria-labelledby="workHeading5" data-bs-parent="#workExperienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Conducted market research on the radiotherapy sector in China using desktop research and cold calls.</li>
+                <li>Managed and updated databases using SQL and Excel for efficient data retrieval.</li>
+                <li>Collaborated on project reports using Power BI and PowerPoint to present market insights.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Britbots Fund -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="workHeading6">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse6" aria-expanded="false" aria-controls="workCollapse6">
+              Investment Analyst Intern – Britbots Fund <span class="ms-2 text-muted" style="font-size: 0.9rem;">Aug 2020 – Sep 2020</span>
+            </button>
+          </h2>
+          <div id="workCollapse6" class="accordion-collapse collapse" aria-labelledby="workHeading6" data-bs-parent="#workExperienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Researched the Chinese industrial robotics industry, conducting DCF, SWOT, and P/S analyses.</li>
+                <li>Used Power BI and Tableau to create dashboards and applied Python (Scikit-learn) for data modeling and market segmentation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="info-card" id="education">
+      <h3 id="education-header" data-aos="fade-up">Education</h3>
+      <div class="accordion" id="educationAccordion">
+        <!-- UBC -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="eduHeading1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eduCollapse1" aria-expanded="false" aria-controls="eduCollapse1">
+              University of British Columbia – BSc in Mathematics <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2017 – May 2022</span>
+            </button>
+          </h2>
+          <div id="eduCollapse1" class="accordion-collapse collapse" aria-labelledby="eduHeading1" data-bs-parent="#educationAccordion">
+            <div class="accordion-body">
+              <p><strong>Accolades:</strong> Dean’s Honor List (2020), Dean’s List (2018)</p>
+              <p><strong>Core Courses:</strong> Calculus I-IV, Linear Algebra, Linear Programming, Partial Differential Equations, Probability, Stochastic Process</p>
+            </div>
+          </div>
+        </div>
+        <!-- Edinburgh -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="eduHeading2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eduCollapse2" aria-expanded="false" aria-controls="eduCollapse2">
+              University of Edinburgh – MSc in Operational Research with Data Science <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2022 – Nov 2024</span>
+            </button>
+          </h2>
+          <div id="eduCollapse2" class="accordion-collapse collapse" aria-labelledby="eduHeading2" data-bs-parent="#educationAccordion">
+            <div class="accordion-body">
+              <p><strong>Core Courses:</strong> Fundamentals of Operational Research, Fundamentals of Optimization, Operational Research, Applied Machine Learning, Reinforcement Learning, Biomedical Data Science</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Experience -->
+    <section class="info-card" id="projects">
+      <h3 id="projects-header" data-aos="fade-up">Project Experience</h3>
+      <div class="accordion" id="projectsAccordion">
+        <!-- Personalized Poem Generation -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="projHeading1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse1" aria-expanded="false" aria-controls="projCollapse1">
+              Personalized Poem Generation with Fine-Tuned LLM <span class="ms-2 text-muted" style="font-size: 0.9rem;">Jan 2025 – Present</span>
+            </button>
+          </h2>
+          <div id="projCollapse1" class="accordion-collapse collapse" aria-labelledby="projHeading1" data-bs-parent="#projectsAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Fine-tuned a 7B LLM instruct model on 100 self-written poems using LoRA, replicating my unique style and tone.</li>
+                <li>Optimized for deployment on Apple Silicon (MLX framework), CPU (GGUF for Ollama, LM Studio), and cloud (Docker/AWS).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Anomaly Detection -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="projHeading2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse2" aria-expanded="false" aria-controls="projCollapse2">
+              Anomaly Detection and Forecasting in Power Systems <span class="ms-2 text-muted" style="font-size: 0.9rem;">Jun 2023 – Sep 2023</span>
+            </button>
+          </h2>
+          <div id="projCollapse2" class="accordion-collapse collapse" aria-labelledby="projHeading2" data-bs-parent="#projectsAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Engineered a CNN-LSTM model achieving 90%+ accuracy for detecting anomalies in power systems.</li>
+                <li>Provided predictions within 5% deviation, enhancing power grid resilience amid renewable energy integration.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- EV Charging Stations -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="projHeading3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse3" aria-expanded="false" aria-controls="projCollapse3">
+              EV Charging Stations – City of Dundee <span class="ms-2 text-muted" style="font-size: 0.9rem;">Oct 2022 – Nov 2022</span>
+            </button>
+          </h2>
+          <div id="projCollapse3" class="accordion-collapse collapse" aria-labelledby="projHeading3" data-bs-parent="#projectsAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Designed a linear programming model using Xpress and Python to optimize the placement and scheduling of charging stations.</li>
+                <li>Considered demand and location potential to improve urban infrastructure planning.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Sentiment Classification -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="projHeading4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse4" aria-expanded="false" aria-controls="projCollapse4">
+              Sentiment Classification on Movie Reviews <span class="ms-2 text-muted" style="font-size: 0.9rem;">Oct 2022 – Dec 2022</span>
+            </button>
+          </h2>
+          <div id="projCollapse4" class="accordion-collapse collapse" aria-labelledby="projHeading4" data-bs-parent="#projectsAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Developed NLP models using BERT, Bag of Words, and TF-IDF for sentiment classification.</li>
+                <li>Implemented logistic regression, SVM, and neural networks on a dataset of over 10,000 reviews.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="info-card" id="skills">
+      <h3 id="skills-header" data-aos="fade-up">Technical Skills</h3>
+      <div class="skills">
+        <ul>
+          <li>Python (NumPy, SciPy, Pandas, Seaborn, Scikit-learn)</li>
+          <li>SQL</li>
+          <li>Power BI</li>
+          <li>Tableau</li>
+          <li>R</li>
+          <li>MATLAB</li>
+          <li>JavaScript</li>
+          <li>Origin</li>
+          <li>Textile Design</li>
+          <li>Content Creation</li>
+          <li>Writing</li>
+          <li>Photographing</li>
+          <li>Mandarin (Native), English (Fluent)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="info-card resume-section" id="resume">
+      <h3 id="resume-header" data-aos="fade-up">Resume</h3>
+      <div class="resume-buttons">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resumeModal">
+          <i class="fas fa-eye"></i> View Resume
+        </button>
+        <a href="resume.pdf" download class="btn btn-secondary">
+          <i class="fas fa-download"></i> Download Resume
+        </a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="info-card" id="contact">
+      <h3 id="contact-header" data-aos="fade-up">Contact</h3>
+      <p>Email: <a href="mailto:alexy1204@yahoo.com">alexy1204@yahoo.com</a></p>
+      <p>Phone: +44 0 7831223687 | +86 18304523696</p>
+      <p>Address: 12 Friars Walk, Reading, UK, RG1 1JT</p>
+    </section>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 Haoting (Alexa) Yu. All rights reserved.</p>
+  </footer>
+
+  <!-- Back-to-Top Button -->
+  <button id="backToTop" aria-label="Back to Top"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- Resume Modal -->
+  <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Resume</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="resume.pdf" width="100%" height="800px" style="border: none;"></iframe>
+          <div class="mt-3 text-center">
+            <a href="resume.pdf" download class="btn btn-secondary">
+              <i class="fas fa-download"></i> Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS for Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Custom JS -->
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+
+    // Initialize Bootstrap Tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+
+    // Back-to-Top Button Functionality
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.style.display = 'block';
+      } else {
+        backToTopButton.style.display = 'none';
+      }
+    });
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    if (currentTheme) {
+      document.body.setAttribute('data-theme', currentTheme);
+      themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    themeToggle.addEventListener('click', () => {
+      let theme = document.body.getAttribute('data-theme');
+      if (theme === 'light') {
+        document.body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    });
+  </script>
+</body>
+</html>
+
