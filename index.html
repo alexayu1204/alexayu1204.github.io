@@ -78,7 +78,7 @@
       color: var(--primary-color);
       text-decoration: none;
     }
-    /* Toolbar Icons (Resume Tools) */
+    /* Toolbar Icons (for Resume Tools) */
     .navbar .tool-icon {
       font-size: 1.2rem;
       cursor: pointer;
@@ -183,6 +183,20 @@
       background: var(--primary-color);
       color: #fff;
     }
+    /* Resume Section Buttons */
+    .resume-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .resume-buttons .btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+    }
     /* Back-to-Top Button */
     #backToTop {
       position: fixed;
@@ -223,43 +237,64 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    /* Online Profiles Carousel */
-    .profiles-carousel-container {
+    /* Online Profiles (One Row) */
+    .online-profiles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 1rem;
+    }
+    .online-profile-item {
+      flex: 1 1 150px;
+      max-width: 180px;
+      text-align: center;
+    }
+    .online-profile-item i {
+      font-size: 30px;
+    }
+    .online-profile-item .btn {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.6rem;
+      margin: 2px;
+    }
+    /* GitHub Projects Carousel */
+    .projects-carousel-container {
       position: relative;
     }
-    .profiles-carousel {
+    .projects-carousel {
       display: flex;
       gap: 1rem;
       overflow-x: auto;
       scroll-behavior: smooth;
       padding-bottom: 1rem;
     }
-    .profiles-carousel::-webkit-scrollbar {
+    .projects-carousel::-webkit-scrollbar {
       height: 8px;
     }
-    .profiles-carousel::-webkit-scrollbar-thumb {
+    .projects-carousel::-webkit-scrollbar-thumb {
       background: var(--primary-color);
       border-radius: 4px;
     }
-    .profile-card {
-      flex: 0 0 23%;
-      scroll-snap-align: start;
+    .project-card {
+      flex: 0 0 22%;
+      min-width: 180px;
       background: var(--card-bg);
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       padding: 1rem;
       transition: transform 0.3s;
+      text-align: center;
     }
-    .profile-card:hover {
+    .project-card:hover {
       transform: translateY(-5px);
     }
     @media (max-width: 768px) {
-      .profile-card {
-        flex: 0 0 48%;
+      .project-card {
+        flex: 0 0 45%;
       }
     }
     @media (max-width: 576px) {
-      .profile-card {
+      .project-card {
         flex: 0 0 90%;
       }
     }
@@ -279,10 +314,12 @@
           <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
           <li class="nav-item"><a class="nav-link" href="#work">Work Experience</a></li>
           <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Project Experience</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills">Technical Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resumeSection">Resume</a></li>
           <li class="nav-item"><a class="nav-link" href="#profiles">Online Profiles</a></li>
+          <li class="nav-item"><a class="nav-link" href="#github-projects">GitHub Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           <!-- Resume Tools as Icons -->
           <li class="nav-item">
             <a class="nav-link tool-icon" href="#" id="resumeViewIcon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View Resume">
@@ -347,7 +384,7 @@
               <ul>
                 <li>Calibrate transducers and manage a Microsoft Access database for precise measurements.</li>
                 <li>Automated data processing in Origin using Python, increasing efficiency and reproducibility.</li>
-                <li>Initiated an inter-lab comparison project with R to benchmark international lab performance.</li>
+                <li>Initiated an inter‑lab comparison project with R to benchmark international lab performance.</li>
                 <li>Developed a baseline YOLO v9 machine learning model in Python for soil particle detection.</li>
               </ul>
             </div>
@@ -363,7 +400,7 @@
           <div id="workCollapse2" class="accordion-collapse collapse" aria-labelledby="workHeading2" data-bs-parent="#workExperienceAccordion">
             <div class="accordion-body">
               <ul>
-                <li>Provided one-on-one and group tutoring in calculus, algebra, and statistics.</li>
+                <li>Provided one‑on‑one and group tutoring in calculus, algebra, and statistics.</li>
                 <li>Designed tailored learning strategies to simplify complex mathematical concepts.</li>
               </ul>
             </div>
@@ -428,7 +465,7 @@
             <div class="accordion-body">
               <ul>
                 <li>Conducted industry analyses (DCF, SWOT, P/S) in the Chinese robotics sector.</li>
-                <li>Created dashboards with Power BI and used Python (Scikit-learn) for market segmentation.</li>
+                <li>Created dashboards with Power BI and used Python (Scikit‑learn) for market segmentation.</li>
               </ul>
             </div>
           </div>
@@ -470,7 +507,7 @@
       </div>
     </section>
 
-    <!-- Project Experience -->
+    <!-- Project Experience (Academic Projects) -->
     <section class="info-card" id="projects">
       <h3 data-aos="fade-up">Project Experience</h3>
       <div class="accordion" id="projectsAccordion">
@@ -563,80 +600,109 @@
       </div>
     </section>
 
+    <!-- Resume Section (Buttons Row) -->
+    <section class="info-card" id="resumeSection">
+      <h3 data-aos="fade-up">Resume</h3>
+      <div class="resume-buttons">
+        <button class="btn btn-primary" id="btnViewResume">
+          <i class="fas fa-eye"></i> View Resume
+        </button>
+        <a href="Resume.pdf" download class="btn btn-secondary">
+          <i class="fas fa-download"></i> Download Resume
+        </a>
+      </div>
+    </section>
+
+    <!-- Online Profiles (One Row with 5 Items) -->
+    <section class="info-card" id="profiles">
+      <h3 data-aos="fade-up">Online Profiles</h3>
+      <div class="online-profiles">
+        <!-- LinkedIn -->
+        <div class="online-profile-item" data-aos="fade-up">
+          <i class="fab fa-linkedin" style="color:#0077B5;"></i>
+          <h6>LinkedIn</h6>
+          <a href="https://www.linkedin.com/in/alexa-yu" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
+        </div>
+        <!-- GitHub -->
+        <div class="online-profile-item" data-aos="fade-up">
+          <i class="fab fa-github" style="color:#333;"></i>
+          <h6>GitHub</h6>
+          <a href="https://github.com/alexayu1204" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
+        </div>
+        <!-- Textile Design E‑Portfolio -->
+        <div class="online-profile-item" data-aos="fade-up">
+          <i class="fas fa-palette" style="color:#e83e8c;"></i>
+          <h6>Textile Design</h6>
+          <button class="btn btn-sm btn-outline-primary btnPreview" data-url="https://alexy1204.wixsite.com/website-1" data-title="Textile Design E‑Portfolio">Preview</button>
+          <a href="https://alexy1204.wixsite.com/website-1" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
+        </div>
+        <!-- Content Creation (Chinese) -->
+        <div class="online-profile-item" data-aos="fade-up">
+          <i class="fas fa-edit" style="color:#28a745;"></i>
+          <h6>Content Creation</h6>
+          <button class="btn btn-sm btn-outline-primary btnPreview" data-url="https://alexy1204.wixsite.com/website" data-title="Content Creation">Preview</button>
+          <a href="https://alexy1204.wixsite.com/website" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
+        </div>
+        <!-- WeChat -->
+        <div class="online-profile-item" data-aos="fade-up">
+          <i class="fab fa-weixin" style="color:#07c160;"></i>
+          <h6>WeChat</h6>
+          <button class="btn btn-sm btn-outline-primary" id="btnWeChat">QR Code</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GitHub Projects Carousel -->
+    <section class="info-card" id="github-projects">
+      <h3 data-aos="fade-up">GitHub Projects</h3>
+      <div class="projects-carousel-container position-relative">
+        <button class="btn btn-light position-absolute start-0 top-50 translate-middle-y" id="projectsLeftBtn" style="z-index:2;">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="projects-carousel d-flex gap-3 overflow-auto" style="scroll-behavior: smooth; padding-bottom: 1rem;">
+          <!-- Project 1 -->
+          <div class="project-card" data-aos="fade-up">
+            <i class="fab fa-github fa-2x" style="color:#333;"></i>
+            <h6 class="mt-2">alexayu1204.github.io</h6>
+            <a href="https://github.com/alexayu1204/alexayu1204.github.io" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
+          </div>
+          <!-- Project 2 -->
+          <div class="project-card" data-aos="fade-up">
+            <i class="fab fa-github fa-2x" style="color:#333;"></i>
+            <h6 class="mt-2">IDA_assignment3</h6>
+            <a href="https://github.com/alexayu1204/IDA_assignment3" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
+          </div>
+          <!-- Project 3 -->
+          <div class="project-card" data-aos="fade-up">
+            <i class="fab fa-github fa-2x" style="color:#333;"></i>
+            <h6 class="mt-2">Incomplete_Data_Analysis_Assignment_2</h6>
+            <a href="https://github.com/alexayu1204/Incomplete_Data_Analysis_Assignment_2" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
+          </div>
+          <!-- Project 4 -->
+          <div class="project-card" data-aos="fade-up">
+            <i class="fab fa-github fa-2x" style="color:#333;"></i>
+            <h6 class="mt-2">stable-dreamfusion</h6>
+            <a href="https://github.com/alexayu1204/stable-dreamfusion" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
+          </div>
+          <!-- Project 5 -->
+          <div class="project-card" data-aos="fade-up">
+            <i class="fab fa-github fa-2x" style="color:#333;"></i>
+            <h6 class="mt-2">sd</h6>
+            <a href="https://github.com/alexayu1204/sd" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
+          </div>
+        </div>
+        <button class="btn btn-light position-absolute end-0 top-50 translate-middle-y" id="projectsRightBtn" style="z-index:2;">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+
     <!-- Contact -->
     <section class="info-card" id="contact">
       <h3 data-aos="fade-up">Contact</h3>
       <p>Email: <a href="mailto:alexy1204@yahoo.com">alexy1204@yahoo.com</a></p>
       <p>Phone: +44 0 7831223687 | +86 18304523696</p>
       <p>Address: 12 Friars Walk, Reading, UK, RG1 1JT</p>
-    </section>
-
-    <!-- Online Profiles Carousel -->
-    <section class="info-card" id="profiles">
-      <h3 data-aos="fade-up">Online Profiles</h3>
-      <div class="profiles-carousel-container">
-        <!-- Left Arrow Button -->
-        <button class="btn btn-light position-absolute start-0 top-50 translate-middle-y" id="profilesLeftBtn" style="z-index: 2;">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <!-- Carousel Container -->
-        <div class="profiles-carousel">
-          <!-- LinkedIn (non‑embed) -->
-          <div class="profile-card" data-aos="fade-up">
-            <div class="text-center mb-2">
-              <i class="fab fa-linkedin fa-3x" style="color:#0077B5;"></i>
-            </div>
-            <h5 class="text-center">LinkedIn</h5>
-            <div class="text-center">
-              <a href="https://www.linkedin.com/in/alexa-yu" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
-            </div>
-          </div>
-          <!-- GitHub (non‑embed) -->
-          <div class="profile-card" data-aos="fade-up">
-            <div class="text-center mb-2">
-              <i class="fab fa-github fa-3x" style="color:#333;"></i>
-            </div>
-            <h5 class="text-center">GitHub</h5>
-            <div class="text-center">
-              <a href="https://github.com/alexayu1204" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
-            </div>
-          </div>
-          <!-- Textile Design E‑Portfolio (embed) -->
-          <div class="profile-card" data-aos="fade-up">
-            <h5 class="text-center">Textile Design</h5>
-            <div style="width: 100%; height: 200px; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
-              <iframe src="https://alexy1204.wixsite.com/website-1" width="100%" height="200" style="border: none;"></iframe>
-            </div>
-            <div class="text-center mt-2">
-              <a href="https://alexy1204.wixsite.com/website-1" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
-            </div>
-          </div>
-          <!-- Content Creation (Chinese) (embed) -->
-          <div class="profile-card" data-aos="fade-up">
-            <h5 class="text-center">Content Creation</h5>
-            <div style="width: 100%; height: 200px; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
-              <iframe src="https://alexy1204.wixsite.com/website" width="100%" height="200" style="border: none;"></iframe>
-            </div>
-            <div class="text-center mt-2">
-              <a href="https://alexy1204.wixsite.com/website" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
-            </div>
-          </div>
-          <!-- WeChat (QR Code) -->
-          <div class="profile-card" data-aos="fade-up">
-            <h5 class="text-center">WeChat</h5>
-            <div class="text-center mb-2">
-              <img src="wechat_qr.jpg" alt="WeChat QR" style="max-width: 100%; border-radius: 5px;">
-            </div>
-            <div class="text-center">
-              <button class="btn btn-sm btn-outline-secondary" id="wechatBtnCarousel">View QR</button>
-            </div>
-          </div>
-        </div>
-        <!-- Right Arrow Button -->
-        <button class="btn btn-light position-absolute end-0 top-50 translate-middle-y" id="profilesRightBtn" style="z-index: 2;">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
     </section>
   </div>
 
@@ -665,7 +731,22 @@
     </div>
   </div>
 
-  <!-- WeChat QR Code Modal (from Carousel) -->
+  <!-- Preview Modal for Online Profiles -->
+  <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-sm-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="previewModalLabel">Preview</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe id="previewFrame" src="" width="100%" height="600px" style="border: none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WeChat QR Code Modal -->
   <div class="modal fade" id="wechatModal" tabindex="-1" aria-labelledby="wechatModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -693,7 +774,7 @@
       once: true
     });
 
-    // Back-to-Top Button
+    // Back-to-Top Button Functionality
     const backToTopButton = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       backToTopButton.style.display = window.pageYOffset > 300 ? 'block' : 'none';
@@ -722,28 +803,44 @@
       }
     });
 
-    // Resume View Modal
+    // Resume View Modal Trigger
     const resumeViewIcon = document.getElementById('resumeViewIcon');
     resumeViewIcon.addEventListener('click', (e) => {
       e.preventDefault();
       var resumeModal = new bootstrap.Modal(document.getElementById('resumeModal'));
       resumeModal.show();
     });
-
-    // Profiles Carousel Scrolling
-    const carousel = document.querySelector('.profiles-carousel');
-    document.getElementById('profilesLeftBtn').addEventListener('click', () => {
-      carousel.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-    document.getElementById('profilesRightBtn').addEventListener('click', () => {
-      carousel.scrollBy({ left: 300, behavior: 'smooth' });
+    document.getElementById('btnViewResume').addEventListener('click', () => {
+      var resumeModal = new bootstrap.Modal(document.getElementById('resumeModal'));
+      resumeModal.show();
     });
 
-    // WeChat Modal from Carousel
-    const wechatBtnCarousel = document.getElementById('wechatBtnCarousel');
-    wechatBtnCarousel.addEventListener('click', () => {
+    // Online Profiles Preview Buttons
+    const previewButtons = document.querySelectorAll('.btnPreview');
+    previewButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = btn.getAttribute('data-url');
+        const title = btn.getAttribute('data-title');
+        document.getElementById('previewFrame').src = url;
+        document.getElementById('previewModalLabel').innerText = title;
+        var previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+        previewModal.show();
+      });
+    });
+
+    // WeChat Modal Trigger (for online profiles)
+    document.getElementById('btnWeChat').addEventListener('click', () => {
       var wechatModal = new bootstrap.Modal(document.getElementById('wechatModal'));
       wechatModal.show();
+    });
+
+    // GitHub Projects Carousel Scrolling
+    const projectsCarousel = document.querySelector('.projects-carousel');
+    document.getElementById('projectsLeftBtn').addEventListener('click', () => {
+      projectsCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    document.getElementById('projectsRightBtn').addEventListener('click', () => {
+      projectsCarousel.scrollBy({ left: 300, behavior: 'smooth' });
     });
   </script>
 </body>
