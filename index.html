@@ -223,15 +223,45 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    /* Online Profiles Section */
-    #profiles .card {
-      border: none;
+    /* Online Profiles Carousel */
+    .profiles-carousel-container {
+      position: relative;
+    }
+    .profiles-carousel {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 1rem;
+    }
+    .profiles-carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+    .profiles-carousel::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
+    }
+    .profile-card {
+      flex: 0 0 23%;
+      scroll-snap-align: start;
       background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 1rem;
       transition: transform 0.3s;
     }
-    #profiles .card:hover {
+    .profile-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    @media (max-width: 768px) {
+      .profile-card {
+        flex: 0 0 48%;
+      }
+    }
+    @media (max-width: 576px) {
+      .profile-card {
+        flex: 0 0 90%;
+      }
     }
   </style>
 </head>
@@ -260,7 +290,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link tool-icon" href="./resume.pdf" download data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Resume">
+            <a class="nav-link tool-icon" href="Resume.pdf" download data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Resume">
               <i class="fas fa-download"></i>
             </a>
           </li>
@@ -420,7 +450,7 @@
           <div id="eduCollapse1" class="accordion-collapse collapse" aria-labelledby="eduHeading1" data-bs-parent="#educationAccordion">
             <div class="accordion-body">
               <p><strong>Accolades:</strong> Dean’s Honor List (2020), Dean’s List (2018)</p>
-              <p><strong>Core Courses:</strong> Calculus I-IV, Linear Algebra, Linear Programming, Partial Differential Equations, Probability, Stochastic Process</p>
+              <p><strong>Core Courses:</strong> Calculus I‑IV, Linear Algebra, Linear Programming, Partial Differential Equations, Probability, Stochastic Process</p>
             </div>
           </div>
         </div>
@@ -448,13 +478,13 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="projHeading1">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse1" aria-expanded="false" aria-controls="projCollapse1">
-              Personalized Poem Generation with Fine-Tuned LLM <span class="ms-2 text-muted" style="font-size: 0.9rem;">Jan 2025 – Present</span>
+              Personalized Poem Generation with Fine‑Tuned LLM <span class="ms-2 text-muted" style="font-size: 0.9rem;">Jan 2025 – Present</span>
             </button>
           </h2>
           <div id="projCollapse1" class="accordion-collapse collapse" aria-labelledby="projHeading1" data-bs-parent="#projectsAccordion">
             <div class="accordion-body">
               <ul>
-                <li>Fine-tuned a 7B LLM instruct model on 100 self‑written poems using LoRA to replicate my style.</li>
+                <li>Fine‑tuned a 7B LLM instruct model on 100 self‑written poems using LoRA to replicate my style.</li>
                 <li>Optimized for deployment on Apple Silicon (MLX framework), CPU (GGUF for Ollama, LM Studio), and cloud (Docker/AWS).</li>
               </ul>
             </div>
@@ -470,7 +500,7 @@
           <div id="projCollapse2" class="accordion-collapse collapse" aria-labelledby="projHeading2" data-bs-parent="#projectsAccordion">
             <div class="accordion-body">
               <ul>
-                <li>Engineered a CNN-LSTM model achieving 90%+ accuracy for anomaly detection in power systems.</li>
+                <li>Engineered a CNN‑LSTM model achieving 90%+ accuracy for anomaly detection in power systems.</li>
                 <li>Delivered predictions within 5% deviation, enhancing grid resilience amid renewable energy integration.</li>
               </ul>
             </div>
@@ -502,7 +532,7 @@
           <div id="projCollapse4" class="accordion-collapse collapse" aria-labelledby="projHeading4" data-bs-parent="#projectsAccordion">
             <div class="accordion-body">
               <ul>
-                <li>Developed NLP models using BERT, Bag of Words, and TF-IDF for sentiment classification.</li>
+                <li>Developed NLP models using BERT, Bag of Words, and TF‑IDF for sentiment classification.</li>
                 <li>Implemented logistic regression, SVM, and neural networks on a dataset of over 10,000 reviews.</li>
               </ul>
             </div>
@@ -516,7 +546,7 @@
       <h3 data-aos="fade-up">Technical Skills</h3>
       <div class="skills">
         <ul>
-          <li>Python (NumPy, SciPy, Pandas, Seaborn, Scikit-learn)</li>
+          <li>Python (NumPy, SciPy, Pandas, Seaborn, Scikit‑learn)</li>
           <li>SQL</li>
           <li>Power BI</li>
           <li>Tableau</li>
@@ -541,97 +571,79 @@
       <p>Address: 12 Friars Walk, Reading, UK, RG1 1JT</p>
     </section>
 
-    <!-- Online Profiles -->
+    <!-- Online Profiles Carousel -->
     <section class="info-card" id="profiles">
       <h3 data-aos="fade-up">Online Profiles</h3>
-      <div class="row text-center">
-        <!-- LinkedIn Card (Preview omitted due to X‑Frame‑Options restrictions) -->
-        <div class="col-md-4 col-lg-3 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <i class="fab fa-linkedin fa-3x mb-3" style="color:#0077B5;"></i>
-              <h5 class="card-title">LinkedIn</h5>
-              <div class="d-flex justify-content-center">
-                <a href="https://www.linkedin.com/in/alexa-yu" target="_blank" class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit LinkedIn">
-                  <i class="fas fa-external-link-alt"></i> Visit
-                </a>
-              </div>
+      <div class="profiles-carousel-container">
+        <!-- Left Arrow Button -->
+        <button class="btn btn-light position-absolute start-0 top-50 translate-middle-y" id="profilesLeftBtn" style="z-index: 2;">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <!-- Carousel Container -->
+        <div class="profiles-carousel">
+          <!-- LinkedIn (non‑embed) -->
+          <div class="profile-card" data-aos="fade-up">
+            <div class="text-center mb-2">
+              <i class="fab fa-linkedin fa-3x" style="color:#0077B5;"></i>
+            </div>
+            <h5 class="text-center">LinkedIn</h5>
+            <div class="text-center">
+              <a href="https://www.linkedin.com/in/alexa-yu" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
+            </div>
+          </div>
+          <!-- GitHub (non‑embed) -->
+          <div class="profile-card" data-aos="fade-up">
+            <div class="text-center mb-2">
+              <i class="fab fa-github fa-3x" style="color:#333;"></i>
+            </div>
+            <h5 class="text-center">GitHub</h5>
+            <div class="text-center">
+              <a href="https://github.com/alexayu1204" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
+            </div>
+          </div>
+          <!-- Textile Design E‑Portfolio (embed) -->
+          <div class="profile-card" data-aos="fade-up">
+            <h5 class="text-center">Textile Design</h5>
+            <div style="width: 100%; height: 200px; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
+              <iframe src="https://alexy1204.wixsite.com/website-1" width="100%" height="200" style="border: none;"></iframe>
+            </div>
+            <div class="text-center mt-2">
+              <a href="https://alexy1204.wixsite.com/website-1" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
+            </div>
+          </div>
+          <!-- Content Creation (Chinese) (embed) -->
+          <div class="profile-card" data-aos="fade-up">
+            <h5 class="text-center">Content Creation</h5>
+            <div style="width: 100%; height: 200px; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
+              <iframe src="https://alexy1204.wixsite.com/website" width="100%" height="200" style="border: none;"></iframe>
+            </div>
+            <div class="text-center mt-2">
+              <a href="https://alexy1204.wixsite.com/website" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
+            </div>
+          </div>
+          <!-- WeChat (QR Code) -->
+          <div class="profile-card" data-aos="fade-up">
+            <h5 class="text-center">WeChat</h5>
+            <div class="text-center mb-2">
+              <img src="wechat_qr.jpg" alt="WeChat QR" style="max-width: 100%; border-radius: 5px;">
+            </div>
+            <div class="text-center">
+              <button class="btn btn-sm btn-outline-secondary" id="wechatBtnCarousel">View QR</button>
             </div>
           </div>
         </div>
-        <!-- GitHub Card (Preview omitted due to X‑Frame‑Options restrictions) -->
-        <div class="col-md-4 col-lg-3 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <i class="fab fa-github fa-3x mb-3" style="color:#333;"></i>
-              <h5 class="card-title">GitHub</h5>
-              <div class="d-flex justify-content-center">
-                <a href="https://github.com/alexayu1204" target="_blank" class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit GitHub">
-                  <i class="fas fa-external-link-alt"></i> Visit
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Textile Design E-Portfolio Card -->
-        <div class="col-md-4 col-lg-3 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <i class="fas fa-palette fa-3x mb-3" style="color:#e83e8c;"></i>
-              <h5 class="card-title">Textile Design</h5>
-              <div class="d-flex justify-content-center gap-2">
-                <button class="btn btn-sm btn-outline-primary preview-btn" data-url="https://alexy1204.wixsite.com/website-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Preview E‑Portfolio">
-                  <i class="fas fa-eye"></i> Preview
-                </button>
-                <a href="https://alexy1204.wixsite.com/website-1" target="_blank" class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit E‑Portfolio">
-                  <i class="fas fa-external-link-alt"></i> Visit
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Content Creation (Chinese) Card -->
-        <div class="col-md-4 col-lg-3 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <i class="fas fa-edit fa-3x mb-3" style="color:#28a745;"></i>
-              <h5 class="card-title">Content Creation</h5>
-              <div class="d-flex justify-content-center gap-2">
-                <button class="btn btn-sm btn-outline-primary preview-btn" data-url="https://alexy1204.wixsite.com/website" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Preview Content">
-                  <i class="fas fa-eye"></i> Preview
-                </button>
-                <a href="https://alexy1204.wixsite.com/website" target="_blank" class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit Content">
-                  <i class="fas fa-external-link-alt"></i> Visit
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- WeChat QR Code Card -->
-        <div class="col-md-4 col-lg-3 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <i class="fab fa-weixin fa-3x mb-3" style="color:#07c160;"></i>
-              <h5 class="card-title">WeChat</h5>
-              <div class="d-flex justify-content-center">
-                <button class="btn btn-sm btn-outline-primary" id="wechatBtn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View QR Code">
-                  <i class="fas fa-qrcode"></i> QR Code
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Right Arrow Button -->
+        <button class="btn btn-light position-absolute end-0 top-50 translate-middle-y" id="profilesRightBtn" style="z-index: 2;">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
     </section>
   </div>
 
-  <!-- Footer Section -->
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Haoting (Alexa) Yu. All rights reserved.</p>
   </footer>
-
-  <!-- Back-to-Top Button -->
-  <button id="backToTop" aria-label="Back to Top"><i class="fas fa-chevron-up"></i></button>
 
   <!-- Resume Modal -->
   <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
@@ -642,9 +654,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <iframe src="./resume.pdf" width="100%" height="800px" style="border: none;"></iframe>
+          <iframe src="Resume.pdf" width="100%" height="800px" style="border: none;"></iframe>
           <div class="mt-3 text-center">
-            <a href="./resume.pdf" download class="btn btn-secondary">
+            <a href="Resume.pdf" download class="btn btn-secondary">
               <i class="fas fa-download"></i> Download Resume
             </a>
           </div>
@@ -653,24 +665,7 @@
     </div>
   </div>
 
-  <!-- Profile Preview Modal -->
-  <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width:90%;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="profileModalLabel">Profile Preview</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="ratio ratio-16x9">
-            <iframe id="profileFrame" src="" title="Profile Preview" allowfullscreen style="border: none;"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- WeChat QR Code Modal -->
+  <!-- WeChat QR Code Modal (from Carousel) -->
   <div class="modal fade" id="wechatModal" tabindex="-1" aria-labelledby="wechatModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -690,7 +685,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AOS JS for Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <!-- Custom JS -->
   <script>
     // Initialize AOS
     AOS.init({
@@ -699,13 +693,7 @@
       once: true
     });
 
-    // Initialize Bootstrap Tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-
-    // Back-to-Top Button Functionality
+    // Back-to-Top Button
     const backToTopButton = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       backToTopButton.style.display = window.pageYOffset > 300 ? 'block' : 'none';
@@ -734,7 +722,7 @@
       }
     });
 
-    // Resume View Icon: Open Resume Modal
+    // Resume View Modal
     const resumeViewIcon = document.getElementById('resumeViewIcon');
     resumeViewIcon.addEventListener('click', (e) => {
       e.preventDefault();
@@ -742,20 +730,18 @@
       resumeModal.show();
     });
 
-    // Profile Preview Modal: When a preview button is clicked
-    const previewButtons = document.querySelectorAll('.preview-btn');
-    previewButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const url = btn.getAttribute('data-url');
-        document.getElementById('profileFrame').src = url;
-        var profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
-        profileModal.show();
-      });
+    // Profiles Carousel Scrolling
+    const carousel = document.querySelector('.profiles-carousel');
+    document.getElementById('profilesLeftBtn').addEventListener('click', () => {
+      carousel.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    document.getElementById('profilesRightBtn').addEventListener('click', () => {
+      carousel.scrollBy({ left: 300, behavior: 'smooth' });
     });
 
-    // WeChat QR Code Modal
-    const wechatBtn = document.getElementById('wechatBtn');
-    wechatBtn.addEventListener('click', () => {
+    // WeChat Modal from Carousel
+    const wechatBtnCarousel = document.getElementById('wechatBtnCarousel');
+    wechatBtnCarousel.addEventListener('click', () => {
       var wechatModal = new bootstrap.Modal(document.getElementById('wechatModal'));
       wechatModal.show();
     });
