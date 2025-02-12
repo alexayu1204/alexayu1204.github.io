@@ -237,7 +237,7 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    /* Online Profiles (One Row) */
+    /* Online Profiles (One Row, 5 Items) */
     .online-profiles {
       display: flex;
       flex-wrap: wrap;
@@ -613,7 +613,7 @@
       </div>
     </section>
 
-    <!-- Online Profiles (One Row with 5 Items) -->
+    <!-- Online Profiles (One Row, 5 Items) -->
     <section class="info-card" id="profiles">
       <h3 data-aos="fade-up">Online Profiles</h3>
       <div class="online-profiles">
@@ -767,80 +767,82 @@
   <!-- AOS JS for Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-
-    // Back-to-Top Button Functionality
-    const backToTopButton = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTopButton.style.display = window.pageYOffset > 300 ? 'block' : 'none';
-    });
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Dark Mode Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || null;
-    if (currentTheme) {
-      document.body.setAttribute('data-theme', currentTheme);
-      themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    }
-    themeToggle.addEventListener('click', () => {
-      let theme = document.body.getAttribute('data-theme');
-      if (theme === 'light') {
-        document.body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-      } else {
-        document.body.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-      }
-    });
-
-    // Resume View Modal Trigger
-    const resumeViewIcon = document.getElementById('resumeViewIcon');
-    resumeViewIcon.addEventListener('click', (e) => {
-      e.preventDefault();
-      var resumeModal = new bootstrap.Modal(document.getElementById('resumeModal'));
-      resumeModal.show();
-    });
-    document.getElementById('btnViewResume').addEventListener('click', () => {
-      var resumeModal = new bootstrap.Modal(document.getElementById('resumeModal'));
-      resumeModal.show();
-    });
-
-    // Online Profiles Preview Buttons
-    const previewButtons = document.querySelectorAll('.btnPreview');
-    previewButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const url = btn.getAttribute('data-url');
-        const title = btn.getAttribute('data-title');
-        document.getElementById('previewFrame').src = url;
-        document.getElementById('previewModalLabel').innerText = title;
-        var previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
-        previewModal.show();
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
       });
-    });
 
-    // WeChat Modal Trigger (for online profiles)
-    document.getElementById('btnWeChat').addEventListener('click', () => {
-      var wechatModal = new bootstrap.Modal(document.getElementById('wechatModal'));
-      wechatModal.show();
-    });
+      // Back-to-Top Button Functionality
+      const backToTopButton = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        backToTopButton.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+      });
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
 
-    // GitHub Projects Carousel Scrolling
-    const projectsCarousel = document.querySelector('.projects-carousel');
-    document.getElementById('projectsLeftBtn').addEventListener('click', () => {
-      projectsCarousel.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-    document.getElementById('projectsRightBtn').addEventListener('click', () => {
-      projectsCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+      // Dark Mode Toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      const currentTheme = localStorage.getItem('theme') || null;
+      if (currentTheme) {
+        document.body.setAttribute('data-theme', currentTheme);
+        themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
+      themeToggle.addEventListener('click', () => {
+        let theme = document.body.getAttribute('data-theme');
+        if (theme === 'light') {
+          document.body.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+          document.body.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+          themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+      });
+
+      // Resume View Modal Trigger (Navbar icon and Button)
+      const resumeViewIcon = document.getElementById('resumeViewIcon');
+      resumeViewIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        var resumeModal = new bootstrap.Modal(document.getElementById('resumeModal'));
+        resumeModal.show();
+      });
+      document.getElementById('btnViewResume').addEventListener('click', () => {
+        var resumeModal = new bootstrap.Modal(document.getElementById('resumeModal'));
+        resumeModal.show();
+      });
+
+      // Online Profiles Preview Buttons
+      const previewButtons = document.querySelectorAll('.btnPreview');
+      previewButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const url = btn.getAttribute('data-url');
+          const title = btn.getAttribute('data-title');
+          document.getElementById('previewFrame').src = url;
+          document.getElementById('previewModalLabel').innerText = title;
+          var previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+          previewModal.show();
+        });
+      });
+
+      // WeChat Modal Trigger (for Online Profiles)
+      document.getElementById('btnWeChat').addEventListener('click', () => {
+        var wechatModal = new bootstrap.Modal(document.getElementById('wechatModal'));
+        wechatModal.show();
+      });
+
+      // GitHub Projects Carousel Scrolling
+      const projectsCarousel = document.querySelector('.projects-carousel');
+      document.getElementById('projectsLeftBtn').addEventListener('click', () => {
+        projectsCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+      document.getElementById('projectsRightBtn').addEventListener('click', () => {
+        projectsCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+      });
     });
   </script>
 </body>
