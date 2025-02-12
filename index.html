@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Haoting (Alexa) Yu - Resume</title>
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
   <!-- AOS CSS for Animations -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
   <!-- Custom CSS -->
   <style>
     /* CSS Variables for Light and Dark Themes */
@@ -137,8 +137,13 @@
       padding: 25px;
       margin-bottom: 25px;
       border-radius: 10px;
-      animation: fadeInUp 1s ease-out;
+      animation: fadeInUp 0.8s ease-out;
       transition: background-color 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
     .info-card h3 {
       font-weight: 600;
@@ -157,7 +162,7 @@
       background: var(--primary-color);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 1s ease;
+      transition: transform 0.7s ease;
     }
     .info-card h3.aos-animate::after {
       transform: scaleX(1.2);
@@ -327,7 +332,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#skills-header">Technical Skills</a>
                     </li>
-                    <!-- Removed old "Research Experience" link -->
                     <li class="nav-item">
                         <a class="nav-link" href="#projects-header">Project Experience</a>
                     </li>
@@ -362,7 +366,7 @@
                 <a href="mailto:alexy1204@yahoo.com" target="_blank" aria-label="Email" data-bs-toggle="tooltip" title="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <!-- Keep primary UK phone in direct link; other phone in "Contact" section -->
+                <!-- Keep primary UK phone in direct link -->
                 <a href="tel:+447831223687" target="_blank" aria-label="Phone" data-bs-toggle="tooltip" title="Call Me">
                     <i class="fas fa-phone"></i>
                 </a>
@@ -370,22 +374,25 @@
                     <i class="fas fa-globe"></i>
                 </a>
             </div>
-            <p>Laboratory Quality Engineer | Data Scientist | Mathematics Enthusiast</p>
+            <p>Laboratory Quality Engineer | Data Scientist | Creative Enthusiast</p>
         </section>
 
         <!-- About Me -->
-        <section class="info-card" id="about">
-            <h3 id="about-header" data-aos="fade-up">About Me</h3>
+        <section class="info-card" data-aos="fade-up" id="about">
+            <h3 id="about-header">About Me</h3>
             <p>
-              I am a Laboratory Quality Engineer with a strong background in mathematics, data science, and machine learning.
-              Currently pursuing an MSc in Operational Research with Data Science at the University of Edinburgh. My goal is 
-              to drive efficient, innovative solutions that bridge theoretical research with practical, real-world impact.
+                I am currently working at Fugro as a Laboratory Quality Engineer, leveraging my passion for machine learning,
+                data analysis, and technical innovation. Yet my creative journey truly began in 2016, when I wrote my first poem 
+                and discovered an unparalleled sense of fulfillment. Despite initially following a path in science and engineering— 
+                earning expertise in data, AI, and software development—I have never lost my love for creative arts. Today, with 
+                the freedom to explore, I integrate photography, poetry, and design thinking into my work, marrying technical 
+                precision with artistic expression. 
             </p>
         </section>
 
         <!-- Work Experience -->
-        <section class="info-card" id="work">
-            <h3 id="work-header" data-aos="fade-up">Work Experience</h3>
+        <section class="info-card" data-aos="fade-up" id="work">
+            <h3 id="work-header">Work Experience</h3>
             <div class="accordion" id="workExperienceAccordion">
 
                 <!-- Fugro -->
@@ -399,10 +406,10 @@
                     <div id="workCollapse1" class="accordion-collapse collapse" aria-labelledby="workHeading1" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Calibrate transducers and manage the Microsoft Access database to maintain calibration records, test results, and equipment performance data for lab operations.</li>
-                                <li>Developed a Python script to automate the lab’s data processing workflow in Origin, enhancing efficiency and reproducibility of geotechnical data analysis.</li>
-                                <li>Initiated an inter-lab comparison project using R to benchmark performance across international locations and strengthen quality control standards.</li>
-                                <li>Created a baseline machine learning model (YOLO v9) for soil particle and grain detection, advancing automation in sediment analysis.</li>
+                                <li>Calibrate transducers and manage the Microsoft Access database to maintain calibration records, test results, and equipment performance data.</li>
+                                <li>Developed a Python script to automate data processing workflows in Origin, improving efficiency and reproducibility in geotechnical analysis.</li>
+                                <li>Initiated an inter-lab comparison project using R, establishing frameworks for benchmarking and enhancing lab quality control across multiple locations.</li>
+                                <li>Implemented a YOLO v9-based machine learning model for soil particle/grain detection, advancing automation in sediment analysis.</li>
                             </ul>
                         </div>
                     </div>
@@ -419,9 +426,9 @@
                     <div id="workCollapse2" class="accordion-collapse collapse" aria-labelledby="workHeading2" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Provided both one-on-one and group tutoring sessions for undergraduate courses (calculus, algebra, statistics).</li>
-                                <li>Developed tailored learning strategies, ensuring clarity of complex theories and robust problem-solving skills.</li>
-                                <li>Guided students in exam preparation and performance improvement through practice and feedback.</li>
+                                <li>Led one-on-one and group tutoring sessions for undergraduate-level calculus, algebra, and statistics.</li>
+                                <li>Developed customized instructional approaches to clarify complex theories and foster solid analytical skills.</li>
+                                <li>Guided students through exam preparations and coursework, enhancing academic performance.</li>
                             </ul>
                         </div>
                     </div>
@@ -438,8 +445,8 @@
                     <div id="workCollapse3" class="accordion-collapse collapse" aria-labelledby="workHeading3" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Prepared course materials and weekly lab assignments for university-level math courses.</li>
-                                <li>Provided individualized and small-group support in workshop settings to reinforce conceptual understanding.</li>
+                                <li>Prepared course materials and weekly lab assignments for a variety of math modules.</li>
+                                <li>Provided hands-on workshop support, helping students reinforce core mathematical principles.</li>
                             </ul>
                         </div>
                     </div>
@@ -449,15 +456,15 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="workHeading4">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse4" aria-expanded="false" aria-controls="workCollapse4">
-                            Doctoral Examinations Student Assistant - UBC Faculty of Graduate and Postdoctoral Studies
+                            Doctoral Examinations Student Assistant - UBC Graduate & Postdoctoral Studies
                             <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2021 - May 2022</span>
                         </button>
                     </h2>
                     <div id="workCollapse4" class="accordion-collapse collapse" aria-labelledby="workHeading4" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Executed daily administrative tasks, ensuring accurate management of doctoral examination data.</li>
-                                <li>Utilized Microsoft Excel to collect, analyze, and maintain thorough examination-related records.</li>
+                                <li>Managed administrative duties, ensuring accurate maintenance of doctoral examination data.</li>
+                                <li>Utilized Microsoft Excel for data collection, analysis, and record-keeping across multiple programs.</li>
                             </ul>
                         </div>
                     </div>
@@ -474,9 +481,9 @@
                     <div id="workCollapse5" class="accordion-collapse collapse" aria-labelledby="workHeading5" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Conducted market research on radiotherapy in China, utilizing Excel for data compilation and analysis.</li>
-                                <li>Performed in-depth interviews with industry experts and maintained project data in SQL databases.</li>
-                                <li>Supported Varian project reporting with Power BI dashboards and PowerPoint presentations.</li>
+                                <li>Researched the Chinese radiotherapy market, consolidating findings in Excel for further analysis.</li>
+                                <li>Conducted in-depth interviews and maintained data integrity with SQL-based repositories.</li>
+                                <li>Delivered final reports to Varian, supported by Power BI dashboards and PowerPoint slides.</li>
                             </ul>
                         </div>
                     </div>
@@ -493,9 +500,9 @@
                     <div id="workCollapse6" class="accordion-collapse collapse" aria-labelledby="workHeading6" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Examined China’s industrial robotics sector, performing DCF, SWOT, and P/S analyses on ZOA Robotics.</li>
-                                <li>Investigated diverse funding sources and created Power BI dashboards for insightful investment recommendations.</li>
-                                <li>Leveraged data modeling in Python (Scikit-learn) and Tableau to forecast market segmentation trends.</li>
+                                <li>Analyzed China's industrial robotics sector, performing DCF, SWOT, and P/S analyses for ZOA Robotics.</li>
+                                <li>Explored various funding sources and created Power BI dashboards to guide investment decisions.</li>
+                                <li>Used Python (Scikit-learn) data modeling and Tableau to predict emerging market segmentation trends.</li>
                             </ul>
                         </div>
                     </div>
@@ -505,8 +512,8 @@
         </section>
 
         <!-- Education -->
-        <section class="info-card" id="education">
-            <h3 id="education-header" data-aos="fade-up">Education</h3>
+        <section class="info-card" data-aos="fade-up" id="education">
+            <h3 id="education-header">Education</h3>
             <div class="accordion" id="educationAccordion">
 
                 <!-- University of British Columbia -->
@@ -544,8 +551,8 @@
         </section>
 
         <!-- Technical Skills -->
-        <section class="info-card" id="skills">
-            <h3 id="skills-header" data-aos="fade-up">Technical Skills</h3>
+        <section class="info-card" data-aos="fade-up" id="skills">
+            <h3 id="skills-header">Technical Skills</h3>
             <div class="skills">
                 <ul>
                     <li>Python (NumPy, SciPy, Pandas, Seaborn, Scikit-learn)</li>
@@ -563,11 +570,9 @@
             </div>
         </section>
 
-        <!-- Removed old Research Experience section -->
-
         <!-- Project Experience -->
-        <section class="info-card" id="projects">
-            <h3 id="projects-header" data-aos="fade-up">Project Experience</h3>
+        <section class="info-card" data-aos="fade-up" id="projects">
+            <h3 id="projects-header">Project Experience</h3>
             <div class="accordion" id="projectsAccordion">
 
                 <!-- Personalized Poem Generation with Fine-Tuned LLM -->
@@ -581,7 +586,7 @@
                     <div id="projCollapse1" class="accordion-collapse collapse" aria-labelledby="projHeading1" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Fine-tuned a 7B LLM instruct model on 100 self-written poems using LoRA, replicating style and imagery from title-based input.</li>
+                                <li>Fine-tuned a 7B LLM instruct model on 100 self-written poems using LoRA, replicating style and imagery from title-based prompts.</li>
                                 <li>Deployed lightweight model variants on Apple Silicon (MLX), CPU (GGUF for Ollama, LM Studio), and Docker/AWS for broad accessibility.</li>
                             </ul>
                         </div>
@@ -599,8 +604,8 @@
                     <div id="projCollapse2" class="accordion-collapse collapse" aria-labelledby="projHeading2" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Engineered an anomaly detection and forecasting model for power grid data using CNN-LSTM algorithms.</li>
-                                <li>Achieved 90%+ anomaly detection accuracy and maintained predictions within 5% deviation, bolstering grid resilience amid renewable integration.</li>
+                                <li>Engineered an anomaly detection and forecasting model using CNN-LSTM algorithms for power grid data.</li>
+                                <li>Achieved 90%+ detection accuracy and maintained prediction deviations under 5%, improving grid resilience.</li>
                             </ul>
                         </div>
                     </div>
@@ -617,8 +622,8 @@
                     <div id="projCollapse3" class="accordion-collapse collapse" aria-labelledby="projHeading3" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Formulated a linear programming model in Xpress/Python to optimize site selection and scheduling for EV charging stations.</li>
-                                <li>Incorporated city-wide demand forecasting and location constraints for effective energy distribution planning.</li>
+                                <li>Formulated a linear programming model in Xpress/Python to optimize placement and scheduling for EV charging stations.</li>
+                                <li>Integrated city demand forecasts and spatial constraints, streamlining resource allocation and usage patterns.</li>
                             </ul>
                         </div>
                     </div>
@@ -635,8 +640,8 @@
                     <div id="projCollapse4" class="accordion-collapse collapse" aria-labelledby="projHeading4" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Built a sentiment classifier using NLP techniques (BERT, Bag of Words, TF-IDF) on 10k+ movie reviews.</li>
-                                <li>Implemented logistic regression, SVM, and neural network approaches with optimized performance metrics.</li>
+                                <li>Developed a sentiment analysis pipeline using BERT, Bag of Words, and TF-IDF on a corpus of 10K+ reviews.</li>
+                                <li>Evaluated multiple classifiers (Logistic Regression, SVM, Neural Networks) with hyperparameter tuning for best performance.</li>
                             </ul>
                         </div>
                     </div>
@@ -646,8 +651,8 @@
         </section>
 
         <!-- Portfolio Section -->
-        <section class="info-card" id="portfolio">
-            <h3 id="portfolio-header" data-aos="fade-up">Portfolio</h3>
+        <section class="info-card" data-aos="fade-up" id="portfolio">
+            <h3 id="portfolio-header">Portfolio</h3>
             <div class="portfolio-container">
                 <!-- Example portfolio card -->
                 <div class="portfolio-card">
@@ -663,8 +668,8 @@
         </section>
 
         <!-- Resume Section -->
-        <section class="info-card resume-section" id="resumeSection">
-            <h3 id="resume-header" data-aos="fade-up">Resume</h3>
+        <section class="info-card resume-section" data-aos="fade-up" id="resumeSection">
+            <h3 id="resume-header">Resume</h3>
             <div class="resume-buttons">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resumeModal">
                     <i class="fas fa-eye"></i> View Resume
@@ -676,8 +681,8 @@
         </section>
 
         <!-- Online Profiles (One Row, 5 Items) -->
-        <section class="info-card" id="profiles">
-            <h3 data-aos="fade-up">Online Profiles</h3>
+        <section class="info-card" data-aos="fade-up" id="profiles">
+            <h3>Online Profiles</h3>
             <div class="online-profiles">
                 <!-- LinkedIn -->
                 <div class="online-profile-item" data-aos="fade-up">
@@ -715,8 +720,8 @@
         </section>
 
         <!-- GitHub Projects Carousel -->
-        <section class="info-card" id="github-projects">
-            <h3 data-aos="fade-up">GitHub Projects</h3>
+        <section class="info-card" data-aos="fade-up" id="github-projects">
+            <h3>GitHub Projects</h3>
             <div class="projects-carousel-container position-relative">
                 <button class="btn btn-light position-absolute start-0 top-50 translate-middle-y" id="projectsLeftBtn" style="z-index:2;">
                     <i class="fas fa-chevron-left"></i>
@@ -760,8 +765,8 @@
         </section>
 
         <!-- Contact Section -->
-        <section class="info-card" id="contact">
-            <h3 id="contact-header" data-aos="fade-up">Contact</h3>
+        <section class="info-card" data-aos="fade-up" id="contact">
+            <h3 id="contact-header">Contact</h3>
             <p><strong>Address:</strong> 12 Friars Walk, Reading, UK, RG1 1JT</p>
             <p><strong>Phone (UK):</strong> +44 0 7831223687 &nbsp;|&nbsp; <strong>Phone (China):</strong> +86 18304523696</p>
             <p><strong>Email:</strong> <a href="mailto:alexy1204@yahoo.com">alexy1204@yahoo.com</a></p>
@@ -771,7 +776,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Haoting (Alexa) Yu. All rights reserved.</p>
+      <p>&copy; 2025 Haoting (Alexa) Yu. All rights reserved.</p>
     </footer>
 
     <!-- Back-to-Top Button -->
@@ -851,81 +856,85 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <!-- Custom JS -->
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
+      // Initialize AOS
+      AOS.init({
+        duration: 700,
+        easing: 'ease-in-out',
+        once: true
+      });
 
-        // Initialize Bootstrap Tooltips
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
+      // Initialize Bootstrap Tooltips
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
 
-        // Back-to-Top Button Functionality
-        const backToTopButton = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            backToTopButton.style.display = window.pageYOffset > 300 ? 'block' : 'none';
-        });
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+      // Back-to-Top Button Functionality
+      const backToTopButton = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        backToTopButton.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+      });
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
 
-        // Close Navbar Collapse on Link Click (for mobile)
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        const navbarCollapse = document.getElementById('navbarNav');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.getComputedStyle(navbarCollapse).display !== 'none') {
-                    new bootstrap.Collapse(navbarCollapse).toggle();
-                }
-            });
+      // Close Navbar Collapse on Link Click (for mobile)
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+      const navbarCollapse = document.getElementById('navbarNav');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.getComputedStyle(navbarCollapse).display !== 'none') {
+            new bootstrap.Collapse(navbarCollapse).toggle();
+          }
         });
+      });
 
-        // Dark Mode Toggle (Reference Implementation)
-        const themeToggle = document.getElementById('theme-toggle');
-        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-        if (currentTheme) {
-            document.body.setAttribute('data-theme', currentTheme);
-            if (currentTheme === 'dark') {
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            }
+      // Dark Mode Toggle (Reference Implementation)
+      const themeToggle = document.getElementById('theme-toggle');
+      const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+      if (currentTheme) {
+        document.body.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+          themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
-        themeToggle.addEventListener('click', () => {
-            let theme = document.body.getAttribute('data-theme');
-            if (theme === 'light') {
-                document.body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                document.body.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
-        });
+      }
+      themeToggle.addEventListener('click', () => {
+        let theme = document.body.getAttribute('data-theme');
+        if (theme === 'light') {
+          document.body.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+          document.body.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+          themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+      });
 
-        // Preview Modal for Online Profiles: Set iframe src when modal is shown
-        var previewModalEl = document.getElementById('previewModal');
-        previewModalEl.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            var url = button.getAttribute('data-url');
-            var title = button.getAttribute('data-title');
-            var modalTitle = previewModalEl.querySelector('.modal-title');
-            var previewFrame = document.getElementById('previewFrame');
-            modalTitle.textContent = title;
-            previewFrame.src = url;
-        });
+      // Preview Modal for Online Profiles: Set iframe src when modal is shown
+      var previewModalEl = document.getElementById('previewModal');
+      previewModalEl.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var url = button.getAttribute('data-url');
+        var title = button.getAttribute('data-title');
+        var modalTitle = previewModalEl.querySelector('.modal-title');
+        var previewFrame = document.getElementById('previewFrame');
+        modalTitle.textContent = title;
+        previewFrame.src = url;
+      });
+      previewModalEl.addEventListener('hidden.bs.modal', function () {
+        // Clear iframe src to stop the page from continuing to run
+        document.getElementById('previewFrame').src = "";
+      });
 
-        // GitHub Projects Carousel Scrolling
-        const projectsCarousel = document.querySelector('.projects-carousel');
-        document.getElementById('projectsLeftBtn').addEventListener('click', () => {
-            projectsCarousel.scrollBy({ left: -300, behavior: 'smooth' });
-        });
-        document.getElementById('projectsRightBtn').addEventListener('click', () => {
-            projectsCarousel.scrollBy({ left: 300, behavior: 'smooth' });
-        });
+      // GitHub Projects Carousel Scrolling
+      const projectsCarousel = document.querySelector('.projects-carousel');
+      document.getElementById('projectsLeftBtn').addEventListener('click', () => {
+        projectsCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+      document.getElementById('projectsRightBtn').addEventListener('click', () => {
+        projectsCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+      });
     </script>
 </body>
 </html>
