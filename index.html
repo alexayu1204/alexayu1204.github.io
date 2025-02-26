@@ -262,46 +262,249 @@
       padding: 0.3rem 0.6rem;
       margin: 2px;
     }
-    /* GitHub Projects Carousel */
+    /* GitHub Projects Carousel - Enhanced */
     .projects-carousel-container {
       position: relative;
+      padding: 0 40px;
+      margin-top: 1.5rem;
     }
+    
     .projects-carousel {
       display: flex;
       gap: 1rem;
       overflow-x: auto;
       scroll-behavior: smooth;
-      padding-bottom: 1rem;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+      -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
     }
+    
     .projects-carousel::-webkit-scrollbar {
-      height: 8px;
+      display: none; /* Hide scrollbar for Chrome/Safari/Opera */
     }
-    .projects-carousel::-webkit-scrollbar-thumb {
+    
+    .projects-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
       background: var(--primary-color);
-      border-radius: 4px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: all 0.3s;
     }
+    
+    .projects-nav-btn:hover {
+      background: var(--button-hover-bg);
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .projects-nav-btn:focus {
+      outline: none;
+    }
+    
+    .projects-left-btn {
+      left: 0;
+    }
+    
+    .projects-right-btn {
+      right: 0;
+    }
+    
     .project-card {
-      flex: 0 0 22%;
-      min-width: 180px;
+      flex: 0 0 280px;
+      min-width: 280px;
+      max-width: 350px;
       background: var(--card-bg);
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      padding: 1rem;
-      transition: transform 0.3s;
-      text-align: center;
+      padding: 0;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      height: 380px;
+      display: flex;
+      flex-direction: column;
     }
+    
     .project-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
+    
+    .project-card .card-img-container {
+      height: 180px;
+      overflow: hidden;
+    }
+    
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .project-card .card-body {
+      padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .project-card .card-body h5 {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    .project-card .card-body p {
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    
+    .project-card .btn-container {
+      margin-top: auto;
+    }
+    
+    /* Media queries for better mobile support */
     @media (max-width: 768px) {
+      .main-container {
+        margin-top: 70px;
+        padding: 15px;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .social-icons a {
+        margin: 0 10px;
+        font-size: 1.5rem;
+      }
+      
+      .projects-carousel-container {
+        padding: 0 30px;
+      }
+      
       .project-card {
-        flex: 0 0 45%;
+        flex: 0 0 85%;
+        min-width: 250px;
       }
     }
+    
     @media (max-width: 576px) {
-      .project-card {
-        flex: 0 0 90%;
+      .main-container {
+        margin-top: 60px;
+        padding: 10px;
       }
+      
+      .header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .social-icons a {
+        margin: 0 8px;
+        font-size: 1.3rem;
+      }
+      
+      .info-card {
+        padding: 20px;
+      }
+      
+      .projects-carousel-container {
+        padding: 0 25px;
+      }
+      
+      .projects-nav-btn {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .project-card {
+        flex: 0 0 85%;
+        min-width: 220px;
+        height: 360px;
+      }
+      
+      #backToTop {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+    
+    /* Portfolio Cards Grid Layout */
+    .portfolio-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .portfolio-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .portfolio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .portfolio-card .card-img-container {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .portfolio-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .portfolio-card iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+    }
+    
+    .portfolio-card .card-body {
+      padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .portfolio-card .card-body h5 {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    .portfolio-card .card-body p {
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    
+    .portfolio-card .btn-container {
+      margin-top: auto;
     }
   </style>
 </head>
@@ -526,7 +729,7 @@
                     </h2>
                     <div id="eduCollapse1" class="accordion-collapse collapse" aria-labelledby="eduHeading1" data-bs-parent="#educationAccordion">
                         <div class="accordion-body">
-                            <p><strong>Accolades:</strong> Dean’s honor list (2020); Dean’s list (2018)</p>
+                            <p><strong>Accolades:</strong> Dean's honor list (2020); Dean's list (2018)</p>
                             <p><strong>Core Courses:</strong> Calculus I-IV, Linear Algebra, Linear Programming, Partial Differential Equations, Probability, Stochastic Process</p>
                         </div>
                     </div>
@@ -653,30 +856,100 @@
         <!-- Portfolio Section -->
         <section class="info-card" data-aos="fade-up" id="portfolio">
             <h3 id="portfolio-header">Portfolio</h3>
-            <div class="portfolio-container">
-                <!-- Example portfolio card -->
-                <div class="portfolio-card">
-                    <iframe src="https://example.com/yourproject" title="Project Preview" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
-                    <div class="card-body">
-                        <h5>Example Project</h5>
-                        <p>A brief description of your project.</p>
-                        <a href="https://example.com/yourproject" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit Website</a>
+            <div class="projects-carousel-container">
+                <button class="projects-nav-btn projects-left-btn" id="portfolioLeftBtn" aria-label="Scroll left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="projects-carousel" id="portfolioCarousel">
+                    <!-- IDA Assignment 3 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="card-img-container">
+                            <img src="https://raw.githubusercontent.com/alexayu1204/alexayu1204.github.io/main/assets/ida_assignment3.jpg" alt="Incomplete Data Analysis Project" onerror="this.src='https://dummyimage.com/600x400/007bff/ffffff&text=Data+Analysis+Project'">
+                        </div>
+                        <div class="card-body">
+                            <h5>Incomplete Data Analysis</h5>
+                            <p>A statistical analysis project focusing on handling incomplete data sets using imputation techniques and robust estimation methods.</p>
+                            <div class="btn-container">
+                                <a href="https://github.com/alexayu1204/IDA_assignment3" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Incomplete Data Analysis Assignment 2 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="card-img-container">
+                            <img src="https://raw.githubusercontent.com/alexayu1204/alexayu1204.github.io/main/assets/ida_assignment2.jpg" alt="Data Analysis Project" onerror="this.src='https://dummyimage.com/600x400/28a745/ffffff&text=Statistical+Methods'">
+                        </div>
+                        <div class="card-body">
+                            <h5>Statistical Methods for Incomplete Data</h5>
+                            <p>Implementation of advanced statistical methods for analyzing datasets with missing values, including multiple imputation and sensitivity analysis.</p>
+                            <div class="btn-container">
+                                <a href="https://github.com/alexayu1204/Incomplete_Data_Analysis_Assignment_2" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stable Dreamfusion -->
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="card-img-container">
+                            <img src="https://raw.githubusercontent.com/alexayu1204/alexayu1204.github.io/main/assets/stable_dreamfusion.jpg" alt="3D Generation Project" onerror="this.src='https://dummyimage.com/600x400/6f42c1/ffffff&text=3D+Generation'">
+                        </div>
+                        <div class="card-body">
+                            <h5>3D Object Generation from Text</h5>
+                            <p>Implementation of Stable-Dreamfusion, a text-to-3D generation model that creates detailed 3D objects from natural language descriptions.</p>
+                            <div class="btn-container">
+                                <a href="https://github.com/alexayu1204/stable-dreamfusion" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SD Project -->
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="card-img-container">
+                            <img src="https://raw.githubusercontent.com/alexayu1204/alexayu1204.github.io/main/assets/sd_project.jpg" alt="Stable Diffusion Project" onerror="this.src='https://dummyimage.com/600x400/e83e8c/ffffff&text=Image+Generation'">
+                        </div>
+                        <div class="card-body">
+                            <h5>Stable Diffusion Implementation</h5>
+                            <p>A custom implementation of Stable Diffusion models for generating high-quality images from text prompts with fine-tuning capabilities.</p>
+                            <div class="btn-container">
+                                <a href="https://github.com/alexayu1204/sd" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Textile Design Portfolio -->
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="card-img-container">
+                            <img src="https://dummyimage.com/600x400/e83e8c/ffffff&text=Textile+Design" alt="Textile Design Portfolio">
+                        </div>
+                        <div class="card-body">
+                            <h5>Textile Design Portfolio</h5>
+                            <p>A showcase of original textile designs, patterns, and fabric creations exploring various techniques and artistic expressions.</p>
+                            <div class="btn-container">
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="https://alexy1204.wixsite.com/website-1" data-title="Textile Design E‑Portfolio" data-offset="250">Preview</button>
+                                <a href="https://alexy1204.wixsite.com/website-1" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Creation -->
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="card-img-container">
+                            <img src="https://dummyimage.com/600x400/28a745/ffffff&text=Content+Creation" alt="Content Creation Portfolio">
+                        </div>
+                        <div class="card-body">
+                            <h5>Content Creation Portfolio</h5>
+                            <p>A collection of creative writing, photography, and multimedia content showcasing artistic expression in Chinese language.</p>
+                            <div class="btn-container">
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="https://alexy1204.wixsite.com/website" data-title="Content Creation" data-offset="250">Preview</button>
+                                <a href="https://alexy1204.wixsite.com/website" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Additional portfolio cards can be added here -->
-            </div>
-        </section>
-
-        <!-- Resume Section -->
-        <section class="info-card resume-section" data-aos="fade-up" id="resumeSection">
-            <h3 id="resume-header">Resume</h3>
-            <div class="resume-buttons">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resumeModal">
-                    <i class="fas fa-eye"></i> View Resume
+                <button class="projects-nav-btn projects-right-btn" id="portfolioRightBtn" aria-label="Scroll right">
+                    <i class="fas fa-chevron-right"></i>
                 </button>
-                <a href="Resume.pdf" download class="btn btn-secondary">
-                    <i class="fas fa-download"></i> Download Resume
-                </a>
             </div>
         </section>
 
@@ -719,48 +992,16 @@
             </div>
         </section>
 
-        <!-- GitHub Projects Carousel -->
-        <section class="info-card" data-aos="fade-up" id="github-projects">
-            <h3>GitHub Projects</h3>
-            <div class="projects-carousel-container position-relative">
-                <button class="btn btn-light position-absolute start-0 top-50 translate-middle-y" id="projectsLeftBtn" style="z-index:2;">
-                    <i class="fas fa-chevron-left"></i>
+        <!-- Resume Section -->
+        <section class="info-card resume-section" data-aos="fade-up" id="resumeSection">
+            <h3 id="resume-header">Resume</h3>
+            <div class="resume-buttons">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resumeModal">
+                    <i class="fas fa-eye"></i> View Resume
                 </button>
-                <div class="projects-carousel d-flex gap-3 overflow-auto" style="scroll-behavior: smooth; padding-bottom: 1rem;">
-                    <!-- Project 1 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <i class="fab fa-github fa-2x" style="color:#333;"></i>
-                        <h6 class="mt-2">alexayu1204.github.io</h6>
-                        <a href="https://github.com/alexayu1204/alexayu1204.github.io" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <i class="fab fa-github fa-2x" style="color:#333;"></i>
-                        <h6 class="mt-2">IDA_assignment3</h6>
-                        <a href="https://github.com/alexayu1204/IDA_assignment3" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
-                    </div>
-                    <!-- Project 3 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <i class="fab fa-github fa-2x" style="color:#333;"></i>
-                        <h6 class="mt-2">Incomplete_Data_Analysis_Assignment_2</h6>
-                        <a href="https://github.com/alexayu1204/Incomplete_Data_Analysis_Assignment_2" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
-                    </div>
-                    <!-- Project 4 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <i class="fab fa-github fa-2x" style="color:#333;"></i>
-                        <h6 class="mt-2">stable-dreamfusion</h6>
-                        <a href="https://github.com/alexayu1204/stable-dreamfusion" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
-                    </div>
-                    <!-- Project 5 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <i class="fab fa-github fa-2x" style="color:#333;"></i>
-                        <h6 class="mt-2">sd</h6>
-                        <a href="https://github.com/alexayu1204/sd" target="_blank" class="btn btn-sm btn-outline-secondary mt-1">Visit</a>
-                    </div>
-                </div>
-                <button class="btn btn-light position-absolute end-0 top-50 translate-middle-y" id="projectsRightBtn" style="z-index:2;">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                <a href="Resume.pdf" download class="btn btn-secondary">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
             </div>
         </section>
 
@@ -889,7 +1130,7 @@
         });
       });
 
-      // Dark Mode Toggle (Reference Implementation)
+      // Dark Mode Toggle
       const themeToggle = document.getElementById('theme-toggle');
       const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
       if (currentTheme) {
@@ -911,29 +1152,90 @@
         }
       });
 
-      // Preview Modal for Online Profiles: Set iframe src when modal is shown
+      // Portfolio Projects Carousel Navigation
+      const portfolioLeftBtn = document.getElementById('portfolioLeftBtn');
+      const portfolioRightBtn = document.getElementById('portfolioRightBtn');
+      const portfolioCarousel = document.getElementById('portfolioCarousel');
+      
+      // Function to scroll carousel
+      function scrollCarousel(carousel, direction) {
+        const cardWidth = carousel.querySelector('.project-card').offsetWidth;
+        const scrollAmount = direction === 'left' ? -cardWidth - 16 : cardWidth + 16;
+        carousel.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+      
+      // Portfolio carousel buttons
+      if (portfolioLeftBtn && portfolioRightBtn && portfolioCarousel) {
+        portfolioLeftBtn.addEventListener('click', () => scrollCarousel(portfolioCarousel, 'left'));
+        portfolioRightBtn.addEventListener('click', () => scrollCarousel(portfolioCarousel, 'right'));
+        
+        // Add touch swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        portfolioCarousel.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        portfolioCarousel.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe(portfolioCarousel);
+        }, { passive: true });
+        
+        function handleSwipe(carousel) {
+          const swipeDistance = touchEndX - touchStartX;
+          const threshold = 50; // Minimum swipe distance
+          
+          if (swipeDistance > threshold) {
+            // Swiped right
+            scrollCarousel(carousel, 'left');
+          } else if (swipeDistance < -threshold) {
+            // Swiped left
+            scrollCarousel(carousel, 'right');
+          }
+        }
+      }
+
+      // Enhanced Preview Modal for Online Profiles: Set iframe src when modal is shown
       var previewModalEl = document.getElementById('previewModal');
       previewModalEl.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
         var url = button.getAttribute('data-url');
         var title = button.getAttribute('data-title');
+        var offset = button.getAttribute('data-offset') || 0;
         var modalTitle = previewModalEl.querySelector('.modal-title');
         var previewFrame = document.getElementById('previewFrame');
+        
         modalTitle.textContent = title;
         previewFrame.src = url;
+        
+        // Scroll iframe to specific offset when loaded
+        previewFrame.onload = function() {
+          try {
+            if (offset > 0) {
+              previewFrame.contentWindow.scrollTo(0, parseInt(offset));
+            }
+          } catch (e) {
+            // Handle cross-origin policy issues silently
+            console.log("Could not scroll iframe due to cross-origin policy");
+          }
+        };
       });
+      
       previewModalEl.addEventListener('hidden.bs.modal', function () {
         // Clear iframe src to stop the page from continuing to run
         document.getElementById('previewFrame').src = "";
       });
-
-      // GitHub Projects Carousel Scrolling
-      const projectsCarousel = document.querySelector('.projects-carousel');
-      document.getElementById('projectsLeftBtn').addEventListener('click', () => {
-        projectsCarousel.scrollBy({ left: -300, behavior: 'smooth' });
-      });
-      document.getElementById('projectsRightBtn').addEventListener('click', () => {
-        projectsCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+      
+      // Handle device orientation change for better mobile experience
+      window.addEventListener('orientationchange', function() {
+        // Force AOS refresh
+        setTimeout(function() {
+          AOS.refresh();
+        }, 300);
       });
     </script>
 </body>
