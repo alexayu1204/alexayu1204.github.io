@@ -507,6 +507,8 @@
       margin-top: auto;
     }
   </style>
+  <!-- Add this line in the <head> section, after other script/link tags -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body data-theme="light">
 
@@ -861,6 +863,22 @@
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 <div class="projects-carousel" id="portfolioCarousel">
+                    <!-- Personalized Poem Generation Project -->
+                    <div class="project-card" data-aos="fade-up" tabindex="0">
+                        <div class="card-img-container">
+                            <img src="https://dummyimage.com/600x400/007bff/ffffff&text=Poem+Gen" alt="Personalized Poem Generation Project" loading="lazy" onerror="this.src='https://dummyimage.com/600x400/007bff/ffffff&text=Poem+Gen'">
+                        </div>
+                        <div class="card-body">
+                            <h5>Personalized Poem Generation</h5>
+                            <p>End-to-end fine-tuning of Qwen LLMs on a custom poetry corpus using LoRA & MLX on Apple Silicon for creative, parameter-efficient poem generation.</p>
+                            <div class="btn-container">
+                                <a href="https://github.com/alexayu1204/alexayu1204-Personalized-Poem-Generation-with-Fine-Tuned-Large-Language-Model.git" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Repository" title="View Repository">View Repository</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="assets/poem_generator_project_TECHNICAL_DETAILS.md" data-title="Tech Report: Personalized Poem Generation" class="btn btn-sm btn-primary" aria-label="Preview Tech Report" title="Preview Tech Report">Preview Tech Report</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Personalized Poem Generation Project -->
+
                     <!-- IDA Assignment 3 -->
                     <div class="project-card" data-aos="fade-up">
                         <div class="card-img-container">
@@ -1199,7 +1217,7 @@
         }
       }
 
-      // Enhanced Preview Modal for Online Profiles: Set iframe src when modal is shown
+      // Enhanced Preview Modal for Online Profiles: Set iframe src when modal is shown and also for Markdown Rendering (of HTML using marked.js inside the Preview modal)
       var previewModalEl = document.getElementById('previewModal');
       previewModalEl.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
@@ -1223,11 +1241,39 @@
             console.log("Could not scroll iframe due to cross-origin policy");
           }
         };
+        
+        var modalBody = previewModalEl.querySelector('.modal-body');
+        // Clear previous content
+        modalBody.innerHTML = '';
+
+        if (url.trim().toLowerCase().endsWith('.md')) {
+          // Fetch and convert markdown to HTML
+          fetch(url)
+            .then(response => response.text())
+            .then(md => {
+              var htmlContent = marked.parse(md);
+              modalBody.innerHTML = '<div id="markdownContent" style="overflow:auto; max-height:600px; padding: 1rem;">' + htmlContent + '</div>';
+              // If offset is provided, scroll the div
+              if (offset > 0) {
+                document.getElementById('markdownContent').scrollTop = parseInt(offset);
+              }
+            })
+            .catch(err => {
+              modalBody.innerHTML = '<p>Error loading content.</p>';
+              console.error('Error loading markdown:', err);
+            });
+        } else {
+          // Fallback: load via iframe for non-markdown content
+          modalBody.innerHTML = '<iframe src="' + url + '" width="100%" height="600px" style="border: none;"></iframe>';
+        }
       });
       
       previewModalEl.addEventListener('hidden.bs.modal', function () {
         // Clear iframe src to stop the page from continuing to run
         document.getElementById('previewFrame').src = "";
+        // Clear modal body content to stop any continuing processes
+        var modalBody = previewModalEl.querySelector('.modal-body');
+        modalBody.innerHTML = '';
       });
       
       // Handle device orientation change for better mobile experience
