@@ -1,6 +1,11 @@
-## Technical Implementation Details: MLX LoRA Poetry Fine-Tuning for Personalized Poem Generation
+## Implementation Details: MLX LoRA Poetry Fine-Tuning for Personalized Poem Generation
 
 This document provides a comprehensive overview of the technical implementation of a fine-tuned poetry generation system using MLX, LoRA, and Qwen2.5 Language Models. The system is designed for parameter-efficient fine-tuning and optimized performance on Macbook Hardware (Apple Silicon devices).
+
+<div class="markdown-alert markdown-alert-tip">
+  <div class="markdown-alert-title"><strong>Note:</strong></div>
+  Please refer to the Appendix below for AI generated poems by the finetuned LLM models.
+</div>
 
 ---
 
@@ -231,35 +236,133 @@ This system represents a fusion of advanced machine learning techniques and prac
 
 ---
 
-### Appendix
+<!-- Inline styling for poem cards -->
+<style>
+.poem-card {
+  background: #fdfdfd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.poem-card h4 {
+  margin-top: 0;
+  color: #007bff;
+}
+.poem-original, .poem-translation {
+  margin-bottom: 10px;
+}
+.poem-original blockquote, .poem-translation blockquote {
+  background: #fff;
+  border-left: 4px solid #007bff;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-style: italic;
+  color: #333;
+}
+</style>
 
-Self-written poem in 2020:
+### Appendix: Sample Poems
 
-阳光洗去了树叶的所有颜色，
+<div class="poem-card">
+  <h4>Self-Written Poem (2020)</h4>
+  <div class="poem-original">
+    <p><strong>Original (Chinese):</strong></p>
+    <blockquote>
+      阳光洗去了树叶的所有颜色，  <br/>
+      它们的色彩溅在我的脚上，  <br/>
+      蒸发成蝴蝶，  <br/>
+      然后飞走了。
+    </blockquote>
+  </div>
+  <div class="poem-translation">
+    <p><strong>Translation (English):</strong></p>
+    <blockquote>
+      The sunshine has washed all the color from the leaves,  <br/>
+      their hues splashed upon my feet,  <br/>
+      evaporating into butterflies  <br/>
+      that fly away.
+    </blockquote>
+  </div>
+</div>
 
-它们的色彩溅在我的脚上，
+---
 
-蒸发成蝴蝶，
+<div class="poem-card">
+  <h4>Model (Qwen 2.5 7B) Result on Theme "阳光" (Sunshine) ☀️</h4>
+  <div class="poem-original">
+    <p><strong>Original (Chinese):</strong></p>
+    <blockquote>
+      清晨的阳光  <br/>
+      它弯曲伸展在清冽的河水  <br/>
+      缠绕着寂静的湖面  <br/>
+      攀上篝火的头顶  <br/>
+      嵌入寒冷的岩壁
+    </blockquote>
+  </div>
+  <div class="poem-translation">
+    <p><strong>Translation (English):</strong></p>
+    <blockquote>
+      Morning sunlight,  <br/>
+      it curves and stretches over the crisp river,  <br/>
+      entwining with the silent lake,  <br/>
+      climbing atop the bonfire's peak,  <br/>
+      and embedding itself into the cold rock wall.
+    </blockquote>
+  </div>
+</div>
 
-然后飞走了。
+---
 
-The sunshine has washed all the color from the leaves,
+<div class="poem-card">
+  <h4>Model (Qwen 2.5 14B) Result on Theme "阳光" (Sunshine) ☀️</h4>
+  <div class="poem-original">
+    <p><strong>Original (Chinese):</strong></p>
+    <blockquote>
+      阳光  <br/>
+      是被风吹散的  <br/>
+      金色粉末  <br/>
+      是藏在云里  <br/>
+      偷看世界的眼
+    </blockquote>
+  </div>
+  <div class="poem-translation">
+    <p><strong>Translation (English):</strong></p>
+    <blockquote>
+      Sunlight  <br/>
+      is golden dust scattered by the wind;  <br/>
+      it is the eye hidden in the clouds,  <br/>
+      peeking at the world.
+    </blockquote>
+  </div>
+</div>
 
-their hues splashed upon my feet,
+---
 
-evaporating into butterflies
-
-that fly away.
-
-
-Model (Qwen 2.5 7B) generated results on theme 阳光 ("Sunshine")☀️
-
-
-Model (Qwen 2.5 14B) generated results on theme 阳光 ("Sunshine")☀️
-
-
-Model (Qwen 2.5 32B) generated results on theme 阳光 ("Sunshine")☀️
-
+<div class="poem-card">
+  <h4>Model (Qwen 2.5 32B) Result on Theme "阳光" (Sunshine) ☀️</h4>
+  <div class="poem-original">
+    <p><strong>Original (Chinese):</strong></p>
+    <blockquote>
+      阳光  <br/>
+      在城市的缝隙里  <br/>
+      它挤出一条路  <br/>
+      照亮了  <br/>
+      那些被遗忘的角落
+    </blockquote>
+  </div>
+  <div class="poem-translation">
+    <p><strong>Translation (English):</strong></p>
+    <blockquote>
+      Sunlight  <br/>
+      in the cracks of the city  <br/>
+      squeezes out a path,  <br/>
+      illuminating  <br/>
+      those forgotten corners.
+    </blockquote>
+  </div>
+</div>
 
 ---
 

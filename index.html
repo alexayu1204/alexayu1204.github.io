@@ -509,6 +509,8 @@
   </style>
   <!-- Add this line in the <head> section, after other script/link tags -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- In the <head> section, add GitHub Markdown CSS -->
+  <link rel="stylesheet" href="style/github-markdown.css" />
 </head>
 <body data-theme="light">
 
@@ -1282,7 +1284,8 @@
             .then(response => response.text())
             .then(md => {
               var htmlContent = marked.parse(md);
-              modalBody.innerHTML = '<div id="markdownContent" style="overflow:auto; max-height:600px; padding: 1rem;">' + htmlContent + '</div>';
+              // Wrap the converted HTML in an article element using the local GitHub markdown CSS
+              modalBody.innerHTML = '<article id="markdownContent" class="markdown-body" style="overflow:auto; max-height:600px; padding: 1rem; border-radius: 4px; background: #ffffff;">' + htmlContent + '</article>';
               // If offset is provided, scroll the div
               if (offset > 0) {
                 document.getElementById('markdownContent').scrollTop = parseInt(offset);
