@@ -2,30 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Haoting (Alexa) Yu - Resume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+
+  <!-- Primary meta -->
+  <title>Haoting (Alexa) Yu — AI &amp; Creative Computing Researcher</title>
+  <meta name="description" content="Haoting (Alexa) Yu — Creative Computing researcher (MRes, UAL) working on multimodal RAG, music information retrieval, and authorship in AI art. Poet and photographer, with foundations in mathematics and operational research."/>
+  <meta name="author" content="Haoting (Alexa) Yu"/>
+  <meta name="keywords" content="Haoting Yu, Alexa Yu, Creative Computing, AI researcher, machine learning, multimodal RAG, music information retrieval, generative AI, data science, poet, photographer"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://alexayu1204.github.io/"/>
+
+  <!-- Theme / appearance -->
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="theme-color" id="theme-color-meta" content="#faf7f3"/>
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.ico" sizes="any"/>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
+  <link rel="mask-icon" href="assets/favicon.svg" color="#ff7f00"/>
+  <link rel="manifest" href="site.webmanifest"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Haoting (Alexa) Yu"/>
+  <meta property="og:title" content="Haoting (Alexa) Yu — AI &amp; Creative Computing Researcher"/>
+  <meta property="og:description" content="Creative Computing researcher (MRes, UAL): multimodal RAG, music information retrieval, and authorship in AI art. Poet & photographer, with roots in mathematics and operational research."/>
+  <meta property="og:url" content="https://alexayu1204.github.io/"/>
+  <meta property="og:image" content="https://alexayu1204.github.io/assets/og-image.png"/>
+  <meta property="og:image:type" content="image/png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content="Haoting (Alexa) Yu — AI &amp; Creative Computing Researcher"/>
+  <meta property="og:locale" content="en_GB"/>
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Haoting (Alexa) Yu — AI &amp; Creative Computing Researcher"/>
+  <meta name="twitter:description" content="Creative Computing researcher — multimodal RAG, music information retrieval, and authorship in AI art. Poet &amp; photographer."/>
+  <meta name="twitter:image" content="https://alexayu1204.github.io/assets/og-image.png"/>
+  <meta name="twitter:image:alt" content="Haoting (Alexa) Yu — AI &amp; Creative Computing Researcher"/>
+
+  <!-- Performance: warm up the connections we rely on -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <!-- Google Fonts: Fraunces (display serif) + Roboto (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Roboto:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet"/>
   <!-- AOS CSS for Animations -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
   <!-- Custom CSS -->
   <link href="style/main.css" rel="stylesheet"/>
   <!-- GitHub Markdown CSS -->
   <link rel="stylesheet" href="style/github-markdown.css" />
-  <!-- Marked.js for Markdown parsing -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Resilience: if JS is disabled, AOS's [data-aos]{opacity:0} would hide the page — reveal it. -->
+  <noscript><style>[data-aos]{opacity:1 !important; transform:none !important;}</style></noscript>
+  <!-- Marked.js for Markdown parsing (only used by preview modals) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js" defer></script>
+
+  <!-- Structured data: helps search engines & rich results understand the person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Haoting (Alexa) Yu",
+    "alternateName": "Alexa Yu",
+    "url": "https://alexayu1204.github.io/",
+    "image": "https://alexayu1204.github.io/assets/og-image.png",
+    "jobTitle": "Creative Computing Researcher",
+    "email": "mailto:alexy1204@yahoo.com",
+    "description": "Researcher and creative technologist working at the intersection of AI and creative practice — multimodal RAG, music information retrieval, and authorship in AI art.",
+    "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Multimodal Retrieval-Augmented Generation", "Music Information Retrieval", "Generative AI", "Data Science", "Operational Research", "Poetry", "Photography"],
+    "knowsLanguage": ["en", "zh"],
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "University of British Columbia" },
+      { "@type": "CollegeOrUniversity", "name": "University of Edinburgh" },
+      { "@type": "CollegeOrUniversity", "name": "University of the Arts London" }
+    ],
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "University of the Arts London" },
+    "sameAs": [
+      "https://www.linkedin.com/in/alexa-yu",
+      "https://github.com/alexayu1204",
+      "https://alexy1204.wixsite.com/website"
+    ]
+  }
+  </script>
 </head>
 <body data-theme="light">
+  <!-- Apply saved/system theme before first paint to avoid a flash of the wrong theme -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.body.setAttribute('data-theme', theme);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#121212' : '#faf7f3');
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Accessibility: lets keyboard/screen-reader users jump straight to content -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Reading progress indicator -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
 
     <!-- Fixed Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <!-- Clickable Name (CV Icon) -->
-            <a class="navbar-brand" href="Resume.pdf" download id="navbarBrand" aria-label="Download Resume">
+            <!-- Brand returns to top -->
+            <a class="navbar-brand" href="#header" id="navbarBrand" aria-label="Back to top">
+                <span class="navbar-brand__mono" aria-hidden="true">A</span>
                 Haoting (Alexa) Yu
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -35,35 +130,41 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#about-header">About Me</a>
+                        <a class="nav-link" href="#about-header">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#work-header">Work Experience</a>
+                        <a class="nav-link" href="#research-header">Research</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#work-header">Work</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#education-header">Education</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#skills-header">Technical Skills</a>
+                        <a class="nav-link" href="#skills-header">Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#projects-header">Project Experience</a>
+                        <a class="nav-link" href="#projects-header">Projects</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#portfolio-header">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#art-header">Art</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact-header">Contact</a>
                     </li>
                     <!-- CV Icon (View Resume) -->
                     <li class="nav-item">
-                        <a href="#" aria-label="View Resume" id="cvIcon" data-bs-toggle="modal" data-bs-target="#resumeModal" data-bs-placement="bottom" title="View Resume" class="tool-icon">
+                        <a href="#" aria-label="View Resume" id="cvIcon" data-bs-toggle="modal" data-bs-target="#resumeModal" title="View Resume" class="tool-icon">
                             <i class="fas fa-file-alt"></i>
                         </a>
                     </li>
                     <!-- Dark Mode Toggle -->
                     <li class="nav-item">
-                        <span class="nav-link theme-toggle" id="theme-toggle" role="button" aria-label="Toggle Dark Mode">
+                        <span class="nav-link theme-toggle" id="theme-toggle" role="button" tabindex="0" aria-label="Toggle Dark Mode">
                             <i class="fas fa-moon"></i>
                         </span>
                     </li>
@@ -72,51 +173,150 @@
         </div>
     </nav>
 
-    <div class="main-container">
-        <!-- Header Section -->
-        <section class="header" id="header">
-            <h1 data-aos="fade-in">Haoting (Alexa) Yu</h1>
-            <div class="social-icons">
-                <a href="mailto:alexy1204@yahoo.com" target="_blank" aria-label="Email" data-bs-toggle="tooltip" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <!-- Keep primary UK phone in direct link -->
-                <a href="tel:+447831223687" target="_blank" aria-label="Phone" data-bs-toggle="tooltip" title="Call Me">
-                    <i class="fas fa-phone"></i>
-                </a>
-                <a href="https://alexy1204.wixsite.com/website" target="_blank" aria-label="Portfolio" data-bs-toggle="tooltip" title="Portfolio">
-                    <i class="fas fa-globe"></i>
-                </a>
+    <main class="main-container" id="main" tabindex="-1">
+        <!-- Header / Hero Section -->
+        <section class="header hero" id="header">
+            <div class="hero-bg" aria-hidden="true">
+                <span class="hero-aurora hero-aurora--1"></span>
+                <span class="hero-aurora hero-aurora--2"></span>
+                <span class="hero-grid"></span>
             </div>
-            <p>Laboratory Quality Engineer | Data Scientist | Creative Enthusiast</p>
+            <div class="hero-inner">
+                <div class="hero-monogram" aria-hidden="true">A</div>
+                <p class="hero-eyebrow">MRes Creative Computing · UAL</p>
+                <h1 data-aos="fade-in" aria-label="Haoting (Alexa) Yu">Yu, Haoting <em>(Alexa)</em></h1>
+                <p class="hero-name-zh" lang="zh" translate="no" aria-hidden="true">于昊廷</p>
+                <p class="hero-role">Researcher <span class="sep" aria-hidden="true">·</span> Poet <span class="sep" aria-hidden="true">·</span> Photographer</p>
+                <p class="hero-lede">
+                    Multimodal generative AI, music information retrieval, and the governance &amp;
+                    authorship of creative machines.
+                </p>
+                <div class="hero-cta">
+                    <a href="#research-header" class="btn btn-hero-primary"><i class="fas fa-flask"></i> Explore Research</a>
+                    <a href="#portfolio-header" class="btn btn-hero-ghost"><i class="fas fa-folder-open"></i> View Portfolio</a>
+                    <a href="Resume.pdf" download class="btn btn-hero-ghost"><i class="fas fa-download"></i> Download CV</a>
+                </div>
+                <div class="social-icons hero-social">
+                    <a href="mailto:alexy1204@yahoo.com" aria-label="Email" data-bs-toggle="tooltip" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/alexayu1204" target="_blank" rel="noopener" aria-label="GitHub" data-bs-toggle="tooltip" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alexa-yu" target="_blank" rel="noopener" aria-label="LinkedIn" data-bs-toggle="tooltip" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://alexy1204.wixsite.com/website" target="_blank" rel="noopener" aria-label="Creative portfolio" data-bs-toggle="tooltip" title="Creative Portfolio">
+                        <i class="fas fa-palette"></i>
+                    </a>
+                    <a href="tel:+447831223687" aria-label="Phone" data-bs-toggle="tooltip" title="Call Me">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
         </section>
 
         <!-- About Me -->
         <section class="info-card" data-aos="fade-up" id="about">
-            <h3 id="about-header">About Me</h3>
-            <p>
-                I am currently working at Fugro as a Laboratory Quality Engineer, leveraging my passion for machine learning,
-                data analysis, and technical innovation. Yet my creative journey truly began in 2016, when I wrote my first poem 
-                and discovered an unparalleled sense of fulfillment. Despite initially following a path in science and engineering— 
-                earning expertise in data, AI, and software development—I have never lost my love for creative arts. Today, with 
-                the freedom to explore, I integrate photography, poetry, and design thinking into my work, marrying technical 
-                precision with artistic expression. 
-            </p>
+            <div class="section-kicker" aria-hidden="true"><span class="num">01</span><span class="label">Profile</span></div>
+            <h2 id="about-header">About Me</h2>
+            <div class="about-prose">
+                <p>
+                    I am a researcher and creative technologist pursuing an MRes in Creative Computing at the University of the
+                    Arts London. My work sits at the intersection of AI and creative practice — multimodal retrieval-augmented
+                    generation, automatic drum transcription, and authorship in AI art. It builds on a quantitative foundation:
+                    a BSc in Mathematics (UBC) and an MSc in Operational Research with Data Science (Edinburgh), plus hands-on
+                    machine learning and data work in industry.
+                </p>
+                <p>
+                    Yet my creative journey truly began in 2016, when I wrote my first poem and discovered an unparalleled sense of
+                    fulfillment. Despite following a path in science and engineering, I have never lost my love for the creative arts.
+                    Today I integrate photography, poetry, and design thinking into my work, marrying technical precision with
+                    artistic expression.
+                </p>
+            </div>
+        </section>
+
+        <!-- Research Projects -->
+        <section class="info-card" data-aos="fade-up" id="research">
+            <div class="section-kicker" aria-hidden="true"><span class="num">02</span><span class="label">Publications</span></div>
+            <h2 id="research-header">Research Projects</h2>
+            <div class="accordion" id="researchAccordion">
+
+                <!-- Creative MRAG (Accepted) -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="resHeading1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#resCollapse1" aria-expanded="true" aria-controls="resCollapse1">
+                            <span class="research-title">From Retrieval to Responsibility: Designing Creative MRAG with Control and Governance</span>
+                            <span class="research-tags">
+                                <span class="research-type">Poster</span>
+                                <span class="research-badge accepted">Accepted</span>
+                            </span>
+                        </button>
+                    </h3>
+                    <div id="resCollapse1" class="accordion-collapse collapse show" aria-labelledby="resHeading1" data-bs-parent="#researchAccordion">
+                        <div class="accordion-body">
+                            <p class="research-venue"><i class="fas fa-book-open"></i> ACM Creativity &amp; Cognition (C&amp;C) 2026</p>
+                            <p>A three-axis design framework for control and governance in multimodal retrieval-augmented generation (MRAG) for creative practice. Semi-structured interviews with 10 visual and sonic creators yielded design implications for provenance, interaction, and responsible reference-based generation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automatic Drum Transcription (Under Review) -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="resHeading2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#resCollapse2" aria-expanded="false" aria-controls="resCollapse2">
+                            <span class="research-title">Towards Robust Automatic Drum Transcription via Domain-Randomized Data Synthesis</span>
+                            <span class="research-tags">
+                                <span class="research-type">Paper</span>
+                                <span class="research-badge review">Under Review</span>
+                            </span>
+                        </button>
+                    </h3>
+                    <div id="resCollapse2" class="accordion-collapse collapse" aria-labelledby="resHeading2" data-bs-parent="#researchAccordion">
+                        <div class="accordion-body">
+                            <p class="research-venue"><i class="fas fa-book-open"></i> ISMIR 2026</p>
+                            <p>DITS — a domain-randomized synthetic drum dataset and procedural drum machine for Automatic Drum Transcription (ADT) that randomizes rhythm, timbre, tempo, swing, effects, and instrument co-occurrence. Ablation studies show improved robustness on sonically diverse contemporary drum loops and competitive performance against real-data ADT baselines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curatorial Agency in Botto (Accepted) -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="resHeading3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#resCollapse3" aria-expanded="false" aria-controls="resCollapse3">
+                            <span class="research-title">Who Chooses the Artwork? Curatorial Agency and Distributed Intent in Botto</span>
+                            <span class="research-tags">
+                                <span class="research-type">Workshop Paper</span>
+                                <span class="research-badge accepted">Accepted</span>
+                            </span>
+                        </button>
+                    </h3>
+                    <div id="resCollapse3" class="accordion-collapse collapse" aria-labelledby="resHeading3" data-bs-parent="#researchAccordion">
+                        <div class="accordion-body">
+                            <p class="research-venue"><i class="fas fa-book-open"></i> Explainable AI for the Arts Workshop @ ACM C&amp;C 2026</p>
+                            <p>An examination of authorship, explainability, and curatorial agency in AI art, reading Botto as an agentic curatorial system where generation, ranking, voting, feedback, and recognition are recursively connected. It argues that authorship is distributed but asymmetrical — shaped through selection, model filtering, DAO voting, and the process by which one generated image becomes recognized as the artwork.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <!-- Work Experience -->
         <section class="info-card" data-aos="fade-up" id="work">
-            <h3 id="work-header">Work Experience</h3>
+            <div class="section-kicker" aria-hidden="true"><span class="num">03</span><span class="label">Career</span></div>
+            <h2 id="work-header">Work Experience</h2>
             <div class="accordion" id="workExperienceAccordion">
 
                 <!-- Fugro -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="workHeading1">
+                    <h3 class="accordion-header" id="workHeading1">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse1" aria-expanded="false" aria-controls="workCollapse1">
                             Laboratory Quality Engineer - Fugro
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Aug 2024 – Present</span>
+                            <span class="exp-date ms-2 text-muted">Aug 2024 – Mar 2025</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="workCollapse1" class="accordion-collapse collapse" aria-labelledby="workHeading1" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
@@ -129,14 +329,33 @@
                     </div>
                 </div>
 
+                <!-- Shanghai BaiLiYuan Pharmaceutical Group -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="workHeading7">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse7" aria-expanded="false" aria-controls="workCollapse7">
+                            Data Analyst Intern - Shanghai BaiLiYuan Pharmaceutical Group Co. (Shanghai, China)
+                            <span class="exp-date ms-2 text-muted">Dec 2023 - June 2024</span>
+                        </button>
+                    </h3>
+                    <div id="workCollapse7" class="accordion-collapse collapse" aria-labelledby="workHeading7" data-bs-parent="#workExperienceAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Conducted data analysis on pharmaceutical sales and distribution, leveraging Python (Pandas, NumPy) to analyse large datasets on product performance across regions.</li>
+                                <li>Queried databases with SQL to extract inventory data, optimizing stock replenishment and reducing overstocking by 15%.</li>
+                                <li>Presented key findings to senior management through Power BI and Tableau, highlighting the correlation between marketing strategies and sales growth.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- HD Education -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="workHeading2">
+                    <h3 class="accordion-header" id="workHeading2">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse2" aria-expanded="false" aria-controls="workCollapse2">
                             Mathematics Science Instructor - HD Education (Remote)
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">May 2022 - Oct 2024</span>
+                            <span class="exp-date ms-2 text-muted">May 2022 - Nov 2023</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="workCollapse2" class="accordion-collapse collapse" aria-labelledby="workHeading2" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
@@ -150,12 +369,12 @@
 
                 <!-- UBC Math Department TA -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="workHeading3">
+                    <h3 class="accordion-header" id="workHeading3">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse3" aria-expanded="false" aria-controls="workCollapse3">
                             Math Department Teaching Assistant - UBC Faculty of Science
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2021 - May 2022</span>
+                            <span class="exp-date ms-2 text-muted">Sep 2021 - May 2022</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="workCollapse3" class="accordion-collapse collapse" aria-labelledby="workHeading3" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
@@ -168,12 +387,12 @@
 
                 <!-- UBC Doctoral Examinations -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="workHeading4">
+                    <h3 class="accordion-header" id="workHeading4">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse4" aria-expanded="false" aria-controls="workCollapse4">
                             Doctoral Examinations Student Assistant - UBC Graduate & Postdoctoral Studies
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2021 - May 2022</span>
+                            <span class="exp-date ms-2 text-muted">Sep 2021 - May 2022</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="workCollapse4" class="accordion-collapse collapse" aria-labelledby="workHeading4" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
@@ -186,12 +405,12 @@
 
                 <!-- Ipsos Strategy3 -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="workHeading5">
+                    <h3 class="accordion-header" id="workHeading5">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse5" aria-expanded="false" aria-controls="workCollapse5">
                             Consultant Intern - Ipsos Strategy3 (Beijing, China)
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">May 2021 - Aug 2021</span>
+                            <span class="exp-date ms-2 text-muted">April 2021 - Aug 2021</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="workCollapse5" class="accordion-collapse collapse" aria-labelledby="workHeading5" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
@@ -205,12 +424,12 @@
 
                 <!-- Britbots Fund -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="workHeading6">
+                    <h3 class="accordion-header" id="workHeading6">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workCollapse6" aria-expanded="false" aria-controls="workCollapse6">
                             Investment Analyst Intern - Britbots Fund (London, UK - Remote)
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Aug 2020 - Sep 2020</span>
+                            <span class="exp-date ms-2 text-muted">May 2020 - Sep 2020</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="workCollapse6" class="accordion-collapse collapse" aria-labelledby="workHeading6" data-bs-parent="#workExperienceAccordion">
                         <div class="accordion-body">
                             <ul>
@@ -227,17 +446,18 @@
 
         <!-- Education -->
         <section class="info-card" data-aos="fade-up" id="education">
-            <h3 id="education-header">Education</h3>
+            <div class="section-kicker" aria-hidden="true"><span class="num">04</span><span class="label">Academic</span></div>
+            <h2 id="education-header">Education</h2>
             <div class="accordion" id="educationAccordion">
 
                 <!-- University of British Columbia -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="eduHeading1">
+                    <h3 class="accordion-header" id="eduHeading1">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eduCollapse1" aria-expanded="false" aria-controls="eduCollapse1">
                             BSc in Mathematics – University of British Columbia
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2017 - May 2022</span>
+                            <span class="exp-date ms-2 text-muted">Sep 2018 - May 2022</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="eduCollapse1" class="accordion-collapse collapse" aria-labelledby="eduHeading1" data-bs-parent="#educationAccordion">
                         <div class="accordion-body">
                             <p><strong>Accolades:</strong> Dean's honor list (2020); Dean's list (2018)</p>
@@ -248,15 +468,31 @@
 
                 <!-- University of Edinburgh -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="eduHeading2">
+                    <h3 class="accordion-header" id="eduHeading2">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eduCollapse2" aria-expanded="false" aria-controls="eduCollapse2">
                             MSc in Operational Research with Data Science – University of Edinburgh
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Sep 2022 – Nov 2024</span>
+                            <span class="exp-date ms-2 text-muted">Sep 2022 – Sep 2023</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="eduCollapse2" class="accordion-collapse collapse" aria-labelledby="eduHeading2" data-bs-parent="#educationAccordion">
                         <div class="accordion-body">
+                            <p><strong>Result:</strong> Merit</p>
                             <p><strong>Core Courses:</strong> Fundamentals of Operational Research, Fundamentals of Optimization, Operational Research, Applied Machine Learning, Reinforcement Learning, Biomedical Data Science</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- University of the Arts London -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="eduHeading3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eduCollapse3" aria-expanded="false" aria-controls="eduCollapse3">
+                            MRes in Creative Computing – University of the Arts London
+                            <span class="exp-date ms-2 text-muted">Sep 2025 – Sep 2026</span>
+                        </button>
+                    </h3>
+                    <div id="eduCollapse3" class="accordion-collapse collapse" aria-labelledby="eduHeading3" data-bs-parent="#educationAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Focus:</strong> Practice-based research at the intersection of artificial intelligence and creative practice — multimodal generative AI, music information retrieval, and the governance, explainability, and authorship of AI-driven creative systems.</p>
                         </div>
                     </div>
                 </div>
@@ -266,27 +502,63 @@
 
         <!-- Technical Skills -->
         <section class="info-card" data-aos="fade-up" id="skills">
-            <h3 id="skills-header">Technical Skills</h3>
-            <div class="skills">
-                <ul>
-                    <li>Python (NumPy, SciPy, Pandas, Seaborn, Scikit-learn)</li>
-                    <li>SQL</li>
-                    <li>Power BI</li>
-                    <li>Tableau</li>
-                    <li>R</li>
-                    <li>MATLAB</li>
-                    <li>JavaScript</li>
-                    <li>Orgin</li>
-                    <li>Textile Design</li>
-                    <li>Content Creation</li>
-                    <li>Writing & Photographing</li>
-                </ul>
+            <div class="section-kicker" aria-hidden="true"><span class="num">05</span><span class="label">Toolkit</span></div>
+            <h2 id="skills-header">Technical Skills</h2>
+            <div class="skills skills-grouped">
+                <div class="skill-group">
+                    <h3 class="skill-group__title"><i class="fas fa-code"></i> Languages &amp; Tools</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>R</li>
+                        <li>SQL</li>
+                        <li>MATLAB</li>
+                        <li>C++</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3 class="skill-group__title"><i class="fas fa-brain"></i> Machine Learning &amp; AI</h3>
+                    <ul>
+                        <li>Machine Learning</li>
+                        <li>PyTorch</li>
+                        <li>TensorFlow</li>
+                        <li>Scikit-learn</li>
+                        <li>Multimodal AI</li>
+                        <li>Generative AI</li>
+                        <li>LLMs (GPT, Claude, Gemini)</li>
+                        <li>Prompt Engineering</li>
+                        <li>LangChain</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3 class="skill-group__title"><i class="fas fa-chart-line"></i> Data &amp; Visualization</h3>
+                    <ul>
+                        <li>NumPy</li>
+                        <li>Pandas</li>
+                        <li>SciPy</li>
+                        <li>Power BI</li>
+                        <li>Tableau</li>
+                        <li>Origin</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3 class="skill-group__title"><i class="fas fa-palette"></i> Creative &amp; Communication</h3>
+                    <ul>
+                        <li>Textile Design</li>
+                        <li>Writing &amp; Photography</li>
+                        <li>Content Creation</li>
+                        <li>Mandarin (Native)</li>
+                        <li>English (Fluent)</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <!-- Project Experience -->
         <section class="info-card" data-aos="fade-up" id="projects">
-            <h3 id="projects-header">Project Experience</h3>
+            <div class="section-kicker" aria-hidden="true"><span class="num">06</span><span class="label">Selected Work</span></div>
+            <h2 id="projects-header">Project Experience</h2>
+            <p class="section-intro">The written record — what each project does and the result it reached. Covers, live demos, and reports live in the <a href="#portfolio-header">Portfolio</a> below.</p>
             <!-- IMPORTANT: Make sure to include these PDFs in the "projects" folder before pushing to GitHub:
                  - MMCS.pdf
                  - AML.pdf
@@ -294,18 +566,72 @@
             -->
             <div class="accordion" id="projectsAccordion">
 
+                <!-- VERITAS — AI Courtroom Experience -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="projHeading7">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse7" aria-expanded="false" aria-controls="projCollapse7">
+                            VERITAS — Interactive AI Courtroom Experience
+                            <span class="exp-date ms-2 text-muted">Mar 2026</span>
+                        </button>
+                    </h3>
+                    <div id="projCollapse7" class="accordion-collapse collapse" aria-labelledby="projHeading7" data-bs-parent="#projectsAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Built a multi-agent LLM courtroom that performs a 15-minute Crown Court trial — prosecution and defence barristers, witnesses, the defendant, an LLM fact-checker, and a judge — orchestrated by a 14-state finite-state machine.</li>
+                                <li>Added an eight-persona AI jury (GPT-4o and GPT-4o-mini) and a reasoning evaluator with fallacy detection; ships as a CLI, a FastAPI REST/WebSocket service, and a multi-bot group chat, backed by 200+ tests.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Connections — Semantic Constellation -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="projHeading8">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse8" aria-expanded="false" aria-controls="projCollapse8">
+                            Hidden Connections — Semantic Constellation of Survey Responses
+                            <span class="exp-date ms-2 text-muted">Nov 2025 – Dec 2025</span>
+                        </button>
+                    </h3>
+                    <div id="projCollapse8" class="accordion-collapse collapse" aria-labelledby="projHeading8" data-bs-parent="#projectsAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Built an interactive constellation mapping semantic similarity between anonymous survey responses: an embedding pipeline (OpenAI text-embedding-3-large at 256-dim Matryoshka, with a local BGE fallback) feeding UMAP projection, KMeans clustering, and nearest-neighbour links.</li>
+                                <li>Rendered it as a real-time vanilla-JS Canvas galaxy — orbital drift, depth parallax, and strength-weighted glowing links — with five per-question views, deployed on GitHub Pages with an optional Express embeddings API.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Neural Illumination (neuron-art) -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="projHeading9">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse9" aria-expanded="false" aria-controls="projCollapse9">
+                            Neural Illumination — A Neural Network as Algorithmic Art
+                            <span class="exp-date ms-2 text-muted">2026</span>
+                        </button>
+                    </h3>
+                    <div id="projCollapse9" class="accordion-collapse collapse" aria-labelledby="projHeading9" data-bs-parent="#projectsAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Implemented a neural network from scratch in the browser — a 64→16→2 classifier with ReLU and softmax, real backpropagation and SGD (~1,000 parameters) and Xavier/He initialisation — that genuinely trains to separate shapes, with no ML libraries.</li>
+                                <li>Rendered every neuron, weight, and gradient as flowing light and particles with p5.js (activation → brightness, weight → thickness, forward/backward pass → particle direction), with a live "show the math" mode, seed-reproducible runs, and interactive controls at ~60 FPS.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Personalized Poem Generation with Fine-Tuned LLM -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="projHeading1">
+                    <h3 class="accordion-header" id="projHeading1">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse1" aria-expanded="false" aria-controls="projCollapse1">
                             Personalized Poem Generation with Fine-Tuned Large Language Model
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Jan 2025 – Present</span>
+                            <span class="exp-date ms-2 text-muted">Jan 2025 – Present</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="projCollapse1" class="accordion-collapse collapse" aria-labelledby="projHeading1" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Fine-tuned a 7B LLM instruct model on 100 self-written poems using LoRA, replicating style and imagery from title-based prompts.</li>
+                                <li>Fine-tuned a Qwen 7B instruct model on 100 self-written poems using LoRA, replicating style and imagery from title-based prompts.</li>
                                 <li>Deployed lightweight model variants on Apple Silicon (MLX), CPU (GGUF for Ollama, LM Studio), and Docker/AWS for broad accessibility.</li>
                             </ul>
                         </div>
@@ -314,17 +640,17 @@
 
                 <!-- Anomaly Detection and Forecasting in Power Systems -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="projHeading2">
+                    <h3 class="accordion-header" id="projHeading2">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse2" aria-expanded="false" aria-controls="projCollapse2">
                             Anomaly Detection and Forecasting in Power Systems with Renewable Energy
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">June 2023 – Sep 2023</span>
+                            <span class="exp-date ms-2 text-muted">June 2023 – Sep 2023</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="projCollapse2" class="accordion-collapse collapse" aria-labelledby="projHeading2" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Engineered an anomaly detection and forecasting model using CNN-LSTM algorithms for power grid data.</li>
-                                <li>Achieved 90%+ detection accuracy and maintained prediction deviations under 5%, improving grid resilience.</li>
+                                <li>Built time-series anomaly detection and forecasting models for power systems using seq2seq and autoencoder architectures.</li>
+                                <li>Achieved 90%+ detection accuracy with forecast deviations within 5%, supporting more reliable grid operation amid growing renewable energy integration.</li>
                             </ul>
                         </div>
                     </div>
@@ -332,12 +658,12 @@
 
                 <!-- Development Plan of EV Charging Stations for Dundee -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="projHeading3">
+                    <h3 class="accordion-header" id="projHeading3">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse3" aria-expanded="false" aria-controls="projCollapse3">
                             Development Plan of Electric Vehicle Charging Stations – Dundee
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Oct 2022 – Nov 2022</span>
+                            <span class="exp-date ms-2 text-muted">Oct 2022 – Nov 2022</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="projCollapse3" class="accordion-collapse collapse" aria-labelledby="projHeading3" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
@@ -350,17 +676,17 @@
 
                 <!-- Sentiment Classification on Movie Reviews -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="projHeading4">
+                    <h3 class="accordion-header" id="projHeading4">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse4" aria-expanded="false" aria-controls="projCollapse4">
                             Sentiment Classification on Movie Reviews
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Oct 2022 – Dec 2022</span>
+                            <span class="exp-date ms-2 text-muted">Oct 2022 – Dec 2022</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="projCollapse4" class="accordion-collapse collapse" aria-labelledby="projHeading4" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Developed a sentiment analysis pipeline using BERT, Bag of Words, and TF-IDF on a corpus of 10K+ reviews.</li>
-                                <li>Evaluated multiple classifiers (Logistic Regression, SVM, Neural Networks) with hyperparameter tuning for best performance.</li>
+                                <li>Built a sentiment-classification pipeline benchmarking a fine-tuned RoBERTa model against classical baselines (Bag-of-Words, TF-IDF) on a corpus of 10K+ movie reviews.</li>
+                                <li>RoBERTa reached <strong>87.06% binary-classification accuracy</strong>, evaluated against Logistic Regression, SVM, and neural baselines with hyperparameter tuning.</li>
                             </ul>
                         </div>
                     </div>
@@ -368,17 +694,17 @@
 
                 <!-- Stable Dreamfusion -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="projHeading6">
+                    <h3 class="accordion-header" id="projHeading6">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse6" aria-expanded="false" aria-controls="projCollapse6">
                             3D Object Generation from Text
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Feb 2023 – May 2023</span>
+                            <span class="exp-date ms-2 text-muted">Feb 2023 – May 2023</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="projCollapse6" class="accordion-collapse collapse" aria-labelledby="projHeading6" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
-                                <li>Deployed Stable-Dreamfusion on web app, a text-to-3D generation model that creates detailed 3D objects from natural language descriptions.</li>
-                                <li>Leveraged the pretrained 2D text-to-image diffusion model to perform text-to-3D synthesis without large-scale dataset in training a new 3D diffusion model.</li>
+                                <li>Deployed Stable-Dreamfusion — a text-to-3D model generating detailed 3D objects from natural-language prompts — as a web app.</li>
+                                <li>Used a pretrained 2D text-to-image diffusion model for text-to-3D synthesis, with no large-scale 3D dataset or separately-trained 3D model required.</li>
                             </ul>
                         </div>
                     </div>
@@ -386,17 +712,17 @@
 
                 <!-- YOLOv9 Rock Detection Project -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="projHeading5">
+                    <h3 class="accordion-header" id="projHeading5">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projCollapse5" aria-expanded="false" aria-controls="projCollapse5">
                             YOLOv9 Rock Detection
-                            <span class="ms-2 text-muted" style="font-size: 0.9rem;">Oct 2024 – Mar 2025</span>
+                            <span class="exp-date ms-2 text-muted">Oct 2024 – Mar 2025</span>
                         </button>
-                    </h2>
+                    </h3>
                     <div id="projCollapse5" class="accordion-collapse collapse" aria-labelledby="projHeading5" data-bs-parent="#projectsAccordion">
                         <div class="accordion-body">
                             <ul>
                                 <li>Fine-tuned YOLOv9 for single-class rock detection with custom tiling augmentation, achieving precise boundary detection for irregularly shaped rocks across varied environments.</li>
-                                <li>Achieved 90%+ detection accuracy and maintained prediction deviations under 5%, improving grid resilience.</li>
+                                <li>Expanded a 700-image dataset to 4,000+ training samples via a 256×256 tiling pipeline, reaching &gt;90% precision with real-time inference at 30 FPS.</li>
                             </ul>
                         </div>
                     </div>
@@ -407,35 +733,89 @@
 
         <!-- Portfolio Section -->
         <section class="info-card" data-aos="fade-up" id="portfolio">
-            <h3 id="portfolio-header">Portfolio</h3>
-            <div class="projects-carousel-container">
+            <div class="section-kicker" aria-hidden="true"><span class="num">07</span><span class="label">Gallery</span></div>
+            <h2 id="portfolio-header">Portfolio</h2>
+            <p class="section-intro">A selection of research, engineering, and creative work — filter by focus, or scroll through.</p>
+            <div class="portfolio-filters" id="portfolioFilters" role="group" aria-label="Filter projects by focus">
+                <button class="filter-chip is-active" data-filter="all" type="button">All</button>
+                <button class="filter-chip" data-filter="ai ml" type="button">AI / ML</button>
+                <button class="filter-chip" data-filter="nlp" type="button">NLP</button>
+                <button class="filter-chip" data-filter="vision" type="button">Vision</button>
+                <button class="filter-chip" data-filter="generative" type="button">Generative</button>
+                <button class="filter-chip" data-filter="creative" type="button">Creative</button>
+                <button class="filter-chip" data-filter="data" type="button">Data &amp; OR</button>
+            </div>
+            <div class="projects-carousel-container at-start">
                 <button class="projects-nav-btn projects-left-btn" id="portfolioLeftBtn" aria-label="Scroll left">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <div class="projects-carousel" id="portfolioCarousel">
-                    <!-- Personalized Poem Generation Project -->
-                    <div class="project-card" data-aos="fade-up" tabindex="0">
+                <div class="projects-carousel" id="portfolioCarousel" role="region" aria-label="Project portfolio — use arrow keys to scroll" tabindex="0">
+                    <!-- VERITAS — AI Courtroom Experience -->
+                    <div class="project-card" data-aos="fade-up" data-tags="ai nlp generative">
                         <div class="card-img-container">
-                            <img src="https://dummyimage.com/600x400/007bff/ffffff&text=Poem+Gen" alt="Personalized Poem Generation Project" loading="lazy" onerror="this.src='https://dummyimage.com/600x400/007bff/ffffff&text=Poem+Gen'">
+                            <img src="assets/projects/veritas.jpg" alt="VERITAS — Interactive AI Courtroom Experience" loading="lazy" onerror="this.onerror=null;this.src='assets/projects/ph-veritas.svg'">
                         </div>
                         <div class="card-body">
-                            <h5>Personalized Poem Generation</h5>
+                            <h3>AI Courtroom (VERITAS)</h3>
+                            <p>A multi-agent LLM courtroom where barristers, witnesses, a judge, and an eight-persona AI jury stage a Crown Court trial — you deliberate, vote, and a four-part reveal scores your reasoning against the truth.</p>
+                            <div class="btn-container">
+                                <a href="https://github.com/jerryzhao173985/ai-court-architecture" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Project" title="View Project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Connections — Semantic Constellation -->
+                    <div class="project-card" data-aos="fade-up" data-tags="ai nlp data creative">
+                        <div class="card-img-container">
+                            <img src="assets/projects/hidden-connection.jpg" alt="Hidden Connections — semantic constellation of survey responses" loading="lazy" onerror="this.onerror=null;this.src='assets/projects/ph-hidden.svg'">
+                        </div>
+                        <div class="card-body">
+                            <h3>Hidden Connections</h3>
+                            <p>An interactive constellation where each star is an anonymous survey response and each link is shared meaning — semantic embeddings (UMAP + KMeans) rendered as a living vanilla-JS Canvas galaxy.</p>
+                            <div class="btn-container">
+                                <a href="https://github.com/jerryzhao173985/hidden-connection" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Project" title="View Project">View Project</a>
+                                <a href="https://jerryzhao173985.github.io/hidden-connection/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" aria-label="Live Demo" title="Live Demo">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Neural Illumination (neuron-art) -->
+                    <div class="project-card" data-aos="fade-up" data-tags="ai ml generative creative">
+                        <div class="card-img-container">
+                            <img src="assets/projects/ph-neuron-art.svg" alt="Neural Illumination — a neural network visualised as algorithmic art" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3>Neural Illumination</h3>
+                            <p>A from-scratch neural network that trains live in the browser — every neuron, synapse, and gradient rendered as flowing light with p5.js. AI made visible as algorithmic art.</p>
+                            <div class="btn-container">
+                                <a href="https://github.com/jerryzhao173985/neuron-art" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Project" title="View Project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personalized Poem Generation Project -->
+                    <div class="project-card" data-aos="fade-up" data-tags="ai nlp generative creative">
+                        <div class="card-img-container">
+                            <img src="assets/projects/ph-poem-gen.svg" alt="Personalized Poem Generation Project" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3>Personalized Poem Generation</h3>
                             <p>End-to-end fine-tuning of Qwen LLMs on a custom poetry corpus using LoRA & MLX on Apple Silicon for creative, parameter-efficient poem generation.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/alexayu1204-Personalized-Poem-Generation-with-Fine-Tuned-Large-Language-Model.git" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Project" title="View Project">View Project</a>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="assets/projects/poem_generator_project_TECHNICAL_DETAILS.md" data-title="Tech Report: Personalized Poem Generation" class="btn btn-sm btn-primary" aria-label="View Report" title="View Report">View Report</a>
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="assets/projects/poem_generator_project_TECHNICAL_DETAILS.md" data-title="Tech Report: Personalized Poem Generation">View Report</button>
                             </div>
                         </div>
                     </div>
                     <!-- End Personalized Poem Generation Project -->
 
                     <!-- Grid-Based Optimization of EV Charging Stations Project -->
-                    <div class="project-card" data-aos="fade-up" tabindex="0">
+                    <div class="project-card" data-aos="fade-up" data-tags="data">
                         <div class="card-img-container">
-                            <img src="https://dummyimage.com/600x400/007bff/ffffff&text=EV+Charging" alt="Grid-Based Optimization of EV Charging Stations" loading="lazy" onerror="this.src='https://dummyimage.com/600x400/007bff/ffffff&text=EV+Charging'">
+                            <img src="assets/projects/ph-ev-charging.svg" alt="Grid-Based Optimization of EV Charging Stations" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>EV Charging Optimization</h5>
+                            <h3>EV Charging Optimization</h3>
                             <p>A grid-based model for EV charging deployment in Dundee, dividing the city into 434 grids and recommending new charger installations to meet demand efficiently and cost-effectively.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/Optimising-EV-Charging-Infrastructure" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Project" title="View Project">View Project</a>
@@ -445,12 +825,12 @@
                     </div>
 
                     <!-- Sentiment Classification on Movie Reviews Project -->
-                    <div class="project-card" data-aos="fade-up" tabindex="0">
+                    <div class="project-card" data-aos="fade-up" data-tags="ai nlp">
                         <div class="card-img-container">
-                            <img src="https://dummyimage.com/600x400/007bff/ffffff&text=Movie+Review" alt="Sentiment Classification Project" loading="lazy" onerror="this.src='https://dummyimage.com/600x400/007bff/ffffff&text=Sentiment+Classification'">
+                            <img src="assets/projects/ph-sentiment.svg" alt="Sentiment Classification Project" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>Sentiment Classification</h5>
+                            <h3>Sentiment Classification</h3>
                             <p>Developed robust sentiment classification for movie reviews by integrating NLP and ML feature extraction, with RoBERTa-based model achieving 87.06% accuracy for binary classification.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/Movie-Reviews-Sentiment-Classification" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Project" title="View Project">View Project</a>
@@ -460,13 +840,13 @@
                     </div>
 
                     <!-- Anticipating Disruptions in Power Grid Frequency Data Project -->
-                    <div class="project-card" data-aos="fade-up" tabindex="0">
+                    <div class="project-card" data-aos="fade-up" data-tags="ml data">
                         <div class="card-img-container">
-                            <img src="https://dummyimage.com/600x400/007bff/ffffff&text=Grid+Frequency" alt="Anticipating Disruptions in Power Grid Frequency Data" loading="lazy" onerror="this.src='https://dummyimage.com/600x400/007bff/ffffff&text=Grid+Frequency'">
+                            <img src="assets/projects/ph-grid-frequency.svg" alt="Anticipating Disruptions in Power Grid Frequency Data" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>Anomaly detection</h5>
-                            <p>Forecasting disruptions for power grid frequency data, achieving 90% anomaly detection accuracy with CNN-LSTM 5% prediction errors to enhance grid resilience and system management</p>
+                            <h3>Anomaly Detection</h3>
+                            <p>Forecasting disruptions in power grid frequency data, achieving 90%+ anomaly detection accuracy with forecast deviations within 5% to enhance grid resilience and system management.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/projects-Anticipating-Disruptions-in-Power-Grid-Frequency-Data" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Project" title="View Project">View Project</a>
                                 <a href="assets/projects/Anticipating Disruptions in Power Grid Frequency Data.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" aria-label="View Report" title="View Report">View Report</a>
@@ -475,27 +855,27 @@
                     </div>
 
                     <!-- YOLOv9 Rock Detection Project -->
-                    <div class="project-card" data-aos="fade-up" tabindex="0">
+                    <div class="project-card" data-aos="fade-up" data-tags="ml vision">
                         <div class="card-img-container">
-                            <img src="https://dummyimage.com/600x400/6f42c1/ffffff&text=Rock+Detection" alt="Fine-Tuning YOLOv9 for Rock Detection" loading="lazy" onerror="this.src='https://dummyimage.com/600x400/6f42c1/ffffff&text=Rock+Detection'">
+                            <img src="assets/projects/ph-rock-detection.svg" alt="Fine-Tuning YOLOv9 for Rock Detection" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>YOLOv9 Rock Detection</h5>
+                            <h3>YOLOv9 Rock Detection</h3>
                             <p>Implemented YOLOv9 fine-tuning for single-class rock detection with custom tiling augmentation, achieving precise boundary detection for irregularly shaped rocks across environments.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/yolov9" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary" aria-label="View Project" title="View Project">View Project</a>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="assets/projects/yolov9.md" data-title="YOLOv9 Rock Detection Report" class="btn btn-sm btn-primary" aria-label="View Report" title="View Report">View Report</a>
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="assets/projects/yolov9.md" data-title="YOLOv9 Rock Detection Report">View Report</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- IDA Assignment 3 -->
-                    <div class="project-card" data-aos="fade-up">
+                    <div class="project-card" data-aos="fade-up" data-tags="data">
                         <div class="card-img-container">
-                            <img src="https://raw.githubusercontent.com/alexayu1204/alexayu1204.github.io/main/assets/ida_assignment3.jpg" alt="Incomplete Data Analysis Project" onerror="this.src='https://dummyimage.com/600x400/007bff/ffffff&text=Data+Analysis+Project'">
+                            <img src="assets/projects/ph-ida.svg" alt="Incomplete Data Analysis Project" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>Incomplete Data Analysis</h5>
+                            <h3>Incomplete Data Analysis</h3>
                             <p>A statistical analysis project focusing on handling incomplete data sets using imputation techniques and robust estimation methods.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/IDA_assignment3" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">View Project</a>
@@ -504,12 +884,12 @@
                     </div>
                     
                     <!-- Incomplete Data Analysis Assignment 2 -->
-                    <div class="project-card" data-aos="fade-up">
+                    <div class="project-card" data-aos="fade-up" data-tags="data">
                         <div class="card-img-container">
-                            <img src="https://raw.githubusercontent.com/alexayu1204/alexayu1204.github.io/main/assets/ida_assignment2.jpg" alt="Data Analysis Project" onerror="this.src='https://dummyimage.com/600x400/28a745/ffffff&text=Statistical+Methods'">
+                            <img src="assets/projects/ph-stat-methods.svg" alt="Statistical Methods for Incomplete Data" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>Statistical Methods for Incomplete Data</h5>
+                            <h3>Statistical Methods for Incomplete Data</h3>
                             <p>Implementation of advanced statistical methods for analyzing datasets with missing values, including multiple imputation and sensitivity analysis.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/Incomplete_Data_Analysis_Assignment_2" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">View Project</a>
@@ -518,12 +898,12 @@
                     </div>
                     
                     <!-- Stable Dreamfusion -->
-                    <div class="project-card" data-aos="fade-up">
+                    <div class="project-card" data-aos="fade-up" data-tags="generative vision">
                         <div class="card-img-container">
-                            <img src="https://raw.githubusercontent.com/alexayu1204/alexayu1204.github.io/main/assets/stable_dreamfusion.jpg" alt="3D Generation Project" onerror="this.src='https://dummyimage.com/600x400/6f42c1/ffffff&text=3D+Generation'">
+                            <img src="assets/projects/ph-dreamfusion.svg" alt="3D Object Generation from Text" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>3D Object Generation from Text</h5>
+                            <h3>3D Object Generation from Text</h3>
                             <p>Implementation of Stable-Dreamfusion, a text-to-3D generation model that creates detailed 3D objects from natural language descriptions.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/stable-dreamfusion" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">View Project</a>
@@ -532,12 +912,12 @@
                     </div>
                     
                     <!-- SD Project -->
-                    <div class="project-card" data-aos="fade-up">
+                    <div class="project-card" data-aos="fade-up" data-tags="generative vision">
                         <div class="card-img-container">
-                            <img src="https://raw.githubusercontent.com/alexayu1204/alexayu1204.github.io/main/assets/sd_project.jpg" alt="Stable Diffusion Project" onerror="this.src='https://dummyimage.com/600x400/e83e8c/ffffff&text=Image+Generation'">
+                            <img src="assets/projects/ph-stable-diffusion.svg" alt="Stable Diffusion Implementation" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>Stable Diffusion Implementation</h5>
+                            <h3>Stable Diffusion Implementation</h3>
                             <p>A custom implementation of Stable Diffusion models for generating high-quality images from text prompts with fine-tuning capabilities.</p>
                             <div class="btn-container">
                                 <a href="https://github.com/alexayu1204/sd" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">View Project</a>
@@ -546,31 +926,31 @@
                     </div>
                     
                     <!-- Textile Design Portfolio -->
-                    <div class="project-card" data-aos="fade-up">
+                    <div class="project-card" data-aos="fade-up" data-tags="creative">
                         <div class="card-img-container">
-                            <img src="https://dummyimage.com/600x400/e83e8c/ffffff&text=Textile+Design" alt="Textile Design Portfolio">
+                            <img src="assets/projects/ph-textile.svg" alt="Textile Design Portfolio" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>Textile Design Portfolio</h5>
+                            <h3>Textile Design Portfolio</h3>
                             <p>A showcase of original textile designs, patterns, and fabric creations exploring various techniques and artistic expressions.</p>
                             <div class="btn-container">
                                 <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="https://alexy1204.wixsite.com/website-1" data-title="Textile Design E‑Portfolio" data-offset="250">Preview</button>
-                                <a href="https://alexy1204.wixsite.com/website-1" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                                <a href="https://alexy1204.wixsite.com/website-1" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">Visit Website</a>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Content Creation -->
-                    <div class="project-card" data-aos="fade-up">
+                    <div class="project-card" data-aos="fade-up" data-tags="creative">
                         <div class="card-img-container">
-                            <img src="https://dummyimage.com/600x400/28a745/ffffff&text=Content+Creation" alt="Content Creation Portfolio">
+                            <img src="assets/projects/ph-content.svg" alt="Content Creation Portfolio" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h5>Content Creation Portfolio</h5>
+                            <h3>Content Creation Portfolio</h3>
                             <p>A collection of creative writing, photography, and multimedia content showcasing artistic expression in Chinese language.</p>
                             <div class="btn-container">
                                 <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="https://alexy1204.wixsite.com/website" data-title="Content Creation" data-offset="250">Preview</button>
-                                <a href="https://alexy1204.wixsite.com/website" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                                <a href="https://alexy1204.wixsite.com/website" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">Visit Website</a>
                             </div>
                         </div>
                     </div>
@@ -581,114 +961,207 @@
             </div>
         </section>
 
-        <!-- Online Profiles (One Row, 5 Items) -->
-        <section class="info-card" data-aos="fade-up" id="profiles">
-            <h3>Online Profiles</h3>
-            <div class="online-profiles">
-                <!-- LinkedIn -->
-                <div class="online-profile-item" data-aos="fade-up">
-                    <i class="fab fa-linkedin" style="color:#0077B5;"></i>
-                    <h6>LinkedIn</h6>
-                    <a href="https://www.linkedin.com/in/alexa-yu" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
-                </div>
-                <!-- GitHub -->
-                <div class="online-profile-item" data-aos="fade-up">
-                    <i class="fab fa-github" style="color:#333;"></i>
-                    <h6>GitHub</h6>
-                    <a href="https://github.com/alexayu1204" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
-                </div>
-                <!-- Textile Design E‑Portfolio (Preview & Visit) -->
-                <div class="online-profile-item" data-aos="fade-up">
-                    <i class="fas fa-palette" style="color:#e83e8c;"></i>
-                    <h6>Textile Design</h6>
-                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="https://alexy1204.wixsite.com/website-1" data-title="Textile Design E‑Portfolio">Preview</button>
-                    <a href="https://alexy1204.wixsite.com/website-1" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
-                </div>
-                <!-- Content Creation (Chinese) (Preview & Visit) -->
-                <div class="online-profile-item" data-aos="fade-up">
-                    <i class="fas fa-edit" style="color:#28a745;"></i>
-                    <h6>Content Creation</h6>
-                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#previewModal" data-url="https://alexy1204.wixsite.com/website" data-title="Content Creation">Preview</button>
-                    <a href="https://alexy1204.wixsite.com/website" target="_blank" class="btn btn-sm btn-outline-secondary">Visit</a>
-                </div>
-                <!-- WeChat (QR Code) -->
-                <div class="online-profile-item" data-aos="fade-up">
-                    <i class="fab fa-weixin" style="color:#07c160;"></i>
-                    <h6>WeChat</h6>
-                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#wechatModal">QR Code</button>
-                </div>
-            </div>
-        </section>
 
-        <!-- Resume Section -->
-        <section class="info-card resume-section" data-aos="fade-up" id="resumeSection">
-            <h3 id="resume-header">Resume</h3>
-            <div class="resume-buttons">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resumeModal">
-                    <i class="fas fa-eye"></i> View Resume
-                </button>
-                <a href="Resume.pdf" download class="btn btn-secondary">
-                    <i class="fas fa-download"></i> Download Resume
-                </a>
+        <!-- Art: artwork + photography -->
+        <section class="info-card" data-aos="fade-up" id="art">
+            <div class="section-kicker" aria-hidden="true"><span class="num">08</span><span class="label">Practice</span></div>
+            <h2 id="art-header">Art</h2>
+            <p class="section-intro">The making that runs alongside the research — recent mixed-media work and photography.</p>
+
+            <!-- Featured artwork: Inbox Archive (The Mosaic of Becoming) -->
+            <article class="art-feature lb-gallery">
+                <h3 class="art-feature__title">Inbox Archive: Learning to Sound Like Myself</h3>
+                <p class="art-feature__meta">Inkjet print on paper with thread · 5 × A4 · 2026<br>
+                    <span class="art-feature__credit">Selected for <em>The Mosaic of Becoming</em> — Nunnery Gallery, London</span></p>
+                <figure class="art-banner lb-item" data-full="assets/art/inbox-install.jpg" data-caption="Inbox Archive — installation view · The Mosaic of Becoming, Nunnery Gallery">
+                    <button class="photo-btn" type="button"><img src="assets/art/inbox-install-thumb.jpg" width="1400" height="546" loading="lazy" decoding="async" alt="Five A4 email-screenshot pages in a row on a gallery wall, beside a small printed wall label reading Alexa Yu (Haoting)"></button>
+                </figure>
+                <div class="art-feature__text">
+                    <p>Years of my own emails as an international student — first in Canada, now in the UK — stitched through with thread: a sentence interrupted like a scar, then held together like a repair. Across the pages the shift is gradual but clear — from writing to be <em>accepted</em>, to writing to be <em>understood</em>. I am not correcting my grammar; I am correcting posture.</p>
+                    <details>
+                        <summary>Read the full statement</summary>
+                        <p>I grew up in China and, until I was eighteen, did not communicate in English. Studying abroad, English became the place where I had to prove myself every day: in classrooms, forms, housing, appointments, friendships. As the dates move forward, the edits shift from “wrong English” to “wrong self.” This work records that change — from performing politeness to finding a voice that feels like my own.</p>
+                        <p>Borrowing the visual language of administration, correction, and confidentiality, it turns ordinary correspondence into an archive of cultural adjustment. Migration often happens through procedures rather than narratives: before you feel settled, you must become readable — you request access, confirm status, ask for help, report an error, wait for a reply. Belonging is built through small procedural acts and moments of response, when someone understands you and answers back.</p>
+                    </details>
+                </div>
+                <div class="art-strip" role="group" aria-label="Inbox Archive — the email pages and an installation photograph">
+                    <figure class="art-plate lb-item" data-full="assets/art/inbox-01.jpg" data-caption="01 · ‘The progress of course addition’ — 2018">
+                        <button class="photo-btn" type="button"><img src="assets/art/inbox-01-thumb.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Inbox Archive page 01 (2018): a course-addition email, printed on A4 and slashed with red thread"></button>
+                    </figure>
+                    <figure class="art-plate lb-item" data-full="assets/art/inbox-02.jpg" data-caption="02 · ‘A request of having my homework back’ — 2019">
+                        <button class="photo-btn" type="button"><img src="assets/art/inbox-02-thumb.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Inbox Archive page 02 (2019): an over-apologetic email with a small stitched knot"></button>
+                    </figure>
+                    <figure class="art-plate lb-item" data-full="assets/art/inbox-03.jpg" data-caption="03 · ‘Someone using my email to order a cab’ — 2021">
+                        <button class="photo-btn" type="button"><img src="assets/art/inbox-03-thumb.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Inbox Archive page 03 (2021): an email about identity misuse, crossed through with black stitched X marks"></button>
+                    </figure>
+                    <figure class="art-plate lb-item" data-full="assets/art/inbox-04.jpg" data-caption="04 · ‘…agreeing to be one of my references’ — 2024">
+                        <button class="photo-btn" type="button"><img src="assets/art/inbox-04-thumb.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Inbox Archive page 04 (2024): a reference-request email with a dense black band of thread stitched through the torn paper"></button>
+                    </figure>
+                    <figure class="art-plate lb-item" data-full="assets/art/inbox-05.jpg" data-caption="05 · ‘…the status of my enrolment’ — 2025">
+                        <button class="photo-btn" type="button"><img src="assets/art/inbox-05-thumb.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Inbox Archive page 05 (2025): a fluent, minimally-edited enrolment enquiry — the most settled page"></button>
+                    </figure>
+                    <figure class="art-plate art-plate--wide lb-item" data-full="assets/art/inbox-artist.jpg" data-caption="Inbox Archive — in the gallery, with the artist">
+                        <button class="photo-btn" type="button"><img src="assets/art/inbox-artist-thumb.jpg" width="1000" height="827" loading="lazy" decoding="async" alt="The artist photographing her own work — five stitched email pages — on the gallery wall"></button>
+                    </figure>
+                </div>
+            </article>
+
+            <!-- Other artwork (painting & mixed media) -->
+            <h3 class="art-subhead">Other work</h3>
+            <p class="section-intro section-intro--tight">Ink and brush, paint, and mixed media — pieces made between projects.</p>
+            <div class="art-strip lb-gallery" role="group" aria-label="Other artwork">
+                <figure class="art-plate lb-item" data-full="assets/art/studio-ink-plum.jpg" data-caption="Plum blossom — Chinese ink and brush">
+                    <button class="photo-btn" type="button"><img src="assets/art/studio-ink-plum-thumb.jpg" width="558" height="760" loading="lazy" decoding="async" alt="A traditional Chinese ink-and-brush painting of red plum blossoms on a dark branch, on rice paper"></button>
+                </figure>
+                <figure class="art-plate lb-item" data-full="assets/art/studio-ink-blossom.jpg" data-caption="Blossoms — Chinese ink and brush">
+                    <button class="photo-btn" type="button"><img src="assets/art/studio-ink-blossom-thumb.jpg" width="572" height="760" loading="lazy" decoding="async" alt="A Chinese ink-and-brush painting of red blossoms and green leaves on a branch"></button>
+                </figure>
+                <figure class="art-plate lb-item" data-full="assets/art/studio-abstract.jpg" data-caption="Small abstract — paint on canvas">
+                    <button class="photo-btn" type="button"><img src="assets/art/studio-abstract-thumb.jpg" width="570" height="760" loading="lazy" decoding="async" alt="A small abstract painting on canvas — angular blocks of red, pink, blue, yellow and green forming a butterfly-like shape"></button>
+                </figure>
+                <figure class="art-plate lb-item" data-full="assets/art/studio-mixedmedia.jpg" data-caption="Mixed media — ink, thread, and buttons on paper">
+                    <button class="photo-btn" type="button"><img src="assets/art/studio-mixedmedia-thumb.jpg" width="570" height="760" loading="lazy" decoding="async" alt="A mixed-media drawing — geometric pen work with red and blue thread, buttons, and a pearl stitched onto paper"></button>
+                </figure>
             </div>
+
+            <!-- Photography -->
+            <h3 class="art-subhead">Photography</h3>
+            <div class="photo-wall lb-gallery">
+                <figure class="photo lb-item" data-full="assets/photography/sunset-hands.jpg" data-caption="">
+                    <button class="photo-btn" type="button"><img src="assets/photography/sunset-hands-thumb.jpg" width="1000" height="667" loading="lazy" decoding="async" alt="Sunset through bare branches over a pine ridge, two small hand-drawn figures reaching toward each other in the clouds"></button>
+                </figure>
+                <figure class="photo lb-item" data-full="assets/photography/magnolia.jpg" data-caption="">
+                    <button class="photo-btn" type="button"><img src="assets/photography/magnolia-thumb.jpg" width="750" height="1000" loading="lazy" decoding="async" alt="Pink magnolia in bloom against a blue sky and Georgian London terraces"></button>
+                </figure>
+                <figure class="photo lb-item" data-full="assets/photography/westminster.jpg" data-caption="">
+                    <button class="photo-btn" type="button"><img src="assets/photography/westminster-thumb.jpg" width="733" height="1100" loading="lazy" decoding="async" alt="Big Ben's clock tower in golden light behind the ornate Crown gates, with a small hand-drawn crowned figure"></button>
+                </figure>
+                <figure class="photo lb-item" data-full="assets/photography/alpine-dusk.jpg" data-caption="">
+                    <button class="photo-btn" type="button"><img src="assets/photography/alpine-dusk-thumb.jpg" width="750" height="1000" loading="lazy" decoding="async" alt="Snow-covered alpine peaks under an orange dusk sky, mist filling the valley below"></button>
+                </figure>
+                <figure class="photo lb-item" data-full="assets/photography/garden-rose.jpg" data-caption="">
+                    <button class="photo-btn" type="button"><img src="assets/photography/garden-rose-thumb.jpg" width="667" height="1000" loading="lazy" decoding="async" alt="A white garden rose at dusk with a small hand-drawn figure beside it"></button>
+                </figure>
+                <figure class="photo lb-item" data-full="assets/photography/night-city.jpg" data-caption="">
+                    <button class="photo-btn" type="button"><img src="assets/photography/night-city-thumb.jpg" width="750" height="1000" loading="lazy" decoding="async" alt="City lights at night blurred into an impressionistic long exposure"></button>
+                </figure>
+            </div>
+            <p class="photo-more">
+                <a href="https://alexy1204.wixsite.com/website/photograph" target="_blank" rel="noopener noreferrer">More photography on my portfolio site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            </p>
         </section>
 
         <!-- Contact Section -->
         <section class="info-card" data-aos="fade-up" id="contact">
-            <h3 id="contact-header">Contact</h3>
-            <p><strong>Address:</strong> 12 Friars Walk, Reading, UK, RG1 1JT</p>
-            <p><strong>Phone (UK):</strong> +44 0 7831223687 &nbsp;|&nbsp; <strong>Phone (China):</strong> +86 18304523696</p>
-            <p><strong>Email:</strong> <a href="mailto:alexy1204@yahoo.com">alexy1204@yahoo.com</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alexa-yu" target="_blank">linkedin.com/in/alexa-yu</a></p>
+            <div class="section-kicker" aria-hidden="true"><span class="num">09</span><span class="label">Connect</span></div>
+            <h2 id="contact-header">Contact</h2>
+            <p class="section-intro">Open to research collaborations, creative-technology projects, and conversations at the AI&nbsp;×&nbsp;art boundary.</p>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-item__icon"><i class="fas fa-envelope"></i></span>
+                    <span class="contact-item__body">
+                        <span class="contact-item__label">Email</span>
+                        <a href="mailto:alexy1204@yahoo.com" class="contact-item__value">alexy1204@yahoo.com</a>
+                    </span>
+                    <button class="copy-btn" type="button" data-copy="alexy1204@yahoo.com" aria-label="Copy email address"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item__icon"><i class="fas fa-phone"></i></span>
+                    <span class="contact-item__body">
+                        <span class="contact-item__label">Phone (UK)</span>
+                        <a href="tel:+447831223687" class="contact-item__value">+44 7831 223687</a>
+                    </span>
+                    <button class="copy-btn" type="button" data-copy="+447831223687" aria-label="Copy UK phone number"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item__icon"><i class="fas fa-location-dot"></i></span>
+                    <span class="contact-item__body">
+                        <span class="contact-item__label">Location</span>
+                        <span class="contact-item__value">London, United Kingdom</span>
+                    </span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item__icon"><i class="fab fa-linkedin"></i></span>
+                    <span class="contact-item__body">
+                        <span class="contact-item__label">LinkedIn</span>
+                        <a href="https://www.linkedin.com/in/alexa-yu" target="_blank" rel="noopener" class="contact-item__value">linkedin.com/in/alexa-yu</a>
+                    </span>
+                    <a class="copy-btn" href="https://www.linkedin.com/in/alexa-yu" target="_blank" rel="noopener" aria-label="Open LinkedIn profile"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item__icon"><i class="fab fa-github"></i></span>
+                    <span class="contact-item__body">
+                        <span class="contact-item__label">GitHub</span>
+                        <a href="https://github.com/alexayu1204" target="_blank" rel="noopener" class="contact-item__value">github.com/alexayu1204</a>
+                    </span>
+                    <a class="copy-btn" href="https://github.com/alexayu1204" target="_blank" rel="noopener" aria-label="Open GitHub profile"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item__icon"><i class="fab fa-weixin"></i></span>
+                    <span class="contact-item__body">
+                        <span class="contact-item__label">WeChat</span>
+                        <span class="contact-item__value">Scan to connect</span>
+                    </span>
+                    <button type="button" class="copy-btn" data-bs-toggle="modal" data-bs-target="#wechatModal" aria-label="Show WeChat QR code"><i class="fas fa-qrcode" aria-hidden="true"></i></button>
+                </div>
+            </div>
         </section>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2025 Haoting (Alexa) Yu. All rights reserved.</p>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-mono" aria-hidden="true">A</span>
+          <div>
+            <p class="footer-name">Haoting (Alexa) Yu</p>
+            <p class="footer-tag">Researcher · AI &amp; data scientist · poet &amp; photographer.</p>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#about-header">About</a>
+          <a href="#research-header">Research</a>
+          <a href="#work-header">Experience</a>
+          <a href="#projects-header">Projects</a>
+          <a href="#portfolio-header">Portfolio</a>
+          <a href="#contact-header">Contact</a>
+        </nav>
+        <div class="footer-social">
+          <a href="https://github.com/alexayu1204" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/alexa-yu" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:alexy1204@yahoo.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://alexy1204.wixsite.com/website" target="_blank" rel="noopener" aria-label="Creative portfolio"><i class="fas fa-palette"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Haoting (Alexa) Yu. All rights reserved.</p>
+        <p class="footer-built">Built from scratch — Fraunces &amp; Roboto, vanilla JS.</p>
+      </div>
     </footer>
 
     <!-- Back-to-Top Button -->
     <button id="backToTop" aria-label="Back to Top"><i class="fas fa-chevron-up"></i></button>
 
-    <!-- Robotics C++ Project Demo Modal -->
-    <div class="modal fade" id="roboticsDemoModal" tabindex="-1" aria-labelledby="roboticsDemoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Robotics C++ Project Demo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/adQRJWyv7Ss" title="Robotics C++ Project Demo" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Copy-to-clipboard toast -->
+    <div class="toast-note" id="copyToast" role="status" aria-live="polite"></div>
 
     <!-- Resume Modal -->
     <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down resume-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Resume</h5>
+                    <h5 class="modal-title me-auto" id="resumeModalLabel">Résumé</h5>
+                    <a href="Resume.pdf" download class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-download" aria-hidden="true"></i> Download</a>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="Resume.pdf" width="100%" height="800px" style="border: none;"></iframe>
-                    <div class="mt-3 text-center">
-                        <a href="Resume.pdf" download class="btn btn-secondary">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a>
-                    </div>
+                    <iframe src="Resume.pdf" title="Résumé PDF"></iframe>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Preview Modal for Online Profiles -->
+    <!-- Preview Modal (project reports &amp; external sites) -->
     <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-sm-down">
             <div class="modal-content">
@@ -697,7 +1170,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <iframe id="previewFrame" src="" width="100%" height="600px" style="border: none;"></iframe>
+                    <!-- Populated dynamically by setupPreviewModal() (iframe or rendered markdown). -->
                 </div>
             </div>
         </div>
@@ -712,11 +1185,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="wechat_qr.jpg" alt="WeChat QR Code" class="img-fluid" style="max-width: 300px;">
+                    <img src="assets/img/wechat_qr.jpg" alt="WeChat QR Code" class="img-fluid" style="max-width: 300px;">
                     <p class="mt-2">Scan to follow my WeChat Official Account</p>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Photography lightbox (minimal, dependency-free) -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+        <button class="lightbox__btn lightbox__close" type="button" aria-label="Close viewer"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+        <button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous image"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+        <figure class="lightbox__stage">
+            <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+            <figcaption class="lightbox__cap"><span id="lightboxCap"></span><span class="lightbox__count" id="lightboxCount"></span></figcaption>
+        </figure>
+        <button class="lightbox__btn lightbox__next" type="button" aria-label="Next image"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
     </div>
 
     <!-- Bootstrap JS Bundle -->

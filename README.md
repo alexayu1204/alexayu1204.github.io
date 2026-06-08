@@ -8,15 +8,28 @@ The website follows a modular, component-based architecture with clear separatio
 
 ```
 alexayu1204.github.io/
-├── index.html            # Main HTML structure
+├── index.html              # Single-page site: SEO/OG/Twitter/JSON-LD head, 9 sections, modals, image lightbox
 ├── style/
-│   ├── main.css          # Custom CSS styles
-│   └── github-markdown.css # Markdown styling for project documentation
+│   ├── main.css            # Layered stylesheet: base → v2 enhancement → v3 → visual (v4) → art + lightbox (v5)
+│   └── github-markdown.css # Styling for the in-page markdown report previews
 ├── js/
-│   └── main.js           # JavaScript functionality
-├── assets/               # Project images and documents
-│   └── projects/         # Project-specific assets
-└── Resume.pdf            # Downloadable resume
+│   └── main.js             # Vanilla JS: theme, scroll-spy, carousel, portfolio filters, copy buttons, lightbox
+├── assets/
+│   ├── favicon.svg · apple-touch-icon.png · icon-192.png · icon-512.png   # Icon / PWA set
+│   ├── og-image.png        # 1200×630 social share card (rendered from _og_template.html)
+│   ├── _og_template.html   # Source template for og-image.png
+│   ├── art/                # "Art" section: inbox-* (Inbox Archive) + studio-* (Other work), full + -thumb pairs
+│   ├── photography/        # Editorial photo wall, full + -thumb pairs
+│   ├── img/                # Misc content images (wechat_qr.jpg)
+│   └── projects/           # Portfolio covers (ph-*.svg via _gen_placeholders.py), report PDFs/MD, 2 real JPGs
+├── favicon.ico             # Legacy multi-size favicon
+├── site.webmanifest        # PWA manifest
+├── robots.txt · sitemap.xml # SEO
+├── Resume.pdf              # Downloadable résumé
+└── README.md
+
+Internal-only (kept out of the repo via .gitignore): photograph/ (source HEIC/PNG originals),
+.omc/ and .claude/ (agent tooling state), docs/ (working notes), .playwright-mcp/.
 ```
 
 ### HTML Structure
@@ -62,7 +75,7 @@ The CSS uses CSS variables for theming and follows a component-based approach:
 [data-theme="dark"] {
   --bg-color: #121212;
   --text-color: #e0e0e0;
-  --primary-color: #d35400; /* Muted burnt orange for dark mode */
+  --primary-color: #ff9933; /* Muted burnt orange for dark mode */
   /* Dark theme variables... */
 }
 
@@ -158,6 +171,11 @@ function setupDarkModeToggle() {
 - Brief professional summary
 - Clean card-based design with subtle hover effects
 
+### Research Projects
+- Accordion-based layout for academic publications
+- Publication-type pills (Poster, Paper, Workshop Paper) and status badges (Accepted, Under Review)
+- Publication venue and research focus for each entry
+
 ### Work Experience
 - Accordion-based layout for each position
 - Chronologically organized work history
@@ -182,19 +200,15 @@ function setupDarkModeToggle() {
 - Links to GitHub repositories and live demos
 - Mobile-optimized touch controls for swiping
 
-### Online Profiles
-- Links to professional platforms (LinkedIn, GitHub)
-- Preview functionality for external portfolio sites
-- WeChat QR code for direct connection
+### Art (section "08 · Art")
+- **Featured artwork** — *Inbox Archive: Learning to Sound Like Myself*, selected for *The Mosaic of Becoming* (Nunnery Gallery, London): a full-width installation banner, a concise artist statement with an expandable full statement, and a width-filling grid of the five email pages
+- **Other work** — a grid of mixed-media pieces (Chinese ink-and-brush painting, a small abstract, stitched mixed media)
+- **Photography** — an editorial masonry wall (a few frames hand-drawn on)
+- A minimal, accessible full-screen **lightbox** (← → / Esc / backdrop to close, focus restore, scroll-lock) shared by three independent galleries that navigate separately
+- The résumé is reachable from the navbar CV icon, the hero "Download CV", and the résumé modal — there is no separate Online-Profiles or Resume section
 
-### Resume Section
-- Options to view or download the full resume
-- Modal-based preview of the resume PDF
-
-### Contact Section
-- Comprehensive contact information
-- Professional email and phone details
-- Geographical location information
+### Contact
+- An interactive grid with copy-to-clipboard buttons and toast feedback: email, UK phone, **London** location, LinkedIn, GitHub, and a WeChat QR modal
 
 ### Footer
 - Copyright information
@@ -230,20 +244,48 @@ function setupDarkModeToggle() {
 - Enhanced iframe previews with scrolling control
 
 ## Technologies Used
-- HTML5 for structure
-- CSS3 with custom variables for styling
-- JavaScript for interactivity
+- HTML5 for structure, with `Person` JSON-LD structured data and Open Graph / Twitter meta
+- CSS3 with custom properties (theming), `backdrop-filter` glass, gradients and `prefers-reduced-motion` support
+- Vanilla JavaScript for interactivity (IntersectionObserver scroll-spy, rAF-throttled scroll UI, Clipboard API, a dependency-free image lightbox)
 - Bootstrap 5 framework for responsive layout
 - Font Awesome for icons
-- Google Fonts for typography
+- Google Fonts — **Fraunces** (display serif), **Roboto** (body), and **Ma Shan Zheng** (the 于昊廷 calligraphy name)
 - AOS library for scroll animations
 
 ## Recent Updates
 
+### Art section, hero & portfolio refresh (June 2026)
+- **"Art" section** (renamed from "Studio"): the featured *Inbox Archive* became a full-width installation banner + tightened statement + a width-filling page grid; an **"Other work"** grid (Chinese painting, abstract, stitched mixed media) was added; image frames unified
+- **Hero**: name set surname-first as "Yu, Haoting (Alexa)" with the Chinese calligraphy name **于昊廷** (Ma Shan Zheng) beneath; the decorative scroll-down cue was removed
+- **Research & portfolio**: the *Botto* paper was promoted to **Accepted** (now 2 accepted · 1 under review); added **Neural Illumination** ([neuron-art](https://github.com/jerryzhao173985/neuron-art)) — an in-browser neural network rendered as algorithmic art — to Project Experience and the Portfolio carousel
+- **Contact**: simplified to a single UK phone; location updated to London
+- **Housekeeping**: Big Ben photo re-encoded sharper; all imagery optimised & EXIF-normalised; internal tooling/notes and source originals kept out of the repo via `.gitignore`
+
+### Curation, Deslop & Studio (June 2026)
+- **Deslop pass** (content-first, "carefully curated by a human"): removed decoration that didn't earn its place — the at-a-glance stats strip, an ethos band, a 2016/2025 dateline, the auto-rotating hero role line (now a static "Researcher · Poet · Photographer"), and the standalone Online-Profiles and Resume sections; About became a two-column layout; the rejected "where mathematics meets art" phrasing was removed everywhere (meta, OG image, manifest)
+- **Studio section**: a featured mixed-media artwork (*Inbox Archive: Learning to Sound Like Myself*, exhibited in *The Mosaic of Becoming*) with an artist statement, plus an editorial photography masonry wall — both served by a new dependency-free full-screen lightbox
+- **Performance**: real photographs and artwork ship as optimized, EXIF-stripped JPEGs (~3 MB total, lazy-loaded); source originals are kept out of the repo via `.gitignore`
+
+### Experience & Polish Overhaul (June 2026)
+- **Discoverability & sharing**: added a full SEO head — meta description, canonical, Open Graph + Twitter cards with a generated 1200×630 share image, and `Person` JSON-LD structured data; plus an SVG monogram favicon, `favicon.ico`, and an Apple touch icon
+- **Redesigned hero**: animated aurora + grid backdrop, a monogram, clear call-to-action buttons, and an expanded social row (now including GitHub & LinkedIn) — *the rotating role line and "at a glance" stats strip introduced here were later removed in the deslop pass*
+- **Smarter navigation**: a top reading-progress bar and scroll-spy that highlights the current section in the navbar (`aria-current`), an accessibility skip-link, and a brand mark that returns to the top
+- **Interaction**: portfolio cards are now filterable by focus (AI/ML, NLP, Vision, Generative, Creative, Data) and the Technical Skills list is grouped into labelled categories; the Contact section became an interactive grid with copy-to-clipboard buttons and toast feedback
+- **Theming**: theme is applied before first paint (no dark-mode flash), respects the OS `prefers-color-scheme`, keeps the browser `theme-color` in sync, and follows live system changes until the visitor makes an explicit choice
+- **Resilience & a11y**: replaced all external `dummyimage.com`/broken image links with themed local SVG covers (works offline), honoured `prefers-reduced-motion` throughout, added visible keyboard focus styles, and a richer three-part footer
+
+### Research & Portfolio Refresh (June 2026)
+- Added a **Research Projects** section — three 2026 publications with type pills and Accepted / Under Review badges — plus a dedicated "Research" nav entry
+- Added two flagship projects to Project Experience and the Portfolio carousel: **VERITAS**, a multi-agent LLM courtroom, and **Hidden Connections**, a semantic constellation of survey responses
+- Added the **MRes in Creative Computing (UAL, 2025–2026)** to Education and the **Shanghai BaiLiYuan Data Analyst** role to Work Experience
+- Refreshed About Me and corrected all experience/education dates to match the latest résumé
+- Expanded Technical Skills and fixed copy-pasted project metrics
+- Replaced `Resume.pdf` with the latest résumé; footer copyright bumped to 2026
+
 ### Color Scheme Update (July 2024)
 - Changed website theme from blue to warm orange
 - Implemented a vibrant orange (#ff7f00) for light mode
-- Added a muted burnt orange (#d35400) for dark mode
+- Added a muted burnt orange (#ff9933) for dark mode
 - Enhanced contrast and readability for dark mode elements
 - Improved accessibility with better color ratios
 - Implemented dark mode styling for accordion components
@@ -302,4 +344,4 @@ function setupDarkModeToggle() {
 This website is deployed using GitHub Pages and can be accessed at [alexayu1204.github.io](https://alexayu1204.github.io/).
 
 ## License
-© 2025 Haoting (Alexa) Yu. All rights reserved. 
+© 2026 Haoting (Alexa) Yu. All rights reserved. 

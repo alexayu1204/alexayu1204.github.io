@@ -8,10 +8,11 @@
 
 /* CSS Variables for Light and Dark Themes */
 :root {
-  --bg-color: #f8f9fa;
+  --bg-color: #faf7f3; /* warm off-white paper so the white cards visibly float */
   --text-color: #343a40;
   --primary-color: #ff7f00;
-  --secondary-color: #6c757d;
+  --primary-strong: #b35900; /* white text passes AA (4.83:1) — for white-on-orange surfaces */
+  --secondary-color: #5a6268; /* darkened from #6c757d → 5.6:1 on the light bg (was 4.45:1, failed AA) */
   --card-bg: #ffffff;
   --footer-bg: #ffffff;
   --button-bg: #ff7f00;
@@ -25,6 +26,7 @@
   --bg-color: #121212;
   --text-color: #e0e0e0;
   --primary-color: #ff9933;
+  --primary-strong: #b35900;
   --secondary-color: #b0bec5;
   --card-bg: #1e1e1e;
   --footer-bg: #1e1e1e;
@@ -40,12 +42,12 @@
     General Styles
 ==============================================
 */
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Roboto', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
   overflow-x: hidden;
-  scroll-behavior: smooth;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -64,7 +66,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1100;
+  z-index: 1030; /* below Bootstrap modals (1055) so a fullscreen modal covers the nav */
   background-color: var(--bg-color);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: background-color 0.3s;
@@ -152,12 +154,9 @@ body {
   transform: scale(1.2);
 }
 
-.header p {
-  font-size: 1.2rem;
-  color: var(--secondary-color);
-  font-weight: 500;
-  animation: fadeInUp 1.2s ease-out;
-}
+/* (Legacy `.header p` tagline rule removed — it leaked onto the hero's classed
+   paragraphs (.hero-eyebrow / .hero-role / .hero-lede) and overrode their size+colour
+   via higher specificity. Those classes now style the hero paragraphs cleanly.) */
 
 /* 
 ==============================================
@@ -180,15 +179,16 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-.info-card h3 {
+.info-card > h2 {
   font-weight: 600;
+  font-size: 1.6rem;
   margin-bottom: 20px;
   position: relative;
   display: inline-block;
   scroll-margin-top: 100px;
 }
 
-.info-card h3::after {
+.info-card > h2::after {
   content: '';
   position: absolute;
   left: 0;
@@ -201,7 +201,9 @@ body {
   transition: transform 0.7s ease;
 }
 
-.info-card h3.aos-animate::after {
+/* AOS adds .aos-animate to the SECTION (which carries data-aos), not the h2 —
+   so reveal the underline (and the #research indigo accent) off the section's class. */
+.info-card.aos-animate > h2::after {
   transform: scaleX(1.2);
 }
 
@@ -250,33 +252,19 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important; /* Use !important */
 }
 
-/* 
-==============================================
-    Resume Section and Button Styles
-==============================================
-*/
-.resume-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.resume-buttons .btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.1rem;
-  padding: 10px 20px;
-}
 
 /* Back-to-Top Button */
 #backToTop {
   position: fixed;
   bottom: 40px;
   right: 40px;
-  display: none;
-  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  background-color: var(--primary-strong);
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -285,9 +273,10 @@ body {
   font-size: 1.5rem;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s, transform 0.3s, opacity 0.3s, visibility 0.3s;
   z-index: 1000;
 }
+#backToTop.is-visible { opacity: 1; visibility: visible; transform: none; }
 
 #backToTop:hover {
   background-color: var(--button-hover-bg);
@@ -323,33 +312,6 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 
-==============================================
-    Online Profiles
-==============================================
-*/
-.online-profiles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 1rem;
-}
-
-.online-profile-item {
-  flex: 1 1 150px;
-  max-width: 180px;
-  text-align: center;
-}
-
-.online-profile-item i {
-  font-size: 30px;
-}
-
-.online-profile-item .btn {
-  font-size: 0.8rem;
-  padding: 0.3rem 0.6rem;
-  margin: 2px;
-}
 
 /* 
 ==============================================
@@ -385,7 +347,7 @@ footer {
   height: 40px;
   border-radius: 50%;
   border: none;
-  background: var(--primary-color);
+  background: var(--primary-strong);
   color: white;
   font-size: 1.2rem;
   cursor: pointer;
@@ -402,8 +364,9 @@ footer {
   transform: translateY(-50%) scale(1.1);
 }
 
-.projects-nav-btn:focus {
-  outline: none;
+.projects-nav-btn:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
 }
 
 .projects-left-btn {
@@ -429,7 +392,7 @@ footer {
   padding: 0;
   transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
-  height: 380px;
+  min-height: 380px;
   display: flex;
   flex-direction: column;
 }
@@ -458,7 +421,7 @@ footer {
   flex-direction: column;
 }
 
-.project-card .card-body h5 {
+.project-card .card-body h3 {
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
@@ -472,73 +435,6 @@ footer {
   margin-top: auto;
 }
 
-/* 
-==============================================
-    Portfolio Cards Grid Layout
-==============================================
-*/
-.portfolio-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.portfolio-card {
-  background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-.portfolio-card .card-img-container {
-  height: 180px;
-  overflow: hidden;
-  position: relative;
-}
-
-.portfolio-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s;
-}
-
-.portfolio-card iframe {
-  width: 100%;
-  height: 180px;
-  border: none;
-}
-
-.portfolio-card .card-body {
-  padding: 1.25rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.portfolio-card .card-body h5 {
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.portfolio-card .card-body p {
-  margin-bottom: 1rem;
-  flex-grow: 1;
-}
-
-.portfolio-card .btn-container {
-  margin-top: auto;
-}
 
 /* 
 ==============================================
@@ -601,7 +497,7 @@ footer {
   .project-card {
     flex: 0 0 85%;
     min-width: 220px;
-    height: 360px;
+    min-height: 360px;
   }
   
   #backToTop {
@@ -636,7 +532,7 @@ th, td {
 }
 
 th {
-  background-color: var(--primary-color);
+  background-color: var(--primary-strong);
   color: white;
   font-weight: 600;
   text-transform: uppercase;
@@ -685,7 +581,7 @@ tr:nth-child(even) {
 
 [data-theme="dark"] .accordion-button:not(.collapsed) {
   background-color: var(--table-alternate-bg);
-  color: #0d6efd; /* Change to default Bootstrap blue */
+  color: var(--text-color); /* Change to default Bootstrap blue */
 }
 
 /* Style the experience sections specifically */
@@ -756,7 +652,7 @@ tr:nth-child(even) {
 [data-theme="dark"] #projects {
   --bs-accordion-bg: var(--card-bg);
   --bs-accordion-active-bg: var(--table-alternate-bg);
-  --bs-accordion-active-color: #0d6efd; /* Change from var(--primary-color) to default Bootstrap blue */
+  --bs-accordion-active-color: var(--text-color); /* Change from var(--primary-color) to default Bootstrap blue */
   --bs-accordion-btn-bg: var(--card-bg);
   --bs-accordion-btn-color: var(--text-color);
   --bs-accordion-border-color: var(--table-border);
@@ -818,12 +714,12 @@ tr:nth-child(even) {
 
 [data-theme="dark"] .accordion-button:not(.collapsed) {
   background-color: #252525;
-  color: #0d6efd; /* Change from var(--primary-color) to default Bootstrap blue */
+  color: var(--text-color); /* Change from var(--primary-color) to default Bootstrap blue */
 }
 
 /* Same change for light mode to maintain consistency */
 .accordion-button:not(.collapsed) {
-  color: #0d6efd; /* Default Bootstrap blue color */
+  color: var(--text-color); /* Default Bootstrap blue color */
 }
 
 [data-theme="dark"] .accordion-body {
@@ -844,4 +740,1047 @@ tr:nth-child(even) {
 /* Fix for text colors in dark mode */
 [data-theme="dark"] .text-muted {
   color: #9e9e9e !important;
-} 
+}
+
+/*
+==============================================
+    Research Projects
+==============================================
+*/
+/* Title grows to consume slack so the pills + chevron sit flush-right. */
+#researchAccordion .accordion-button {
+  gap: 10px;
+}
+
+.research-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 600;
+  /* Pin title colour so it doesn't flip to Bootstrap-blue when expanded. */
+  color: var(--text-color);
+}
+
+.research-tags {
+  flex: 0 0 auto;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* Publication-type pill (Poster / Paper / Workshop Paper) */
+.research-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  background: rgba(255, 127, 0, 0.12);
+  /* Darkened burnt-orange for WCAG AA (5.47:1) on the light tint. */
+  color: #9a4d00;
+  border: 1px solid rgba(255, 127, 0, 0.45);
+}
+
+/* Review-status badge (Accepted / Under Review) */
+.research-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.research-badge.accepted {
+  background: #e6f4ea;
+  color: #156e2e; /* 5.60:1 on the green fill — WCAG AA */
+  border: 1px solid #a3d9b1;
+}
+
+.research-badge.review {
+  background: #fff4e0;
+  color: #8a5600; /* 5.65:1 on the amber fill — WCAG AA */
+  border: 1px solid #f1c87f;
+}
+
+/* Publication venue line inside the expanded panel */
+.research-venue {
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-bottom: 0.6rem;
+}
+
+.research-venue i {
+  color: var(--primary-color);
+  margin-right: 6px;
+}
+
+/* Dark-mode variants for research pills/badges */
+[data-theme="dark"] .research-type {
+  background: rgba(255, 153, 51, 0.15);
+  color: var(--primary-color);
+  border-color: rgba(255, 153, 51, 0.4);
+}
+
+[data-theme="dark"] .research-badge.accepted {
+  background: rgba(46, 160, 67, 0.18);
+  color: #5bd97e;
+  border-color: rgba(46, 160, 67, 0.45);
+}
+
+[data-theme="dark"] .research-badge.review {
+  background: rgba(210, 153, 34, 0.18);
+  color: #e3b341;
+  border-color: rgba(210, 153, 34, 0.45);
+}
+
+/* On the narrowest screens, let the tag pills drop to a full-width row
+   under the title and tighten them so a long paper title isn't crushed. */
+@media (max-width: 576px) {
+  .research-tags {
+    flex-basis: 100%;
+    justify-content: flex-start;
+    margin-top: 6px;
+  }
+  .research-type,
+  .research-badge {
+    font-size: 0.62rem;
+    padding: 2px 8px;
+  }
+}
+
+/*
+==================================================================
+    ENHANCEMENT LAYER (v2) — design tokens, hero, filters,
+    contact, footer, scroll UI, accessibility & motion preferences.
+    Appended so it overrides earlier rules by source order.
+==================================================================
+*/
+
+/* ---- Extended design tokens ---- */
+:root {
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --primary-rgb: 255, 127, 0;
+  --accent-rose: #c1185b;
+  --accent-violet: #7c3aed;
+  --accent-teal: #0d9488;
+  /* Darker orange for gradient TEXT on light backgrounds — meets WCAG AA (3:1+ large) */
+  --grad-orange: #cc6600;
+  --accent-ink: #b35900; /* accent TEXT (hero eyebrow/role) — AA on light (4.83:1); dark variant below */
+  --research-accent: #4f46e5; /* cool indigo — the academic "rigor" voice for Research */
+  --ring: rgba(255, 127, 0, 0.45);
+  --nav-bg: rgba(250, 247, 243, 0.85); /* warm paper glass — matches --bg-color */
+  --hairline: rgba(0, 0, 0, 0.08);
+  --elev-1: 0 1px 2px rgba(16, 12, 8, 0.06), 0 4px 14px rgba(16, 12, 8, 0.06);
+  --elev-2: 0 6px 18px rgba(16, 12, 8, 0.10), 0 14px 40px rgba(16, 12, 8, 0.10);
+}
+
+[data-theme="dark"] {
+  --accent-rose: #f472b6;
+  --accent-violet: #a78bfa;
+  --accent-teal: #2dd4bf;
+  --grad-orange: #ff9933;
+  --accent-ink: #ff9933; /* light orange — AA on the dark background */
+  --research-accent: #a5b4fc;
+  --hairline: rgba(255, 255, 255, 0.10);
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);
+  --elev-2: 0 8px 24px rgba(0, 0, 0, 0.5), 0 18px 50px rgba(0, 0, 0, 0.45);
+  --nav-bg: rgba(18, 18, 18, 0.72);
+}
+
+/* ---- Typographic character: display serif for headings ---- */
+.header h1,
+.hero h1,
+.info-card > h2,
+.project-card .card-body h3,
+.footer-name {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: rgba(var(--primary-rgb), 0.22); }
+
+/* ---- Keyboard focus: visible, on-brand, never on mouse click ---- */
+a:focus-visible,
+button:focus-visible,
+.accordion-button:focus-visible,
+.filter-chip:focus-visible,
+.copy-btn:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---- Skip link (hidden until focused) ---- */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 16px;
+  z-index: 2000;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 0 0 10px 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.25s ease;
+}
+.skip-link:focus { top: 0; color: #fff; }
+
+/* ---- Reading-progress bar ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  z-index: 1031; /* just above the navbar, but below modal backdrop (1050) */
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-rose));
+  box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.6);
+  transition: width 0.08s linear;
+}
+
+/* ---- Navbar: glass + active state + brand monogram ---- */
+.navbar {
+  background-color: var(--nav-bg);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--hairline);
+  box-shadow: none;
+}
+/* Where blur isn't supported, fall back to an opaque bar so content can't bleed through. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navbar { background-color: var(--bg-color); }
+}
+.navbar-brand { display: inline-flex; align-items: center; gap: 9px; }
+.navbar-brand__mono {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 9px;
+  font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+  color: #fff; background: linear-gradient(135deg, #ffb056, var(--primary-color));
+  box-shadow: 0 3px 10px rgba(var(--primary-rgb), 0.4);
+}
+.navbar .nav-link { position: relative; padding-left: 0.7rem; padding-right: 0.7rem; }
+.navbar .nav-link:not(.theme-toggle)::after {
+  content: '';
+  position: absolute; left: 0.7rem; right: 0.7rem; bottom: 4px;
+  height: 2px; border-radius: 2px;
+  background: var(--primary-color);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.navbar .nav-link:not(.theme-toggle):hover::after,
+.navbar .nav-link.active::after { transform: scaleX(1); }
+.navbar .nav-link.active { color: var(--primary-color); font-weight: 700; }
+
+/* ==============================================================
+    HERO
+=============================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(2.5rem, 6vw, 5rem) 1rem 3rem;
+  margin-bottom: 1.5rem;
+  border-radius: 22px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.hero-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.hero-aurora--1 {
+  width: 46vw; max-width: 560px; aspect-ratio: 1;
+  top: -16%; right: -6%;
+  background: radial-gradient(circle, rgba(var(--primary-rgb), 0.55), rgba(var(--primary-rgb), 0) 66%);
+  animation: auroraFloat1 18s ease-in-out infinite alternate;
+}
+.hero-aurora--2 {
+  width: 42vw; max-width: 520px; aspect-ratio: 1;
+  bottom: -22%; left: -8%;
+  background: radial-gradient(circle, rgba(193, 24, 91, 0.4), rgba(124, 58, 237, 0.18) 55%, rgba(0,0,0,0) 72%);
+  animation: auroraFloat2 22s ease-in-out infinite alternate;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(circle at 50% 35%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(circle at 50% 35%, #000 0%, transparent 72%);
+  opacity: 0.7;
+}
+@keyframes auroraFloat1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-26px, 22px) scale(1.12); }
+}
+@keyframes auroraFloat2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, -18px) scale(1.16); }
+}
+
+.hero-inner { max-width: 760px; }
+.hero-monogram {
+  width: 76px; height: 76px; margin: 0 auto 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 2.4rem;
+  color: #fff; border-radius: 20px;
+  background: linear-gradient(135deg, #ffb056, var(--primary-color));
+  box-shadow: 0 12px 30px rgba(var(--primary-rgb), 0.42);
+  transform: rotate(-4deg);
+  transition: transform 0.4s ease;
+}
+.hero-monogram:hover { transform: rotate(0deg) scale(1.05); }
+.hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--secondary-color); /* intentional muted-grey eyebrow above the orange role line */
+  margin-bottom: 0.6rem;
+}
+.hero h1 {
+  white-space: normal;
+  font-size: clamp(2.3rem, 6vw, 4rem);
+  line-height: 1.04;
+  margin-bottom: 0.5rem;
+}
+.hero h1 em {
+  font-style: italic;
+  background: linear-gradient(120deg, var(--grad-orange), var(--accent-rose));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--grad-orange);
+}
+.hero-name-zh {
+  font-family: 'Ma Shan Zheng', var(--font-display), cursive;
+  font-size: clamp(1.9rem, 1.4rem + 3.2vw, 3rem);
+  line-height: 1;
+  color: var(--accent-ink);
+  margin: 0.1rem 0 0.7rem;
+  letter-spacing: 0.1em;
+}
+.hero-role {
+  min-height: 1.8em;
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.9rem;
+}
+.hero-role .sep { color: var(--accent-ink); padding: 0 0.15em; }
+.hero-lede {
+  max-width: 620px; margin: 0 auto 1.6rem;
+  font-size: 1.05rem; line-height: 1.6;
+  color: var(--secondary-color);
+}
+.hero-cta {
+  display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center;
+  margin-bottom: 1.6rem;
+}
+.hero-cta .btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.4rem; border-radius: 999px;
+  font-weight: 600; font-size: 0.98rem;
+  border: 1.5px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+.btn-hero-primary {
+  color: #fff;
+  background: linear-gradient(135deg, #ffa23e, var(--primary-color));
+  box-shadow: 0 8px 22px rgba(var(--primary-rgb), 0.4);
+}
+.btn-hero-primary:hover {
+  color: #fff; transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(var(--primary-rgb), 0.5);
+}
+.btn-hero-ghost {
+  color: var(--text-color);
+  background: var(--card-bg);
+  border-color: var(--hairline);
+  box-shadow: var(--elev-1);
+}
+.btn-hero-ghost:hover {
+  color: var(--primary-color); transform: translateY(-2px);
+  border-color: var(--primary-color);
+}
+.hero-social { margin-bottom: 0; }
+.hero-social a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; margin: 0 6px; font-size: 1.15rem;
+  border-radius: 50%;
+  color: var(--secondary-color);
+  background: var(--card-bg);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--elev-1);
+  transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.hero-social a:hover {
+  transform: translateY(-3px); color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* ==============================================================
+    HERO ACCENT FALLBACKS · ABOUT TWO-COLUMN
+=============================================================== */
+/* Hero name-accent gradient-text fallbacks: keep a solid readable colour where
+   background-clip:text is unsupported or under forced-colors (never transparent). */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero h1 em { -webkit-text-fill-color: currentColor; color: var(--grad-orange); }
+}
+@media (forced-colors: active) {
+  .hero h1 em { -webkit-text-fill-color: currentColor; }
+}
+
+/* About: the two paragraphs sit as two columns (researcher | artist) so the wide
+   card fills with real content, not dead space — and the duality is felt through
+   layout. Collapses to one column on narrow screens. */
+.about-prose {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3.4rem);
+}
+.about-prose p { margin: 0; }
+@media (max-width: 720px) {
+  .about-prose { grid-template-columns: 1fr; gap: 1.1rem; }
+}
+
+/* ---- Shared section intro line ---- */
+.section-intro {
+  color: var(--secondary-color);
+  margin-top: -0.6rem;
+  margin-bottom: 1.2rem;
+  max-width: 70ch;
+}
+
+/* ---- Info-card: gentle accent + lift ---- */
+.info-card { border: 1px solid var(--hairline); }
+.info-card:hover { transform: translateY(-2px); box-shadow: var(--elev-2); }
+
+/* ==============================================================
+    SKILLS — grouped
+=============================================================== */
+.skills-grouped {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+}
+.skill-group__title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--secondary-color);
+  margin-bottom: 0.7rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.skill-group__title i { color: var(--primary-color); }
+.skill-group ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-wrap: wrap; gap: 9px;
+}
+
+/* ==============================================================
+    PORTFOLIO — filters + card polish
+=============================================================== */
+.portfolio-filters {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.filter-chip {
+  font-size: 0.84rem; font-weight: 600;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: var(--card-bg);
+  color: var(--secondary-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.filter-chip:hover { color: var(--primary-color); border-color: var(--primary-color); }
+.filter-chip.is-active {
+  color: #fff;
+  background: linear-gradient(135deg, #ffa23e, var(--primary-color));
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.35);
+}
+.project-card { border: 1px solid var(--hairline); box-shadow: var(--elev-1); }
+.project-card:hover { box-shadow: var(--elev-2); }
+.project-card .card-img-container { position: relative; }
+.project-card .card-img-container::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.18));
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.project-card:hover .card-img-container::after { opacity: 1; }
+.project-card:hover img { transform: scale(1.06); }
+.project-card.is-hidden { display: none !important; }
+.project-card .btn-container { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* ==============================================================
+    CONTACT — interactive grid
+=============================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.9rem;
+}
+.contact-item {
+  display: flex; align-items: center; gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--card-bg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.contact-item:hover { transform: translateY(-2px); box-shadow: var(--elev-2); border-color: rgba(var(--primary-rgb), 0.4); }
+.contact-item__icon {
+  flex: 0 0 auto;
+  width: 42px; height: 42px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem; color: var(--primary-color);
+  background: rgba(var(--primary-rgb), 0.12);
+}
+.contact-item__body { display: flex; flex-direction: column; min-width: 0; flex: 1 1 auto; }
+.contact-item__label {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--secondary-color); font-weight: 600;
+}
+.contact-item__value {
+  font-weight: 500; color: var(--text-color); text-decoration: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+a.contact-item__value:hover { color: var(--primary-color); }
+.copy-btn {
+  flex: 0 0 auto;
+  width: 38px; height: 38px; border-radius: 10px;
+  border: 1px solid var(--hairline);
+  background: transparent; color: var(--secondary-color);
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.copy-btn:hover { color: var(--primary-color); border-color: var(--primary-color); background: rgba(var(--primary-rgb), 0.08); }
+.copy-btn.is-copied { color: #156e2e; border-color: #a3d9b1; background: #e6f4ea; }
+
+/* ---- Copy toast ---- */
+.toast-note {
+  position: fixed;
+  left: 50%; bottom: 30px; transform: translate(-50%, 16px);
+  z-index: 2000;
+  background: #1e1e1e; color: #fff;
+  padding: 0.7rem 1.2rem; border-radius: 999px;
+  font-size: 0.9rem; font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.toast-note.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+/* ==============================================================
+    FOOTER
+=============================================================== */
+footer { box-shadow: none; border-top: 1px solid var(--hairline); padding: 2.4rem 1.2rem 1.4rem; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 1.5rem;
+  align-items: center; justify-content: space-between;
+}
+.footer-brand { display: flex; align-items: center; gap: 0.8rem; }
+.footer-mono {
+  width: 46px; height: 46px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: #fff;
+  background: linear-gradient(135deg, #ffb056, var(--primary-color));
+  box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.38);
+}
+.footer-name { font-weight: 700; margin: 0; font-size: 1.05rem; }
+.footer-tag { margin: 0; font-size: 0.85rem; color: var(--secondary-color); max-width: 30ch; }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; justify-content: center; }
+.footer-nav a {
+  color: var(--text-color); text-decoration: none; font-weight: 500; font-size: 0.92rem;
+  transition: color 0.2s ease;
+}
+.footer-nav a:hover { color: var(--primary-color); }
+.footer-social { display: flex; gap: 0.5rem; }
+.footer-social a {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--secondary-color); border: 1px solid var(--hairline);
+  font-size: 1.05rem; text-decoration: none;
+  transition: all 0.25s ease;
+}
+.footer-social a:hover { color: var(--primary-color); border-color: var(--primary-color); transform: translateY(-3px); }
+.footer-bottom {
+  max-width: 1100px; margin: 1.6rem auto 0; padding-top: 1.2rem;
+  border-top: 1px solid var(--hairline);
+  display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: space-between;
+  font-size: 0.82rem; color: var(--secondary-color);
+}
+.footer-bottom p { margin: 0; }
+
+/* ==============================================================
+    RESPONSIVE
+=============================================================== */
+@media (max-width: 768px) {
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-brand { flex-direction: column; }
+  .footer-tag { max-width: none; }
+}
+@media (max-width: 576px) {
+  .hero { border-radius: 16px; padding-top: 2rem; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta .btn { justify-content: center; }
+  .navbar-brand { font-size: 1rem; }
+}
+
+/* ==============================================================
+    MOTION PREFERENCES — respect users who ask for less motion
+=============================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-aurora { animation: none !important; }
+}
+
+
+/*
+==================================================================
+    PRINT — produce a clean, ink-friendly resume-style printout /
+    "Save as PDF", regardless of the on-screen theme.
+==================================================================
+*/
+@media print {
+  /* Force a light palette even if the visitor is in dark mode. */
+  :root, [data-theme="dark"] {
+    --bg-color: #fff;
+    --text-color: #000;
+    --secondary-color: #333;
+    --card-bg: #fff;
+    --hairline: #ccc;
+  }
+  body { background: #fff !important; color: #000 !important; }
+  * { animation: none !important; transition: none !important; box-shadow: none !important; }
+  /* AOS hides below-fold content until scrolled — force everything visible for print. */
+  [data-aos] { opacity: 1 !important; transform: none !important; }
+
+  /* Hide interactive chrome that means nothing on paper. */
+  .navbar, .scroll-progress, #backToTop, .theme-toggle, .skip-link,
+  .hero-bg, .hero-cta, .hero-social,
+  .portfolio-filters, .projects-nav-btn, .copy-btn,
+  .modal, .footer-social { display: none !important; }
+
+  .main-container { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .info-card, .project-card, .contact-item {
+    border: 1px solid #ccc !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  section, .info-card { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Hero: keep the name, drop the decoration. */
+  .hero { padding: 0 0 0.5rem !important; }
+  .hero-monogram { transform: none !important; box-shadow: none !important; }
+  .hero h1 { font-size: 2rem !important; }
+  .hero h1 em {
+    -webkit-text-fill-color: #000 !important;
+    color: #000 !important;
+    background: none !important;
+  }
+
+  /* Skill pills: readable on white. */
+  .skills ul li {
+    background: #f2f2f2 !important;
+    color: #000 !important;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Expand every accordion so all experience prints, and drop the chevrons. */
+  .accordion-collapse { display: block !important; height: auto !important; visibility: visible !important; }
+  .accordion-button, .accordion-body, .accordion-item {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .accordion-button::after { display: none !important; }
+
+  /* Portfolio carousel → wrapping grid so no card is hidden off-screen. */
+  .projects-carousel-container { padding: 0 !important; }
+  .projects-carousel { display: flex !important; flex-wrap: wrap !important; overflow: visible !important; gap: 0.5rem !important; }
+  .project-card { flex: 0 0 31% !important; min-height: auto !important; }
+  .project-card .card-img-container { height: 110px !important; }
+
+  a { color: #000 !important; text-decoration: underline; }
+}
+
+/*
+==================================================================
+    ENHANCEMENT LAYER (v3) — gap-analysis follow-ups: carousel
+    snap/affordances, readability measure cap, responsive modals,
+    and small utility classes (replacing inline styles).
+==================================================================
+*/
+
+/* ---- Readability: cap the measure of long body copy on wide screens ---- */
+.info-card > p,
+.accordion-body p,
+.accordion-body li { max-width: 68ch; }
+
+/* ---- Date span utility (replaces 18 inline font-size styles) ---- */
+.exp-date { font-size: 0.9rem; }
+
+/* ---- Carousel: scroll-snap, disabled-at-ends, edge "more" fade ---- */
+.projects-carousel { scroll-snap-type: x proximity; }
+.project-card { scroll-snap-align: start; }
+.projects-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+  box-shadow: none;
+}
+/* Edge gradients hint that more cards exist; they fade out at each extreme. */
+.projects-carousel-container::before,
+.projects-carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 1rem; bottom: 1rem;
+  width: 42px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.projects-carousel-container::before {
+  left: 40px;
+  background: linear-gradient(90deg, var(--card-bg), transparent);
+}
+.projects-carousel-container::after {
+  right: 40px;
+  background: linear-gradient(270deg, var(--card-bg), transparent);
+}
+.projects-carousel-container.at-start::before { opacity: 0; }
+.projects-carousel-container.at-end::after { opacity: 0; }
+/* Keyboard focus ring on the scrollable region itself */
+.projects-carousel:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+/* On touch-ONLY devices (hover:none excludes hybrid touch-laptops driven by a
+   mouse, which keep the arrows), swipe replaces the arrows and reclaims the gutter. */
+@media (hover: none) and (pointer: coarse) {
+  .projects-nav-btn { display: none; }
+  .projects-carousel-container { padding-inline: 8px; }
+  .projects-carousel-container::before { left: 8px; }
+  .projects-carousel-container::after { right: 8px; }
+}
+
+/* ---- Responsive modal media (replaces fixed inline iframe heights) ---- */
+.modal-body iframe { width: 100%; height: min(80vh, 1000px); border: 0; }
+
+/* Résumé preview: a PORTRAIT, A4-proportioned window. Its width is tied to the
+   viewport height (~A4 ratio 0.71) so the page fills the modal with minimal grey
+   margins on laptops/desktop, and it goes fullscreen on phones. */
+#resumeModal .modal-body { padding: 0; }
+/* A portrait PDF's on-screen size is driven by HEIGHT, so make the preview tall.
+   Browser PDF viewers (esp. Chrome's, with its thumbnail sidebar) can't have their
+   chrome hidden reliably, so we give the modal enough width for sidebar + page. */
+#resumeModal iframe { width: 100%; height: min(88vh, 1050px); border: 0; display: block; }
+@media (min-width: 576px) {
+  /* Laptop/desktop: a large preview — wide enough for Chrome's PDF sidebar plus a
+     readable page, and ~88vh tall so the résumé is as big as the viewport allows.
+     Scoped to ≥576px so it never overrides Bootstrap's mobile fullscreen. */
+  .resume-dialog { max-width: min(900px, 94vw); }
+}
+@media (max-width: 575.98px) {
+  /* Phones (modal-fullscreen-sm-down): the PDF fills the screen below the header */
+  #resumeModal iframe { height: calc(100dvh - 64px); }
+}
+.markdown-preview {
+  overflow: auto;
+  max-height: min(75vh, 800px);
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  background: #fff;
+}
+.preview-fallback { text-align: center; padding: 3rem 1.5rem; }
+.preview-fallback > i { font-size: 2.6rem; color: var(--primary-color); margin-bottom: 1rem; }
+.preview-fallback p { color: var(--secondary-color); margin-bottom: 1.4rem; }
+.preview-fallback .btn { display: inline-flex; align-items: center; gap: 0.5rem; }
+
+
+/*
+==================================================================
+    VISUAL LAYER (v4) — editorial rhythm (section kickers),
+    warmer depth and a cool "rigor" indigo accent scoped to
+    the academic Research section.
+==================================================================
+*/
+
+/* ---- Section kicker: an editorial "01  LABEL ──────" above each heading ---- */
+.section-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.55rem;
+}
+.section-kicker .num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--primary-strong);
+  font-variant-numeric: tabular-nums;
+}
+.section-kicker .label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--secondary-color);
+  white-space: nowrap;
+}
+.section-kicker::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--hairline), transparent);
+}
+
+/* ---- Cool "rigor" indigo accent — scoped to the academic Research section ---- */
+#research .section-kicker .num { color: var(--research-accent); }
+#research > h2::after { background: var(--research-accent); }
+#research .research-venue i { color: var(--research-accent); }
+.research-type {
+  background: rgba(79, 70, 229, 0.10);
+  color: #3730a3;                 /* indigo-800 on the light tint — ~9:1 */
+  border-color: rgba(79, 70, 229, 0.35);
+}
+[data-theme="dark"] .research-type {
+  background: rgba(99, 102, 241, 0.18);
+  color: #c7d2fe;                 /* indigo-200 on dark — high contrast */
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+/* ---- Warmer depth: a touch more elevation so cards float on the warm paper ---- */
+.info-card { box-shadow: var(--elev-1); }
+
+/* ---- Brand-coherent accordion active background (replaces Bootstrap's pale blue):
+       a faint warm wash by default, a faint cool wash inside the Research section. ---- */
+.accordion-button:not(.collapsed) { background-color: rgba(var(--primary-rgb), 0.07); }
+#research .accordion-button:not(.collapsed) { background-color: rgba(79, 70, 229, 0.08); }
+[data-theme="dark"] .accordion-button:not(.collapsed) { background-color: rgba(var(--primary-rgb), 0.13); }
+[data-theme="dark"] #research .accordion-button:not(.collapsed) { background-color: rgba(99, 102, 241, 0.16); }
+
+/*
+==================================================================
+    PHOTOGRAPHY (v5) — an editorial masonry wall of real photographs
+    (a few drawn on by hand) + a minimal full-screen lightbox.
+    Reuses existing tokens (--hairline, --elev-*, --accent-ink) so
+    it themes for free; the lightbox is intentionally dark always.
+==================================================================
+*/
+.photo-wall {
+  columns: 3 250px;          /* auto-responsive: 1 → 2 → 3 columns by width */
+  column-gap: 1rem;
+  margin-top: 1.4rem;
+}
+.photo {
+  break-inside: avoid;
+  margin: 0 0 1rem;
+}
+.photo-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  border-radius: 12px;
+  line-height: 0;
+}
+.photo-btn img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  border: 1px solid var(--hairline);
+  box-shadow: var(--elev-1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.photo-btn:hover img,
+.photo-btn:focus-visible img {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: var(--elev-2);
+}
+/* ---- Studio: featured artwork (Inbox Archive) + photography sub-head ---- */
+.art-subhead {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 2.6rem 0 0.2rem;
+}
+.section-intro--tight { margin: 0.1rem 0 1rem; font-size: 0.95rem; }
+.art-feature { margin: 1.3rem 0 0.5rem; }
+.art-feature__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.3rem, 1.05rem + 1vw, 1.75rem);
+  line-height: 1.2;
+  margin: 0 0 0.35rem;
+}
+.art-feature__meta {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--secondary-color);
+  margin: 0 0 1.3rem;
+}
+/* Full-width panoramic installation banner (blank wall trimmed) */
+.art-banner { margin: 0 0 1.4rem; }
+.art-banner .photo-btn img { width: 100%; height: auto; }
+.art-feature__text { max-width: 72ch; }
+.art-feature__text p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 0 0.8rem;
+}
+.art-feature__text details { margin-top: 0.4rem; }
+.art-feature__text summary {
+  cursor: pointer;
+  color: var(--accent-ink);
+  font-weight: 500;
+  font-size: 0.92rem;
+  list-style: none;
+}
+.art-feature__text summary::-webkit-details-marker { display: none; }
+.art-feature__text summary::before { content: '+ '; font-weight: 700; }
+.art-feature__text details[open] summary::before { content: '\2013 '; }
+.art-feature__text details[open] summary { margin-bottom: 0.6rem; }
+/* Strips render as a width-filling grid: uniform cells, aligned, no scroll */
+.art-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+.art-plate { margin: 0; }
+.art-plate .photo-btn img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.art-plate--wide { grid-column: span 2; }
+.art-plate--wide .photo-btn img { aspect-ratio: 3 / 2; }
+@media (max-width: 575px) {
+  .art-strip { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); }
+}
+.photo-more {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+.photo-more a {
+  color: var(--accent-ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.photo-more a:hover { border-bottom-color: currentColor; }
+
+/* ---- Lightbox: full-screen, always-dark photo viewer ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;             /* above navbar (1030) and Bootstrap modals (1055) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12, 10, 9, 0.93);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  padding: clamp(0.5rem, 3vw, 2.5rem);
+}
+.lightbox[hidden] { display: none; }
+.lightbox__stage {
+  margin: 0;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+.lightbox__img {
+  max-width: min(92vw, 1400px);
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.5);
+  animation: lbIn 0.3s ease;
+}
+@keyframes lbIn { from { opacity: 0; transform: scale(0.985); } to { opacity: 1; transform: none; } }
+.lightbox__cap {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: baseline;
+}
+.lightbox__count { color: rgba(255, 255, 255, 0.5); font-variant-numeric: tabular-nums; }
+.lightbox__btn {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.lightbox__btn:hover,
+.lightbox__btn:focus-visible { background: rgba(255, 255, 255, 0.24); }
+.lightbox__close { top: clamp(0.6rem, 2vw, 1.4rem); right: clamp(0.6rem, 2vw, 1.4rem); }
+.lightbox__prev { left: clamp(0.4rem, 2vw, 1.4rem); top: 50%; transform: translateY(-50%); }
+.lightbox__next { right: clamp(0.4rem, 2vw, 1.4rem); top: 50%; transform: translateY(-50%); }
+
+@media (max-width: 575px) {
+  .lightbox__img { max-height: 72vh; }
+  .lightbox__prev { left: 0.3rem; }
+  .lightbox__next { right: 0.3rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-btn img { transition: none; }
+  .photo-btn:hover img,
+  .photo-btn:focus-visible img { transform: none; }
+  .lightbox__img { animation: none; }
+}
+@media print {
+  .lightbox { display: none !important; }
+  .photo-wall { columns: 2; }
+}

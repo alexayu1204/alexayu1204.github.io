@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img" aria-label="Incomplete Data Analysis">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15803d"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#g)"/>
+  <rect width="600" height="400" fill="url(#glow)"/>
+  <circle cx="90" cy="300" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <circle cx="150" cy="250" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <circle cx="200" cy="270" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <circle cx="250" cy="210" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <circle cx="300" cy="220" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <circle cx="350" cy="170" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <circle cx="400" cy="180" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <circle cx="450" cy="130" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <circle cx="500" cy="150" r="8" fill="#c9f2d4" fill-opacity="0.16"/>
+  <line x1="80" y1="300" x2="520" y2="140" stroke="#c9f2d4" stroke-opacity="0.16" fill="none" stroke-width="2" stroke-dasharray="6 6"/>
+  <rect x="40" y="44" width="120" height="28" rx="14" fill="#000000" fill-opacity="0.18"/>
+  <text x="54" y="63" font-family="'Segoe UI', Roboto, system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="0.4" fill="#ffffff" fill-opacity="0.92">Statistics</text>
+  <text x="40" y="292" font-family="'Georgia', 'Times New Roman', serif" font-size="32" font-weight="700" fill="#ffffff"><tspan x="40" dy="0">Incomplete Data</tspan><tspan x="40" dy="38">Analysis</tspan></text>
+</svg>

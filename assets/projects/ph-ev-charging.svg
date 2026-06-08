@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img" aria-label="EV Charging Optimization">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#155e75"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#g)"/>
+  <rect width="600" height="400" fill="url(#glow)"/>
+  <line x1="60" y1="90" x2="60" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="110" y1="90" x2="110" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="160" y1="90" x2="160" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="210" y1="90" x2="210" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="260" y1="90" x2="260" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="310" y1="90" x2="310" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="360" y1="90" x2="360" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="410" y1="90" x2="410" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="460" y1="90" x2="460" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="510" y1="90" x2="510" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="560" y1="90" x2="560" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="60" y1="90" x2="540" y2="90" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="60" y1="138" x2="540" y2="138" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="60" y1="186" x2="540" y2="186" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="60" y1="234" x2="540" y2="234" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="60" y1="282" x2="540" y2="282" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <line x1="60" y1="330" x2="540" y2="330" stroke="#bdf0e6" stroke-opacity="0.10" stroke-width="1"/>
+  <circle cx="160" cy="186" r="11" fill="#bdf0e6" fill-opacity="0.16"/>
+  <circle cx="160" cy="186" r="20" stroke="#bdf0e6" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <circle cx="310" cy="282" r="11" fill="#bdf0e6" fill-opacity="0.16"/>
+  <circle cx="310" cy="282" r="20" stroke="#bdf0e6" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <circle cx="410" cy="138" r="11" fill="#bdf0e6" fill-opacity="0.16"/>
+  <circle cx="410" cy="138" r="20" stroke="#bdf0e6" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <circle cx="260" cy="138" r="11" fill="#bdf0e6" fill-opacity="0.16"/>
+  <circle cx="260" cy="138" r="20" stroke="#bdf0e6" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <rect x="40" y="44" width="188" height="28" rx="14" fill="#000000" fill-opacity="0.18"/>
+  <text x="54" y="63" font-family="'Segoe UI', Roboto, system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="0.4" fill="#ffffff" fill-opacity="0.92">Operational Research</text>
+  <text x="40" y="292" font-family="'Georgia', 'Times New Roman', serif" font-size="32" font-weight="700" fill="#ffffff"><tspan x="40" dy="0">EV Charging</tspan><tspan x="40" dy="38">Optimization</tspan></text>
+</svg>

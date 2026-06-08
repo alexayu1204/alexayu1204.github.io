@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img" aria-label="3D Object Generation">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6d28d9"/>
+      <stop offset="1" stop-color="#9333ea"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#g)"/>
+  <rect width="600" height="400" fill="url(#glow)"/>
+  <polygon points="220,130 380,130 380,290 220,290" stroke="#e7d8ff" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <polygon points="266,84 426,84 426,244 266,244" stroke="#e7d8ff" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <line x1="220" y1="130" x2="266" y2="84" stroke="#e7d8ff" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <line x1="380" y1="130" x2="426" y2="84" stroke="#e7d8ff" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <line x1="380" y1="290" x2="426" y2="244" stroke="#e7d8ff" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <line x1="220" y1="290" x2="266" y2="244" stroke="#e7d8ff" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <rect x="40" y="44" width="188" height="28" rx="14" fill="#000000" fill-opacity="0.18"/>
+  <text x="54" y="63" font-family="'Segoe UI', Roboto, system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="0.4" fill="#ffffff" fill-opacity="0.92">Text-to-3D Diffusion</text>
+  <text x="40" y="330" font-family="'Georgia', 'Times New Roman', serif" font-size="32" font-weight="700" fill="#ffffff"><tspan x="40" dy="0">3D Object Generation</tspan></text>
+</svg>

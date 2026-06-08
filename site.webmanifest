@@ -1,0 +1,15 @@
+{
+  "name": "Haoting (Alexa) Yu",
+  "short_name": "Alexa Yu",
+  "description": "Creative Computing researcher (MRes, UAL): multimodal AI, music information retrieval, and authorship in AI art. Poet, photographer, and mixed-media artist.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#faf7f3",
+  "theme_color": "#ff7f00",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

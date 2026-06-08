@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img" aria-label="Power-Grid Anomaly Detection">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d4ed8"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#g)"/>
+  <rect width="600" height="400" fill="url(#glow)"/>
+  <path d="M0 210 L0 210.0 L20 235.27279474494713 L40 255.8429103253898 L60 267.88272676784106 L80 269.151914322474 L100 259.4143067113104 L120 240.48184617846226 L140 215.87742319089807 L160 190.17934847784213 L180 168.16943591229818 L200 153.94321819174303 L220 150.1478634801777 L240 157.4895989956091 L260 174.60229855420374 L280 198.30168687201353 L300 224.17785911744295 L320 247.41586160991267 L340 263.69164268640316 L360 269.9766581227047 L380 265.10141275854045 L400 249.97307634016443 L420 227.40668033466574 L440 201.60130606185896 L460 177.35873334663782 L480 159.1899410005027 L500 150.47571860658672 L520 152.83758022775066 L540 165.8360383618254 L560 187.05238234168067 L580 212.53874412233202 L600 237.55270468228014 " stroke="#cfe4ff" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <path d="M0 230 L0 230.0 L20 246.00610333846652 L40 259.0338432060802 L60 266.65906028629934 L80 267.46287907090016 L100 261.29572758382994 L120 249.3051692463594 L140 233.7223680209021 L160 217.44692070263335 L180 203.50730941112218 L200 194.49737152143723 L220 192.0936468707792 L240 196.7434126972191 L260 207.5814557509957 L280 222.59106835227524 L300 238.97931077438054 L320 253.6967123529447 L340 264.004707034722 L360 267.9852168110463 L380 264.89756141374227 L400 255.31628168210415 L420 241.02423087862164 L440 224.68082717251067 L460 209.32719778620395 L480 197.82029596698504 L500 192.30128845083826 L520 193.79713414424208 L540 202.0294909624894 L560 215.46650881639775 L580 231.60787127747696 L600 247.4500462987774 " stroke="#cfe4ff" stroke-opacity="0.16" fill="none" stroke-width="2"/>
+  <line x1="40" y1="120" x2="40" y2="300" stroke="#cfe4ff" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="120" y1="120" x2="120" y2="300" stroke="#cfe4ff" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="200" y1="120" x2="200" y2="300" stroke="#cfe4ff" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="280" y1="120" x2="280" y2="300" stroke="#cfe4ff" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="360" y1="120" x2="360" y2="300" stroke="#cfe4ff" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="440" y1="120" x2="440" y2="300" stroke="#cfe4ff" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="520" y1="120" x2="520" y2="300" stroke="#cfe4ff" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="600" y1="120" x2="600" y2="300" stroke="#cfe4ff" stroke-opacity="0.06" stroke-width="1"/>
+  <rect x="40" y="44" width="120" height="28" rx="14" fill="#000000" fill-opacity="0.18"/>
+  <text x="54" y="63" font-family="'Segoe UI', Roboto, system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="0.4" fill="#ffffff" fill-opacity="0.92">Time Series</text>
+  <text x="40" y="292" font-family="'Georgia', 'Times New Roman', serif" font-size="32" font-weight="700" fill="#ffffff"><tspan x="40" dy="0">Power-Grid Anomaly</tspan><tspan x="40" dy="38">Detection</tspan></text>
+</svg>
