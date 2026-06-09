@@ -201,11 +201,29 @@ body {
   transition: transform 0.7s ease;
 }
 
-/* AOS adds .aos-animate to the SECTION (which carries data-aos), not the h2 —
-   so reveal the underline (and the #research indigo accent) off the section's class. */
-.info-card.aos-animate > h2::after {
+/* The scroll-reveal adds .is-revealed to the SECTION (which carries data-aos),
+   not the h2 — so reveal the underline off the section's class. */
+.info-card.is-revealed > h2::after {
   transform: scaleX(1.2);
 }
+
+/* Scroll-reveal via the native IntersectionObserver (js/main.js → initReveal):
+   no library, and accurate even as lazy-loaded images shift the layout, so
+   sections never reveal late. The <noscript> head rule + the reduced-motion
+   block keep content visible if JS / IntersectionObserver / motion are absent. */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+[data-aos].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+/* Portfolio cards live in a horizontal carousel, so they must NOT be gated on
+   the vertical scroll-reveal (cards scrolled off-screen-right would stay blank).
+   They ride in on their parent section's fade instead and are always visible. */
+.project-card[data-aos] { opacity: 1; transform: none; transition: none; }
 
 /* 
 ==============================================
@@ -747,13 +765,25 @@ tr:nth-child(even) {
     Research Projects
 ==============================================
 */
-/* Title grows to consume slack so the pills + chevron sit flush-right. */
+/* Research header: the title grows so pills sit flush-right on wide screens and
+   drop to their own row under the title on narrow screens; the chevron is pinned
+   top-right (out of the flex flow) so it never overlaps the wrapped title/pills. */
 #researchAccordion .accordion-button {
-  gap: 10px;
+  position: relative;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 6px;
+  padding-right: 3rem;
+}
+#researchAccordion .accordion-button::after {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.1rem;
+  margin: 0;
 }
 
 .research-title {
-  flex: 1 1 auto;
+  flex: 1 1 13rem;
   min-width: 0;
   font-weight: 600;
   /* Pin title colour so it doesn't flip to Bootstrap-blue when expanded. */
@@ -841,14 +871,14 @@ tr:nth-child(even) {
 /* On the narrowest screens, let the tag pills drop to a full-width row
    under the title and tighten them so a long paper title isn't crushed. */
 @media (max-width: 576px) {
+  .research-title { flex-basis: 100%; }
   .research-tags {
     flex-basis: 100%;
     justify-content: flex-start;
-    margin-top: 6px;
   }
   .research-type,
   .research-badge {
-    font-size: 0.62rem;
+    font-size: 0.64rem;
     padding: 2px 8px;
   }
 }
@@ -1361,6 +1391,7 @@ footer { box-shadow: none; border-top: 1px solid var(--hairline); padding: 2.4re
     scroll-behavior: auto !important;
   }
   .hero-aurora { animation: none !important; }
+  [data-aos] { opacity: 1 !important; transform: none !important; }
 }
 
 

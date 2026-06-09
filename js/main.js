@@ -10,22 +10,8 @@ var PREFERS_REDUCED_MOTION = window.matchMedia &&
 
 // Wait for DOM to be fully loaded before running scripts
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize AOS (Animate on Scroll) — disabled when reduced motion is requested.
-  // Resilience: AOS's CSS sets [data-aos]{opacity:0}; if the AOS *script* fails to
-  // load (e.g. CDN outage), reveal everything so the page is never left blank.
-  var aosReady = false;
-  if (typeof AOS !== 'undefined') {
-    try {
-      AOS.init({ duration: 700, easing: 'ease-in-out', once: true, offset: 80, disable: PREFERS_REDUCED_MOTION });
-      aosReady = true;
-    } catch (e) { /* fall through to reveal */ }
-  }
-  if (!aosReady) {
-    document.querySelectorAll('[data-aos]').forEach(function (el) {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
-  }
+  // Scroll-reveal sections as they near the viewport (native IntersectionObserver).
+  initReveal();
 
   // Initialize Bootstrap Tooltips
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -54,15 +40,46 @@ document.addEventListener('DOMContentLoaded', function() {
   initPortfolioFilter();     // filter portfolio cards by focus
   initCopyButtons();         // copy email / phone with toast feedback
   initPhotoLightbox();       // full-screen photography viewer
-
-  // Handle device orientation change for better mobile experience
-  window.addEventListener('orientationchange', function() {
-    // Force AOS refresh (guarded — AOS may be unavailable if its CDN failed)
-    setTimeout(function() {
-      if (typeof AOS !== 'undefined' && AOS.refresh) AOS.refresh();
-    }, 300);
-  });
 });
+
+/**
+ * Scroll-reveal using the native IntersectionObserver — accurate even as
+ * lazy-loaded images shift the layout (unlike a cached-offset library), so
+ * sections never reveal late. Falls back to fully-visible when IntersectionObserver
+ * or reduced-motion isn't available; the <noscript> head rule covers JS-off.
+ */
+function initReveal() {
+  // We're handling the reveal — cancel the head safety-net timer.
+  if (window.__revealSafety) { clearTimeout(window.__revealSafety); window.__revealSafety = null; }
+
+  var els = Array.prototype.slice.call(document.querySelectorAll('[data-aos]'));
+  if (!els.length) return;
+  if (PREFERS_REDUCED_MOTION || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-revealed'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        io.unobserve(entry.target);
+      }
+    });
+    // Positive bottom margin reveals each section a little BEFORE it scrolls
+    // into view, so content is never blank when you reach it.
+  }, { rootMargin: '0px 0px 12% 0px', threshold: 0 });
+
+  var vh = window.innerHeight || document.documentElement.clientHeight;
+  els.forEach(function (el) {
+    // Reveal anything already in view synchronously (no first-paint flash);
+    // observe the rest to fade in as they scroll near the viewport.
+    if (el.getBoundingClientRect().top < vh) {
+      el.classList.add('is-revealed');
+    } else {
+      io.observe(el);
+    }
+  });
+}
 
 /**
  * Initializes back-to-top button behavior
