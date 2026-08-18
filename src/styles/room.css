@@ -207,8 +207,9 @@ body { color: var(--paper); font-family: var(--serif); }
    whatever happens to hang beneath the frame, at any viewport, without the
    geometry gymnastics of choosing a side per frame. */
 .frame__label {
-  position: absolute; left: 50%; top: calc(100% + 13px);
-  transform: translateX(-50%) translateY(-4px);
+  position: absolute;
+  left: var(--lx, 50%); top: var(--ly, calc(100% + 14px));
+  transform: translateY(-4px);
   padding: 5px 15px 6px;
   background: linear-gradient(to bottom, rgba(30, 19, 25, .95), rgba(17, 10, 15, .97));
   border: 1px solid rgba(207, 168, 99, .38);
@@ -247,7 +248,7 @@ body { color: var(--paper); font-family: var(--serif); }
   outline: none;
 }
 .frame--nav:hover .frame__glint, .frame--nav:focus-visible .frame__glint { opacity: 1; }
-.frame--nav:hover .frame__label, .frame--nav:focus-visible .frame__label { opacity: 1; transform: translateX(-50%) translateY(0); }
+.frame--nav:hover .frame__label, .frame--nav:focus-visible .frame__label { opacity: 1; transform: translateY(0); }
 .frame--nav:focus-visible { box-shadow: 0 0 0 2px rgba(240, 214, 154, .55), 12px 22px 40px rgba(0,0,0,.5); }
 .frame.is-entering { z-index: 40; }
 /* a hovered frame must sit above its neighbours, or the label it reveals is

@@ -89,7 +89,7 @@ export const FRAMES: FrameDef[] = [
   {
     id: 'research',
     kind: 'nav',
-    title: 'Publication',
+    title: 'publication',
     href: '/publication/',
     shape: 'rect',
     style: 'gilt',
@@ -101,7 +101,7 @@ export const FRAMES: FrameDef[] = [
   {
     id: 'art',
     kind: 'nav',
-    title: 'Art',
+    title: 'ART',
     href: '/art/',
     shape: 'rect',
     style: 'walnut',
@@ -113,7 +113,7 @@ export const FRAMES: FrameDef[] = [
   {
     id: 'projects',
     kind: 'nav',
-    title: 'Projects',
+    title: 'projects',
     href: '/projects/',
     shape: 'rect',
     style: 'ebony',
@@ -125,7 +125,7 @@ export const FRAMES: FrameDef[] = [
   {
     id: 'photography',
     kind: 'nav',
-    title: 'Photography',
+    title: 'photography',
     href: '/photography/',
     shape: 'rect',
     style: 'brass',
@@ -137,7 +137,7 @@ export const FRAMES: FrameDef[] = [
   {
     id: 'study',
     kind: 'nav',
-    title: 'Education',
+    title: 'education',
     href: '/education/',
     shape: 'oval',
     style: 'gilt',
@@ -149,7 +149,7 @@ export const FRAMES: FrameDef[] = [
   {
     id: 'contact',
     kind: 'nav',
-    title: 'Contact',
+    title: 'contact',
     href: '/contact/',
     shape: 'tondo',
     style: 'ebony',

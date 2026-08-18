@@ -1,5 +1,5 @@
 /** Boots the room and owns the single animation loop everything else ticks from. */
-import { FRAMES, FIXTURES, CANVAS, placementFor, type FrameDef } from '../scene/composition';
+import { FRAMES, FIXTURES, CANVAS, RESERVED, placementFor, type FrameDef } from '../scene/composition';
 import { light, media, room, on, hasLitBefore } from './state';
 import { initStage, onFit, fit, measure } from './stage';
 import { initFlashlight, pointTo, tickFlashlight, forceWake } from './flashlight';
@@ -53,12 +53,101 @@ export function bootRoom() {
     }
   }
 
+  /**
+   * Wall labels choose their own side.
+   *
+   * Hanging every plaque under its picture guarantees that somewhere on a wall
+   * this dense it will touch a neighbour — and hand-picking a side per frame
+   * breaks the next time the composition moves. So test the candidate positions
+   * against the actual geometry and take the first that clears everything with
+   * room to spare. Deterministic: frames don't move, so this runs once per fit.
+   */
+  function placeLabels() {
+    const mode = fit.mode;
+    const c = CANVAS[mode];
+    const R = RESERVED[mode];
+    const CLEAR = 16;  // canvas px of empty wall demanded around a plaque
+    const GAP = 14;    // its own offset from the frame it belongs to
+
+    const boxes = frames
+      .map(({ def }) => ({ id: def.id, p: placementFor(def, mode) }))
+      .filter((b) => b.p)
+      .map(({ id, p }) => ({
+        id, x0: p!.x - p!.w / 2, x1: p!.x + p!.w / 2, y0: p!.y - p!.h / 2, y1: p!.y + p!.h / 2,
+      }));
+
+    for (const { def, el } of frames) {
+      if (def.kind !== 'nav') continue;
+      const label = el.querySelector<HTMLElement>('.frame__label');
+      const p = placementFor(def, mode);
+      if (!label || !p) continue;
+
+      label.style.removeProperty('--lx');
+      label.style.removeProperty('--ly');
+      const lw = label.offsetWidth || 120;
+      const lh = label.offsetHeight || 30;
+      const hw = p.w / 2, hh = p.h / 2;
+
+      const candidates = [
+        { x: p.x - lw / 2,      y: p.y + hh + GAP },
+        { x: p.x - lw / 2,      y: p.y - hh - GAP - lh },
+        { x: p.x + hw + GAP,    y: p.y - lh / 2 },
+        { x: p.x - hw - GAP - lw, y: p.y - lh / 2 },
+        { x: p.x - hw,          y: p.y + hh + GAP },
+        { x: p.x + hw - lw,     y: p.y + hh + GAP },
+        { x: p.x - hw,          y: p.y - hh - GAP - lh },
+        { x: p.x + hw - lw,     y: p.y - hh - GAP - lh },
+      ];
+
+      // area of `r` that lands on something it shouldn't; 0 means genuinely clear
+      const penalty = (cand: { x: number; y: number }, clear: number) => {
+        const r = { x0: cand.x - clear, x1: cand.x + lw + clear, y0: cand.y - clear, y1: cand.y + lh + clear };
+        let bad = 0;
+        if (r.x0 < R.pullGutter.x1) bad += (R.pullGutter.x1 - r.x0) * lh * 4;
+        if (r.x1 > c.w - 8) bad += (r.x1 - c.w + 8) * lh * 4;
+        if (r.y1 > R.wainscot.y0) bad += (r.y1 - R.wainscot.y0) * lw * 4;
+        if (r.y0 < 84) bad += (84 - r.y0) * lw * 4;
+        // The chandelier's *drawn* extent, not the composition's generous reserve —
+        // that reserve exists to keep pictures off the fixture, and applying it to a
+        // small plaque rules out space the fixture never actually occupies.
+        const e = R.chandelier, rx = e.rx * 0.82, ry = e.ry * 0.62;
+        const nx = Math.max(r.x0, Math.min(e.cx, r.x1));
+        const ny = Math.max(r.y0, Math.min(e.cy, r.y1));
+        if (((nx - e.cx) / rx) ** 2 + ((ny - e.cy) / ry) ** 2 < 1) bad += lw * lh;
+        for (const b of boxes) {
+          if (b.id === def.id) continue;
+          const ox = Math.min(r.x1, b.x1) - Math.max(r.x0, b.x0);
+          const oy = Math.min(r.y1, b.y1) - Math.max(r.y0, b.y0);
+          if (ox > 0 && oy > 0) bad += ox * oy;
+        }
+        return bad;
+      };
+
+      // strict first; if nothing clears with room to spare, relax the demanded
+      // margin before ever accepting an actual collision
+      let pick = candidates[0];
+      let best = Infinity;
+      for (const clear of [CLEAR, 8, 3]) {
+        const hit = candidates.find((cand) => penalty(cand, clear) === 0);
+        if (hit) { pick = hit; best = 0; break; }
+        for (const cand of candidates) {
+          const score = penalty(cand, clear);
+          if (score < best) { best = score; pick = cand; }
+        }
+      }
+
+      label.style.setProperty('--lx', (pick.x - (p.x - hw)).toFixed(1) + 'px');
+      label.style.setProperty('--ly', (pick.y - (p.y - hh)).toFixed(1) + 'px');
+    }
+  }
+
   onFit(() => {
     const c = CANVAS[fit.mode];
     vec.setAttribute('viewBox', `0 0 ${c.w} ${c.h}`);
     const ch = FIXTURES[fit.mode].chandelier;
     chandelier.setAttribute('transform', `translate(${ch.x} ${ch.y}) scale(${ch.scale})`);
     layoutFrames();
+    placeLabels();
   });
 
   initPull({
@@ -168,4 +257,6 @@ export function bootRoom() {
   requestAnimationFrame(frame);
 
   measure();
+  // re-measure once layout has certainly settled — plaque widths depend on it
+  requestAnimationFrame(() => placeLabels());
 }

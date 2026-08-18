@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 const photos = (await getCollection('photography')).sort((a, b) => a.data.order - b.data.order);
 ---
 <Section
-  wide title="Photography" kicker="Light, held still"
+  wide title="photography" kicker="Light, held still"
   lede="A small, edited wall — magnolia, alpine dusk, a city at night."
   description="Photography by Haoting (Alexa) Yu."
 >

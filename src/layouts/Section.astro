@@ -3,8 +3,10 @@ import Base from './Base.astro';
 import '../styles/page.css';
 interface Props { title: string; kicker: string; lede?: string; description: string; wide?: boolean }
 const { title, kicker, lede, description, wide = false } = Astro.props;
+// headings are set lowercase on purpose; tabs, search results and shared links are not
+const docTitle = title === title.toUpperCase() ? title : title[0].toUpperCase() + title.slice(1);
 ---
-<Base title={`${title} — Haoting (Alexa) Yu`} description={description}>
+<Base title={`${docTitle} — Haoting (Alexa) Yu`} description={description}>
   <div class:list={['page', wide && 'page--wide']} id="page">
     <div class="page__wall" aria-hidden="true"></div>
     <div class="page__grain" aria-hidden="true"></div>
