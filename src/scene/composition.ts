@@ -77,7 +77,7 @@ export const FIXTURES = {
   },
   narrow: {
     chandelier: { x: 596, y: 262, scale: 0.85 },
-    pull: { x: 88, y: 0, length: 560, scale: 1.7 },
+    pull: { x: 88, y: 0, length: 560, scale: 1.25 },
   },
 } as const;
 
@@ -89,25 +89,25 @@ export const FRAMES: FrameDef[] = [
   {
     id: 'research',
     kind: 'nav',
-    title: 'Research',
-    href: '/research/',
+    title: 'Publication',
+    href: '/publication/',
     shape: 'rect',
     style: 'gilt',
     art: 'observatory', // a hillside observatory whose dome is a drum head
-    wide: { x: 941,  y: 611, w: 432, h: 322, rot: -0.4 },
-    narrow: { x: 833, y: 600,  w: 420, h: 320, rot: -0.4 },
+    wide: { x: 941,  y: 577, w: 432, h: 322, rot: -0.4 },
+    narrow: { x: 833, y: 566,  w: 420, h: 320, rot: -0.4 },
     z: 6,
   },
   {
     id: 'art',
     kind: 'nav',
-    title: 'Artwork',
+    title: 'Art',
     href: '/art/',
     shape: 'rect',
     style: 'walnut',
     art: 'letters', // the Inbox Archive — a wall of opened letters
-    wide: { x: 1333, y: 584, w: 296, h: 376, rot: 0.35 },
-    narrow: { x: 330, y: 1070, w: 280, h: 330, rot: 0.35 },
+    wide: { x: 1333, y: 550, w: 296, h: 376, rot: 0.35 },
+    narrow: { x: 330, y: 1036, w: 280, h: 330, rot: 0.35 },
     z: 6,
   },
   {
@@ -118,8 +118,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'ebony',
     art: 'machine', // a strange brass machine, half-diagrammed
-    wide: { x: 571,  y: 674, w: 252, h: 196, rot: 0.7 },
-    narrow: { x: 623, y: 1138, w: 250, h: 194, rot: 0.7 },
+    wide: { x: 571,  y: 640, w: 252, h: 196, rot: 0.7 },
+    narrow: { x: 623, y: 1104, w: 250, h: 194, rot: 0.7 },
     z: 5,
   },
   {
@@ -130,20 +130,20 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'brass',
     art: 'magnolia', // her magnolia photograph, hung as a picture
-    wide: { x: 1625, y: 628, w: 232, h: 288, rot: -0.55 },
-    narrow: { x: 485, y: 624,  w: 220, h: 272, rot: -0.55 },
+    wide: { x: 1625, y: 594, w: 232, h: 288, rot: -0.55 },
+    narrow: { x: 485, y: 590,  w: 220, h: 272, rot: -0.55 },
     z: 5,
   },
   {
     id: 'study',
     kind: 'nav',
-    title: 'The Study',
-    href: '/study/',
+    title: 'Education',
+    href: '/education/',
     shape: 'oval',
     style: 'gilt',
     art: 'portrait', // a formal portrait beside an ink plum blossom
-    wide: { x: 595,  y: 430, w: 196, h: 250, rot: 0.25 },
-    narrow: { x: 252, y: 640,  w: 190, h: 240, rot: 0.25 },
+    wide: { x: 545,  y: 396, w: 196, h: 250, rot: 0.25 },
+    narrow: { x: 252, y: 606,  w: 190, h: 240, rot: 0.25 },
     z: 6,
   },
   {
@@ -154,8 +154,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'tondo',
     style: 'ebony',
     art: 'window', // a distant lit window at night
-    wide: { x: 1725, y: 400, w: 138, h: 138, rot: -0.3 },
-    narrow: { x: 856, y: 1165, w: 140, h: 140, rot: -0.3 },
+    wide: { x: 1725, y: 366, w: 138, h: 138, rot: -0.3 },
+    narrow: { x: 856, y: 1131, w: 140, h: 140, rot: -0.3 },
     z: 5,
   },
 
@@ -166,8 +166,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'oval',
     style: 'brass',
     art: 'beetle',
-    wide: { x: 995,  y: 820, w: 76,  h: 94,  rot: 1.2 },
-    narrow: { x: 300, y: 838,  w: 84,  h: 104, rot: 1.2 },
+    wide: { x: 995,  y: 833, w: 76,  h: 94,  rot: 1.2 },
+    narrow: { x: 300, y: 804,  w: 84,  h: 104, rot: 1.2 },
     z: 4,
   },
   {
@@ -176,7 +176,7 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'gilt',
     art: 'butterfly',
-    wide: { x: 1555, y: 380, w: 116, h: 100, rot: -0.9 },
+    wide: { x: 1555, y: 346, w: 116, h: 100, rot: -0.9 },
     narrow: null,
     z: 4,
   },
@@ -186,8 +186,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'walnut',
     art: 'cottage',
-    wide: { x: 795,  y: 828, w: 148, h: 96,  rot: 0.55 },
-    narrow: { x: 830, y: 842,  w: 150, h: 96,  rot: 0.55 },
+    wide: { x: 795,  y: 836, w: 148, h: 96,  rot: 0.55 },
+    narrow: { x: 830, y: 808,  w: 150, h: 96,  rot: 0.55 },
     z: 4,
   },
   {
@@ -196,7 +196,7 @@ export const FRAMES: FrameDef[] = [
     shape: 'arch',
     style: 'walnut',
     art: 'vase',
-    wide: { x: 433,  y: 470, w: 112, h: 132, rot: 0.4 },
+    wide: { x: 385,  y: 436, w: 112, h: 132, rot: 0.4 },
     narrow: null,
     z: 4,
   },
@@ -207,8 +207,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'oval',
     style: 'brass',
     art: 'key',
-    wide: { x: 1655, y: 830, w: 72,  h: 98,  rot: -0.5 },
-    narrow: { x: 560, y: 840,  w: 74,  h: 100, rot: -0.5 },
+    wide: { x: 1655, y: 835, w: 72,  h: 98,  rot: -0.5 },
+    narrow: { x: 560, y: 806,  w: 74,  h: 100, rot: -0.5 },
     z: 4,
   },
 ];

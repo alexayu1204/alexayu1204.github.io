@@ -5,7 +5,7 @@ const pubs = (await getCollection('publications')).sort((a, b) => a.data.order -
 const bodies = await Promise.all(pubs.map((p) => render(p)));
 ---
 <Section
-  title="Research" kicker="Publications & enquiry"
+  title="Publication" kicker="Papers & enquiry"
   lede="Multimodal generative AI, music information retrieval, and the governance and authorship of creative machines."
   description="Publications and research by Haoting (Alexa) Yu: creative MRAG governance, automatic drum transcription, and curatorial agency in AI art."
 >

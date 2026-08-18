@@ -202,14 +202,24 @@ body { color: var(--paper); font-family: var(--serif); }
   border-radius: 50% 50% 4px 4px / 34% 34% 3px 3px;
 }
 
-/* a wall label, the way a room like this would actually caption a picture */
+/* A wall label, the way a room like this would actually caption a picture.
+   Given a plaque rather than left as floating text: it has to stay legible over
+   whatever happens to hang beneath the frame, at any viewport, without the
+   geometry gymnastics of choosing a side per frame. */
 .frame__label {
-  position: absolute; left: 50%; top: calc(100% + 12px);
-  transform: translateX(-50%) translateY(-3px);
+  position: absolute; left: 50%; top: calc(100% + 13px);
+  transform: translateX(-50%) translateY(-4px);
+  padding: 5px 15px 6px;
+  background: linear-gradient(to bottom, rgba(30, 19, 25, .95), rgba(17, 10, 15, .97));
+  border: 1px solid rgba(207, 168, 99, .38);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, .78),
+    0 0 22px rgba(8, 4, 10, .6),
+    inset 0 1px 0 rgba(240, 214, 154, .16);
   font-family: var(--serif);
-  font-size: 21px; font-style: italic; letter-spacing: .05em;
-  color: rgba(240, 226, 198, .88);
-  text-shadow: 0 1px 3px rgba(0,0,0,.85);
+  font-size: 20px; font-style: italic; letter-spacing: .06em;
+  color: rgba(244, 232, 208, .96);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .9);
   white-space: nowrap;
   opacity: 0;
   transition: opacity 380ms ease 180ms, transform 380ms cubic-bezier(.22,.61,.36,1) 180ms;
@@ -240,6 +250,9 @@ body { color: var(--paper); font-family: var(--serif); }
 .frame--nav:hover .frame__label, .frame--nav:focus-visible .frame__label { opacity: 1; transform: translateX(-50%) translateY(0); }
 .frame--nav:focus-visible { box-shadow: 0 0 0 2px rgba(240, 214, 154, .55), 12px 22px 40px rgba(0,0,0,.5); }
 .frame.is-entering { z-index: 40; }
+/* a hovered frame must sit above its neighbours, or the label it reveals is
+   painted over by whatever hangs below and to the right of it */
+.frame--nav:hover, .frame--nav:focus-visible, .frame--nav:focus-within { z-index: 30; }
 
 .frame--orb { cursor: default; }
 [data-frame-id='orb-key'] { cursor: pointer; }
