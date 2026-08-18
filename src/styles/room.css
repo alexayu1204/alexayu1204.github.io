@@ -152,6 +152,16 @@ body { color: var(--paper); font-family: var(--serif); }
   pointer-events: none;
 }
 
+/* The ignition animates --flame on each candle. Nothing read it, so the whole
+   staggered catch was invisible and the candles were simply always alight. */
+.candle__flame {
+  opacity: var(--flame, 0);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scaleY(calc(.5 + .5 * var(--flame, 0)));
+}
+.candle__pool { opacity: calc(var(--flame, 0) * .6); }
+
 /* ---- frames ------------------------------------------------------------ */
 .frame {
   position: absolute;
@@ -218,7 +228,7 @@ body { color: var(--paper); font-family: var(--serif); }
     0 0 22px rgba(8, 4, 10, .6),
     inset 0 1px 0 rgba(240, 214, 154, .16);
   font-family: var(--serif);
-  font-size: 20px; font-style: italic; letter-spacing: .06em;
+  font-size: 20px; letter-spacing: .06em;
   color: rgba(244, 232, 208, .96);
   text-shadow: 0 1px 2px rgba(0, 0, 0, .9);
   white-space: nowrap;
@@ -231,25 +241,16 @@ body { color: var(--paper); font-family: var(--serif); }
    however you arrived. Slow and small: nothing bounces, nothing pops. */
 .frame--nav {
   cursor: pointer;
-  transition:
-    transform 420ms cubic-bezier(.22, .61, .36, 1),
-    box-shadow 420ms cubic-bezier(.22, .61, .36, 1),
-    filter 420ms ease;
+  transition: filter 420ms ease;
 }
 .frame--nav:hover, .frame--nav:focus-visible {
-  will-change: transform;
-  transform: rotate(calc(var(--rot, 0deg) * .45)) translateY(-3px) scale(1.011);
-  filter: brightness(1.07) saturate(1.04);
-  box-shadow:
-    0 3px 5px rgba(0,0,0,.5),
-    12px 22px 40px rgba(0,0,0,.5),
-    inset 0 0 0 1px rgba(255, 236, 198, .22),
-    inset 0 0 12px rgba(0,0,0,.45);
+  /* the picture does not move. Light falls on it — that is the whole reaction. */
+  filter: brightness(1.1) saturate(1.05);
   outline: none;
 }
 .frame--nav:hover .frame__glint, .frame--nav:focus-visible .frame__glint { opacity: 1; }
 .frame--nav:hover .frame__label, .frame--nav:focus-visible .frame__label { opacity: 1; transform: translateY(0); }
-.frame--nav:focus-visible { box-shadow: 0 0 0 2px rgba(240, 214, 154, .55), 12px 22px 40px rgba(0,0,0,.5); }
+.frame--nav:focus-visible { box-shadow: 0 0 0 2px rgba(240, 214, 154, .6), 6px 10px 20px rgba(0,0,0,.42); }
 .frame.is-entering { z-index: 40; }
 /* a hovered frame must sit above its neighbours, or the label it reveals is
    painted over by whatever hangs below and to the right of it */
@@ -266,15 +267,14 @@ body { color: var(--paper); font-family: var(--serif); }
 /* ...and nothing reacts while the camera is travelling */
 html.is-travelling .frame { pointer-events: none; }
 html.is-travelling .frame:not(.is-entering) { transition: none; }
-html.is-travelling .room__dust, html.is-travelling .room__grain { opacity: 0; }
+html.is-travelling .room__grain { opacity: 0; }
 html.is-travelling .room__camera { will-change: transform; }
 
 /* ---- overlays ---------------------------------------------------------- */
-.room__dark, .room__dust {
+.room__dark {
   position: fixed; inset: 0; pointer-events: none;
 }
 .room__dark { z-index: 20; }
-.room__dust { z-index: 21; mix-blend-mode: screen; transition: opacity 240ms ease; }
 .room__grain {
   position: fixed; inset: 0; z-index: 22; pointer-events: none;
   background: url('/scene/grain.svg') repeat;
@@ -303,7 +303,7 @@ html.is-pulling, html.is-pulling * { cursor: grabbing !important; user-select: n
 .skip, .mute {
   position: fixed; z-index: 26; right: 22px; bottom: 20px;
   appearance: none; border: 0; background: transparent;
-  font-family: var(--serif); font-size: 15px; font-style: italic;
+  font-family: var(--serif); font-size: 15px;
   letter-spacing: .1em; color: rgba(232, 216, 186, .5);
   cursor: pointer; padding: 8px 10px;
   opacity: 0; transition: opacity 900ms ease, color 300ms ease;
@@ -329,10 +329,8 @@ html[data-muted='false'] .mute::after { content: 'sound on'; }
 /* ---- reduced motion ---------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .frame--nav { transition: filter 120ms ease; }
-  .frame--nav:hover, .frame--nav:focus-visible { transform: rotate(var(--rot, 0deg)); }
   .frame__label { transition: opacity 120ms ease; }
-  .room__dust { display: none; }
-}
+  }
 
 /* on touch the cord is never hidden: a fingertip covers exactly what it reveals,
    so the pull sits in a faint ember from the start and only the drag is required */

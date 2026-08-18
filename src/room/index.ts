@@ -7,7 +7,6 @@ import { initPull, tickPull, yank, retirePull, rearmPull } from './pull';
 import { ignite, litInstantly, douse } from './lighting';
 import { initCamera, enterFrame, warmArt, openFromReturn, resetCamera } from './camera';
 import { initParallax, aimParallax, tickParallax } from './parallax';
-import { initDust, startDust, tickDust } from './dust';
 import { initAudio, unlockAudio, playClick, playIgnite, startAmbience, toggleMute } from './audio';
 
 const q = <T extends Element>(sel: string) => document.querySelector(sel) as T;
@@ -28,7 +27,6 @@ export function bootRoom() {
 
   initStage(stage);
   initFlashlight(q<HTMLCanvasElement>('#dark'));
-  initDust(q<HTMLCanvasElement>('#dust'));
   initCamera(camera, curtain);
   initAudio();
 
@@ -187,7 +185,6 @@ export function bootRoom() {
   on('room:lit', () => {
     roomEl.dataset.lit = '1';
     framesLayer.inert = false;
-    startDust();
     startAmbience();
     if (!openFromReturn(frames)) resetCamera();
     skip?.remove();
@@ -251,7 +248,6 @@ export function bootRoom() {
     tickFlashlight(dt);
     tickPull(dt);
     tickParallax(dt);
-    tickDust(dt, t);
     requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);

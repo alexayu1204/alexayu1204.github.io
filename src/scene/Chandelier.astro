@@ -1,87 +1,113 @@
 ---
 /**
- * Seven candles on six swept arms. Drawn at the hang point: the chain runs up out of
- * frame, the body hangs below. Every flame is an independent element so ignition can
- * stagger them unevenly — a chandelier whose candles all catch at once reads electric,
- * and this room is brass and wax.
+ * Six arms, six candles, hung slightly crooked.
+ *
+ * Drawn as an illustration rather than as vector art: every shape carries a heavy
+ * dark contour, the fills are flat with hand-placed highlights instead of smooth
+ * gradients, and no two arms are mirror images. Perfect symmetry and glossy
+ * gradients are exactly what made the first version read as fake.
  */
-// six arms that sweep down and back up, the way a cast-brass chandelier actually does
 const arms = [
-  { x: 156, y: -66, c1: '54,26', c2: '140,6' },
-  { x: -156, y: -66, c1: '-54,26', c2: '-140,6' },
-  { x: 104, y: -86, c1: '38,20', c2: '94,-12' },
-  { x: -104, y: -86, c1: '-38,20', c2: '-94,-12' },
-  { x: 52, y: -100, c1: '20,14', c2: '48,-30' },
-  { x: -52, y: -100, c1: '-20,14', c2: '-48,-30' },
+  { x: 158,  y: -64,  c1: '56,28',   c2: '144,10',  drop: 0.58, wax: 26, lean: 1.5 },
+  { x: -151, y: -70,  c1: '-52,24',  c2: '-137,2',  drop: 0.62, wax: 22, lean: -2.5 },
+  { x: 103,  y: -83,  c1: '38,22',   c2: '93,-9',   drop: 0.60, wax: 28, lean: -1 },
+  { x: -107, y: -80,  c1: '-40,18',  c2: '-97,-13', drop: 0.55, wax: 24, lean: 2 },
+  { x: 50,   y: -99,  c1: '20,16',   c2: '46,-27',  drop: 0.64, wax: 21, lean: 0.5 },
+  { x: -55,  y: -103, c1: '-22,12',  c2: '-51,-31', drop: 0.57, wax: 27, lean: -1.5 },
 ];
-const candles = arms.map((a, i) => ({ x: a.x, y: a.y, i }));
+const INK = '#241a0e';
 ---
 <g id="chandelier-group">
   <defs>
     <linearGradient id="brassV" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#6d4f22"/>
-      <stop offset=".32" stop-color="#c9a35a"/>
-      <stop offset=".52" stop-color="#efd79b"/>
-      <stop offset=".72" stop-color="#b3873f"/>
-      <stop offset="1" stop-color="#5e421c"/>
+      <stop offset="0" stop-color="#5d4620"/>
+      <stop offset=".34" stop-color="#a7873f"/>
+      <stop offset=".52" stop-color="#cfb069"/>
+      <stop offset=".74" stop-color="#8e6f2c"/>
+      <stop offset="1" stop-color="#4c3818"/>
     </linearGradient>
     <radialGradient id="flameG">
       <stop offset="0" stop-color="#fff6dd"/>
-      <stop offset=".45" stop-color="#ffd489"/>
+      <stop offset=".42" stop-color="#ffd489"/>
       <stop offset="1" stop-color="#e07a2a" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="candleGlow">
-      <stop offset="0" stop-color="#ffd79a" stop-opacity=".85"/>
+      <stop offset="0" stop-color="#ffd79a" stop-opacity=".8"/>
       <stop offset="1" stop-color="#ffb060" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
-  <!-- chain up to the ceiling -->
-  <path d="M0 -168 V -100" stroke="#3a2c16" stroke-width="6" stroke-linecap="round"/>
-  <path d="M0 -168 V -100" stroke="url(#brassV)" stroke-width="4"
-        stroke-dasharray="8 5" stroke-linecap="round"/>
+  <!-- chain: links drawn one at a time, none quite vertical -->
+  <g stroke={INK} stroke-width="3.4" fill="none" stroke-linecap="round">
+    {Array.from({ length: 9 }, (_, i) => (
+      <ellipse cx={i % 2 ? 1.4 : -1.2} cy={-166 + i * 8} rx="3.6" ry="4.6"
+               transform={`rotate(${i % 2 ? 7 : -6} ${i % 2 ? 1.4 : -1.2} ${-166 + i * 8})`}/>
+    ))}
+  </g>
+  <g stroke="#b08c42" stroke-width="1.5" fill="none" opacity=".75">
+    {Array.from({ length: 9 }, (_, i) => (
+      <ellipse cx={i % 2 ? 1.4 : -1.2} cy={-166 + i * 8} rx="3.6" ry="4.6"
+               transform={`rotate(${i % 2 ? 7 : -6} ${i % 2 ? 1.4 : -1.2} ${-166 + i * 8})`}/>
+    ))}
+  </g>
 
-  <!-- central column: a tall urn, which is what gives the fixture its silhouette -->
-  <ellipse cx="0" cy="-100" rx="15" ry="6.5" fill="url(#brassV)"/>
-  <path d="M-8 -100 C-19 -82 -23 -62 -13 -48 C-24 -36 -24 -20 -11 -10
-           C-18 8 -16 24 0 38 C16 24 18 8 11 -10 C24 -20 24 -36 13 -48
-           C23 -62 19 -82 8 -100Z" fill="url(#brassV)"/>
-  <path d="M-10 -48 H10" stroke="#4a381c" stroke-width="1.4" opacity=".7"/>
-  <path d="M-12 -10 H12" stroke="#4a381c" stroke-width="1.4" opacity=".7"/>
-  <ellipse cx="0" cy="-72" rx="20" ry="7" fill="url(#brassV)"/>
-  <path d="M0 38 C7 47 7 58 0 66 C-7 58 -7 47 0 38Z" fill="url(#brassV)"/>
+  <!-- central column: a turned urn, contour first then fill -->
+  <path d="M-16 -100 C-14 -104 14 -104 16 -100 C14 -96 -14 -96 -16 -100Z"
+        fill="url(#brassV)" stroke={INK} stroke-width="2.4"/>
+  <path d="M-8 -98 C-20 -80 -24 -60 -13 -47 C-25 -35 -25 -18 -11 -8
+           C-19 10 -16 26 0 40 C17 26 19 10 11 -8 C25 -18 25 -35 13 -47
+           C24 -60 20 -80 8 -98Z"
+        fill="url(#brassV)" stroke={INK} stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M-6 -92 C-15 -76 -18 -60 -10 -49" fill="none" stroke="#e0c07a" stroke-width="1.6" opacity=".5"/>
+  <path d="M-9 -47 H10" stroke={INK} stroke-width="1.8" opacity=".85"/>
+  <path d="M-11 -8 H12" stroke={INK} stroke-width="1.8" opacity=".85"/>
+  <ellipse cx="0" cy="-72" rx="21" ry="7.5" fill="url(#brassV)" stroke={INK} stroke-width="2.2"/>
+  <path d="M0 40 C8 50 8 62 0 71 C-8 62 -8 50 0 40Z" fill="url(#brassV)" stroke={INK} stroke-width="2.2"/>
 
   <!-- arms -->
   {arms.map((a) => (
     <g>
       <path d={`M0 -2 C${a.c1} ${a.c2} ${a.x} ${a.y}`} fill="none"
-            stroke="#3a2c16" stroke-width="8.5" stroke-linecap="round"/>
+            stroke={INK} stroke-width="11" stroke-linecap="round"/>
       <path d={`M0 -2 C${a.c1} ${a.c2} ${a.x} ${a.y}`} fill="none"
-            stroke="url(#brassV)" stroke-width="5.6" stroke-linecap="round"/>
-      <path d={`M${a.x * 0.62} ${a.y * 0.34 + 16} v14`} stroke="url(#brassV)"
-            stroke-width="1.4" stroke-linecap="round" opacity=".8"/>
-      <ellipse cx={a.x * 0.62} cy={a.y * 0.34 + 38} rx="4.5" ry="8" fill="#e4edf3" opacity=".3"/>
+            stroke="url(#brassV)" stroke-width="6.4" stroke-linecap="round"/>
+      {/* a cut drop on a short wire, hung inboard of the cup */}
+      <path d={`M${a.x * a.drop} ${a.y * a.drop + 14} v9`} stroke={INK} stroke-width="1.5"/>
+      <path d={`M${a.x * a.drop} ${a.y * a.drop + 22}
+                Q${a.x * a.drop + 6} ${a.y * a.drop + 31} ${a.x * a.drop} ${a.y * a.drop + 42}
+                Q${a.x * a.drop - 6} ${a.y * a.drop + 31} ${a.x * a.drop} ${a.y * a.drop + 22}Z`}
+            fill="#e6eef4" opacity=".5" stroke={INK} stroke-width="1.2" stroke-linejoin="round"/>
+      <path d={`M${a.x * a.drop - 2} ${a.y * a.drop + 27} v8`} stroke="#ffffff" stroke-width="1.2" opacity=".55"/>
     </g>
   ))}
 
-  <!-- candles -->
-  {candles.map((c) => (
-    <g class="candle" style="--flame:0" data-candle={c.i}>
-      <circle cx={c.x} cy={c.y - 26} r="46" fill="url(#candleGlow)" class="candle__pool"/>
-      <ellipse cx={c.x} cy={c.y} rx="11" ry="4.5" fill="url(#brassV)"/>
-      <path d={`M${c.x - 5.5} ${c.y - 2} L${c.x - 4.2} ${c.y - 26} L${c.x + 4.2} ${c.y - 26} L${c.x + 5.5} ${c.y - 2}Z`}
-            fill="#f2e6cd"/>
-      <path d={`M${c.x - 5.5} ${c.y - 2} L${c.x - 4.2} ${c.y - 26} L${c.x - 1} ${c.y - 26} L${c.x - 2} ${c.y - 2}Z`}
-            fill="#fffaf0" opacity=".6"/>
-      <path d={`M${c.x + 3.4} ${c.y - 24} q3 6 -0.6 9`} stroke="#e2d3b4" stroke-width="1.6"
-            fill="none" stroke-linecap="round"/>
-      <path d={`M${c.x} ${c.y - 26} v-3`} stroke="#3a2f22" stroke-width="1.2"/>
-      <g class="candle__flame">
-        <circle cx={c.x} cy={c.y - 34} r="17" fill="url(#flameG)" opacity=".55"/>
-        <path d={`M${c.x} ${c.y - 44} C${c.x + 5} ${c.y - 36} ${c.x + 4} ${c.y - 29} ${c.x} ${c.y - 27}
-                  C${c.x - 4} ${c.y - 29} ${c.x - 5} ${c.y - 36} ${c.x} ${c.y - 44}Z`} fill="#ffd98e"/>
-        <path d={`M${c.x} ${c.y - 39} C${c.x + 2.4} ${c.y - 34} ${c.x + 2} ${c.y - 30} ${c.x} ${c.y - 29}
-                  C${c.x - 2} ${c.y - 30} ${c.x - 2.4} ${c.y - 34} ${c.x} ${c.y - 39}Z`} fill="#fff8e2"/>
+  <!-- candles: different heights, all leaning a little, all dripping -->
+  {arms.map((a, i) => (
+    <g class="candle" style="--flame:0" data-candle={i}>
+      <circle cx={a.x} cy={a.y - a.wax - 8} r="44" fill="url(#candleGlow)" class="candle__pool"/>
+      <path d={`M${a.x - 12} ${a.y + 1} C${a.x - 6} ${a.y - 6} ${a.x + 6} ${a.y - 6} ${a.x + 12} ${a.y + 1}
+                C${a.x + 6} ${a.y + 6} ${a.x - 6} ${a.y + 6} ${a.x - 12} ${a.y + 1}Z`}
+            fill="url(#brassV)" stroke={INK} stroke-width="2.2"/>
+      <g transform={`rotate(${a.lean} ${a.x} ${a.y})`}>
+        <path d={`M${a.x - 6} ${a.y - 2} L${a.x - 4.4} ${a.y - a.wax}
+                  L${a.x + 4.4} ${a.y - a.wax} L${a.x + 6} ${a.y - 2}Z`}
+              fill="#efe1c4" stroke={INK} stroke-width="1.8" stroke-linejoin="round"/>
+        <path d={`M${a.x - 6} ${a.y - 2} L${a.x - 4.4} ${a.y - a.wax} L${a.x - 1.6} ${a.y - a.wax} L${a.x - 2.6} ${a.y - 2}Z`}
+              fill="#fffaf0" opacity=".55"/>
+        <path d={`M${a.x + 3.6} ${a.y - a.wax + 2} q3.4 ${a.wax * 0.3} -0.6 ${a.wax * 0.45}`}
+              stroke="#e0d0ad" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d={`M${a.x - 3.2} ${a.y - a.wax + 4} q-2.6 6 0.4 9`}
+              stroke="#e0d0ad" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d={`M${a.x} ${a.y - a.wax} v-3.5`} stroke={INK} stroke-width="1.5"/>
+        <g class="candle__flame">
+          <circle cx={a.x} cy={a.y - a.wax - 9} r="16" fill="url(#flameG)" opacity=".6"/>
+          <path d={`M${a.x} ${a.y - a.wax - 19} C${a.x + 5} ${a.y - a.wax - 11} ${a.x + 4} ${a.y - a.wax - 4} ${a.x} ${a.y - a.wax - 2}
+                    C${a.x - 4} ${a.y - a.wax - 4} ${a.x - 5} ${a.y - a.wax - 11} ${a.x} ${a.y - a.wax - 19}Z`}
+                fill="#ffd98e"/>
+          <path d={`M${a.x} ${a.y - a.wax - 14} C${a.x + 2.4} ${a.y - a.wax - 9} ${a.x + 2} ${a.y - a.wax - 5} ${a.x} ${a.y - a.wax - 4}
+                    C${a.x - 2} ${a.y - a.wax - 5} ${a.x - 2.4} ${a.y - a.wax - 9} ${a.x} ${a.y - a.wax - 14}Z`}
+                fill="#fff8e2"/>
+        </g>
       </g>
     </g>
   ))}
