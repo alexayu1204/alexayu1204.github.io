@@ -76,11 +76,25 @@ for m in re.finditer(r'<div class="project-card"[^>]*data-tags="([^"]*)"(.*?)(?=
     links = [(txt(a.group(2)), a.group(1)) for a in re.finditer(r'<a href="(https?://[^"]+)"[^>]*>(.*?)</a>', blk, re.S)]
     cards.append((title, tags.split(), desc, img.group(1) if img else '', links))
 
+# The old site hung these off modal triggers rather than plain links, so a naive
+# href scrape loses them and the reports become 11MB of orphaned files.
+# (The power-grid PDF is also renamed here — its filename had raw spaces in it.)
+REPORTS = {
+    'ev-charging-optimization': ('Report (PDF)', '/assets/projects/MMCS.pdf'),
+    'sentiment-classification': ('Report (PDF)', '/assets/projects/AML.pdf'),
+    'anomaly-detection': ('Report (PDF)', '/assets/projects/power-grid-frequency-report.pdf'),
+    'yolov9-rock-detection': ('Technical write-up (Markdown)', '/assets/projects/yolov9.md'),
+    'personalized-poem-generation': ('Technical write-up (Markdown)', '/assets/projects/poem_generator_project_TECHNICAL_DETAILS.md'),
+}
+
 for i, (title, tags, desc, img, links) in enumerate(cards, 1):
     key = slug(title)[:34]
     match = next((v for k, v in written.items() if k[:16] in key or key[:16] in k), None)
     period = match[1] if match else ''
     body = (match[2] if match else '') or desc
+    rep = REPORTS.get(key)
+    if rep:
+        links = list(links) + [rep]
     front = {'title': yamlq(title), 'order': i, 'tags': json.dumps(tags),
              'period': yamlq(period), 'summary': yamlq(desc),
              'cover': yamlq('/' + img) if img else yamlq(''),

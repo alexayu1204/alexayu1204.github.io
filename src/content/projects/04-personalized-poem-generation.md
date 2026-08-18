@@ -5,7 +5,7 @@ tags: ["ai", "nlp", "generative", "creative"]
 period: "Jan 2025 – Present"
 summary: "End-to-end fine-tuning of Qwen LLMs on a custom poetry corpus using LoRA & MLX on Apple Silicon for creative, parameter-efficient poem generation."
 cover: "/assets/projects/ph-poem-gen.svg"
-links: [{"label": "View Project", "href": "https://github.com/alexayu1204/alexayu1204-Personalized-Poem-Generation-with-Fine-Tuned-Large-Language-Model.git"}]
+links: [{"label": "View Project", "href": "https://github.com/alexayu1204/alexayu1204-Personalized-Poem-Generation-with-Fine-Tuned-Large-Language-Model.git"}, {"label": "Technical write-up (Markdown)", "href": "/assets/projects/poem_generator_project_TECHNICAL_DETAILS.md"}]
 ---
 
 End-to-end fine-tuning of Qwen LLMs on a custom poetry corpus using LoRA & MLX on Apple Silicon for creative, parameter-efficient poem generation.
