@@ -1,7 +1,7 @@
 ---
 import Base from './Base.astro';
 import '../styles/page.css';
-interface Props { title: string; kicker: string; lede?: string; description: string; wide?: boolean }
+interface Props { title: string; kicker?: string; lede?: string; description: string; wide?: boolean }
 const { title, kicker, lede, description, wide = false } = Astro.props;
 // headings are set lowercase on purpose; tabs, search results and shared links are not
 const docTitle = title === title.toUpperCase() ? title : title[0].toUpperCase() + title.slice(1);
@@ -13,7 +13,7 @@ const docTitle = title === title.toUpperCase() ? title : title[0].toUpperCase() 
 
     <header class="page__head">
       <a class="page__back" href="/">&larr; back to the room</a>
-      <p class="page__kicker">{kicker}</p>
+      {kicker && <p class="page__kicker">{kicker}</p>}
       <h1 class="page__title">{title}</h1>
       {lede && <p class="page__lede">{lede}</p>}
       <hr class="page__rule" />
