@@ -59,6 +59,12 @@ for (const mode of ['wide', 'narrow']) {
   if (ratio < 3) fail(`nav frames are too uniform in size (largest/smallest = ${ratio.toFixed(1)}, want ≥ 3)`);
   else console.log(`  ✓ size hierarchy: largest nav frame is ${ratio.toFixed(1)}× the smallest`);
 
+  // a salon hang earns its coherence from shared EDGES, not shared centres
+  const bottoms = hung.filter((f) => f.kind === 'nav').map((f) => f[mode].y + f[mode].h / 2);
+  const onBaseline = bottoms.filter((b) => bottoms.filter((c) => Math.abs(b - c) < 3).length >= 3).length;
+  if (onBaseline >= 3) console.log(`  ✓ ${onBaseline} principal pictures share a baseline`);
+  else fail('no shared baseline — the hang will read as scattered rather than composed');
+
   const xs = navs.map((p) => p.x).sort((a, b) => a - b);
   const ys = navs.map((p) => p.y).sort((a, b) => a - b);
   const sharedX = xs.filter((v, i) => i && Math.abs(v - xs[i - 1]) < 12).length;

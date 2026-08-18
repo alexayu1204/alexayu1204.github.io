@@ -7,7 +7,7 @@
  * never a white flash and never a visible cut.
  */
 import gsap from 'gsap';
-import { room, media, emit } from './state';
+import { room, media, emit, light } from './state';
 import { fit, toScreen } from './stage';
 import type { FrameDef } from '../scene/composition';
 import { placementFor } from '../scene/composition';
@@ -46,6 +46,7 @@ export function warmArt(el: HTMLElement) {
 export function enterFrame(el: HTMLElement, def: FrameDef) {
   if (room.phase === 'travelling') return;
   room.setPhase('travelling');
+  light.locked = true; // the spot must not chase the cursor through the move
   emit('camera:enter', def.id);
   try { sessionStorage.setItem(RETURN_KEY, def.id); } catch {}
 
@@ -70,7 +71,10 @@ export function enterFrame(el: HTMLElement, def: FrameDef) {
     }, 0.08)
     // the frame's interior begins dissolving into the room it leads to, before the
     // move finishes — so the two spaces overlap rather than butt against each other
-    .to(curtainEl, { duration: 0.42, opacity: 1, ease: 'power2.in' }, 0.7);
+    .to(curtainEl, { duration: 0.44, opacity: 1, ease: 'power2.in' }, 0.66)
+    // hold on a fully-opaque curtain for a beat before swapping documents; without
+    // the margin the navigation can land a frame early and show a cut
+    .to({}, { duration: 0.14 });
 }
 
 /**
@@ -87,7 +91,8 @@ export function openFromReturn(frames: { el: HTMLElement; def: FrameDef }[]) {
   const t = targetTransform(hit.def);
   gsap.set(cameraEl, { x: t.x, y: t.y, scale: t.z });
   gsap.set(curtainEl, { opacity: 1 });
-  gsap.timeline()
+  document.documentElement.classList.add('is-travelling');
+  gsap.timeline({ onComplete: () => document.documentElement.classList.remove('is-travelling') })
     .to(curtainEl, { duration: 0.45, opacity: 0, ease: 'power2.out' }, 0)
     .to(cameraEl, { duration: 1.0, x: 0, y: 0, scale: 1, ease: 'power3.inOut' }, 0.1);
   return true;
@@ -96,4 +101,5 @@ export function openFromReturn(frames: { el: HTMLElement; def: FrameDef }[]) {
 export function resetCamera() {
   gsap.set(cameraEl, { x: 0, y: 0, scale: 1 });
   gsap.set(curtainEl, { opacity: 0 });
+  document.documentElement.classList.remove('is-travelling');
 }

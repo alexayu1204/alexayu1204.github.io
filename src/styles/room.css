@@ -19,8 +19,8 @@
   --cream: #efe3c6;
   --paper: #e6dcc4;
 
-  --serif: 'Cormorant Garamond', 'Hoefler Text', Garamond, 'Times New Roman', serif;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Times New Roman', Times, serif;
+  --sans: 'Times New Roman', Times, serif;
 }
 
 * { box-sizing: border-box; }
@@ -42,7 +42,7 @@ body { color: var(--paper); font-family: var(--serif); }
 
 /* ---- the box the world lives in --------------------------------------- */
 .room { position: fixed; inset: 0; cursor: default; }
-.room__camera { position: absolute; inset: 0; transform-origin: 0 0; will-change: transform; }
+.room__camera { position: absolute; inset: 0; transform-origin: 0 0; }
 .stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
 .layer { position: absolute; inset: 0; will-change: transform; }
 .layer--vec { overflow: visible; }
@@ -135,7 +135,7 @@ body { color: var(--paper); font-family: var(--serif); }
 /* the chandelier's falloff lands on the pictures as well as the paper behind them —
    without this the frames read as stickers pasted onto a lit wall */
 .room__cast {
-  position: absolute; inset: 0;
+  position: fixed; inset: 0; z-index: 12;
   background: radial-gradient(116% 96% at 50% 14%,
     rgba(0,0,0,0) 30%, rgba(20, 10, 22, .40) 68%, rgba(10, 5, 12, .74) 100%);
   mix-blend-mode: multiply;
@@ -145,7 +145,7 @@ body { color: var(--paper); font-family: var(--serif); }
 
 /* the room in shadow before the chandelier catches */
 .room__shade {
-  position: absolute; inset: 0;
+  position: fixed; inset: 0; z-index: 13;
   background: #2a1b34;
   mix-blend-mode: multiply;
   opacity: calc((1 - var(--exposure)) * .72);
@@ -166,7 +166,6 @@ body { color: var(--paper); font-family: var(--serif); }
     inset 0 0 0 1px rgba(255, 232, 190, .13),
     inset 0 0 12px rgba(0,0,0,.5);
   text-decoration: none;
-  will-change: transform, opacity;
 }
 .frame__well {
   display: block; width: 100%; height: 100%;
@@ -208,7 +207,7 @@ body { color: var(--paper); font-family: var(--serif); }
   position: absolute; left: 50%; top: calc(100% + 12px);
   transform: translateX(-50%) translateY(-3px);
   font-family: var(--serif);
-  font-size: 19px; font-style: italic; letter-spacing: .04em;
+  font-size: 21px; font-style: italic; letter-spacing: .05em;
   color: rgba(240, 226, 198, .88);
   text-shadow: 0 1px 3px rgba(0,0,0,.85);
   white-space: nowrap;
@@ -227,6 +226,7 @@ body { color: var(--paper); font-family: var(--serif); }
     filter 420ms ease;
 }
 .frame--nav:hover, .frame--nav:focus-visible {
+  will-change: transform;
   transform: rotate(calc(var(--rot, 0deg) * .45)) translateY(-3px) scale(1.011);
   filter: brightness(1.07) saturate(1.04);
   box-shadow:
@@ -249,18 +249,25 @@ body { color: var(--paper); font-family: var(--serif); }
 /* frames are inert until there is light to see them by — no tabbing into the dark */
 .room[data-lit='0'] .frame { pointer-events: none; }
 
+/* ...and nothing reacts while the camera is travelling */
+html.is-travelling .frame { pointer-events: none; }
+html.is-travelling .frame:not(.is-entering) { transition: none; }
+html.is-travelling .room__dust, html.is-travelling .room__grain { opacity: 0; }
+html.is-travelling .room__camera { will-change: transform; }
+
 /* ---- overlays ---------------------------------------------------------- */
 .room__dark, .room__dust {
   position: fixed; inset: 0; pointer-events: none;
 }
 .room__dark { z-index: 20; }
-.room__dust { z-index: 21; mix-blend-mode: screen; }
+.room__dust { z-index: 21; mix-blend-mode: screen; transition: opacity 240ms ease; }
 .room__grain {
   position: fixed; inset: 0; z-index: 22; pointer-events: none;
   background: url('/scene/grain.svg') repeat;
   background-size: 180px 180px;
   opacity: .055;
   mix-blend-mode: overlay;
+  transition: opacity 240ms ease;
 }
 .room__curtain {
   position: fixed; inset: 0; z-index: 30; pointer-events: none;
@@ -282,8 +289,8 @@ html.is-pulling, html.is-pulling * { cursor: grabbing !important; user-select: n
 .skip, .mute {
   position: fixed; z-index: 26; right: 22px; bottom: 20px;
   appearance: none; border: 0; background: transparent;
-  font-family: var(--serif); font-size: 14px; font-style: italic;
-  letter-spacing: .08em; color: rgba(232, 216, 186, .5);
+  font-family: var(--serif); font-size: 15px; font-style: italic;
+  letter-spacing: .1em; color: rgba(232, 216, 186, .5);
   cursor: pointer; padding: 8px 10px;
   opacity: 0; transition: opacity 900ms ease, color 300ms ease;
 }

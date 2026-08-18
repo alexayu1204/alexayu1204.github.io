@@ -94,8 +94,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'gilt',
     art: 'observatory', // a hillside observatory whose dome is a drum head
-    wide: { x: 860,  y: 620, w: 432, h: 322, rot: -0.3 },
-    narrow: { x: 500, y: 800,  w: 440, h: 330, rot: -0.3 },
+    wide: { x: 941,  y: 611, w: 432, h: 322, rot: -0.4 },
+    narrow: { x: 833, y: 600,  w: 420, h: 320, rot: -0.4 },
     z: 6,
   },
   {
@@ -106,8 +106,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'walnut',
     art: 'letters', // the Inbox Archive — a wall of opened letters
-    wide: { x: 1500, y: 600, w: 296, h: 376, rot: 0.4 },
-    narrow: { x: 880, y: 1080, w: 280, h: 300, rot: 0.4 },
+    wide: { x: 1333, y: 584, w: 296, h: 376, rot: 0.35 },
+    narrow: { x: 330, y: 1070, w: 280, h: 330, rot: 0.35 },
     z: 6,
   },
   {
@@ -118,8 +118,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'ebony',
     art: 'machine', // a strange brass machine, half-diagrammed
-    wide: { x: 430,  y: 700, w: 252, h: 196, rot: 0.6 },
-    narrow: { x: 325, y: 1110, w: 258, h: 200, rot: 0.6 },
+    wide: { x: 571,  y: 674, w: 252, h: 196, rot: 0.7 },
+    narrow: { x: 623, y: 1138, w: 250, h: 194, rot: 0.7 },
     z: 5,
   },
   {
@@ -130,8 +130,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'brass',
     art: 'magnolia', // her magnolia photograph, hung as a picture
-    wide: { x: 1215, y: 675, w: 232, h: 288, rot: -0.5 },
-    narrow: { x: 860, y: 520,  w: 236, h: 292, rot: -0.5 },
+    wide: { x: 1625, y: 628, w: 232, h: 288, rot: -0.55 },
+    narrow: { x: 485, y: 624,  w: 220, h: 272, rot: -0.55 },
     z: 5,
   },
   {
@@ -142,8 +142,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'oval',
     style: 'gilt',
     art: 'portrait', // a formal portrait beside an ink plum blossom
-    wide: { x: 500,  y: 420, w: 196, h: 250, rot: 0 },
-    narrow: { x: 300, y: 470,  w: 208, h: 264, rot: 0 },
+    wide: { x: 595,  y: 430, w: 196, h: 250, rot: 0.25 },
+    narrow: { x: 252, y: 640,  w: 190, h: 240, rot: 0.25 },
     z: 6,
   },
   {
@@ -154,8 +154,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'tondo',
     style: 'ebony',
     art: 'window', // a distant lit window at night
-    wide: { x: 1740, y: 800, w: 138, h: 138, rot: 0 },
-    narrow: { x: 960, y: 770,  w: 140, h: 140, rot: 0 },
+    wide: { x: 1725, y: 400, w: 138, h: 138, rot: -0.3 },
+    narrow: { x: 856, y: 1165, w: 140, h: 140, rot: -0.3 },
     z: 5,
   },
 
@@ -166,8 +166,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'oval',
     style: 'brass',
     art: 'beetle',
-    wide: { x: 600,  y: 690, w: 76,  h: 94,  rot: 1.1 },
-    narrow: { x: 620, y: 1090, w: 84,  h: 104, rot: 1.1 },
+    wide: { x: 995,  y: 820, w: 76,  h: 94,  rot: 1.2 },
+    narrow: { x: 300, y: 838,  w: 84,  h: 104, rot: 1.2 },
     z: 4,
   },
   {
@@ -176,7 +176,7 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'gilt',
     art: 'butterfly',
-    wide: { x: 1730, y: 330, w: 116, h: 100, rot: -0.8 },
+    wide: { x: 1555, y: 380, w: 116, h: 100, rot: -0.9 },
     narrow: null,
     z: 4,
   },
@@ -186,8 +186,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'rect',
     style: 'walnut',
     art: 'cottage',
-    wide: { x: 760,  y: 832, w: 148, h: 96,  rot: 0.5 },
-    narrow: { x: 600, y: 1195, w: 150, h: 96,  rot: 0.5 },
+    wide: { x: 795,  y: 828, w: 148, h: 96,  rot: 0.55 },
+    narrow: { x: 830, y: 842,  w: 150, h: 96,  rot: 0.55 },
     z: 4,
   },
   {
@@ -196,7 +196,7 @@ export const FRAMES: FrameDef[] = [
     shape: 'arch',
     style: 'walnut',
     art: 'vase',
-    wide: { x: 1395, y: 330, w: 120, h: 140, rot: 0.3 },
+    wide: { x: 433,  y: 470, w: 112, h: 132, rot: 0.4 },
     narrow: null,
     z: 4,
   },
@@ -207,8 +207,8 @@ export const FRAMES: FrameDef[] = [
     shape: 'oval',
     style: 'brass',
     art: 'key',
-    wide: { x: 1770, y: 560, w: 72,  h: 98,  rot: 0 },
-    narrow: { x: 200, y: 690,  w: 74,  h: 100, rot: 0 },
+    wide: { x: 1655, y: 830, w: 72,  h: 98,  rot: -0.5 },
+    narrow: { x: 560, y: 840,  w: 74,  h: 100, rot: -0.5 },
     z: 4,
   },
 ];

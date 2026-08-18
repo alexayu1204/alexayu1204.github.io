@@ -2,7 +2,7 @@
  * A breath of depth between the wall, the frames, the fixture and the foreground
  * shadow. Clamped hard — this is a 2D illustrated world that leans, not a 3D scene.
  */
-import { approach, clamp, media } from './state';
+import { approach, clamp, media, room } from './state';
 import { fit } from './stage';
 
 interface Layer { el: HTMLElement; depth: number; x: number; y: number }
@@ -24,6 +24,7 @@ export function aimParallax(px: number, py: number) {
 const MAX_PX = 10;
 
 export function tickParallax(dt: number) {
+  if (room.phase === 'travelling') return;
   for (const l of layers) {
     const gx = -tx * MAX_PX * l.depth;
     const gy = -ty * MAX_PX * l.depth;
