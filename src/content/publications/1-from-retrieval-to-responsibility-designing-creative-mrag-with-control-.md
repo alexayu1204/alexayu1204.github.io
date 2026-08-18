@@ -1,8 +1,6 @@
 ---
 title: "From Retrieval to Responsibility: Designing Creative MRAG with Control and Governance"
 venue: "ACM Creativity & Cognition (C&C) 2026"
-kind: "Poster"
-status: "Accepted"
 order: 1
 ---
 

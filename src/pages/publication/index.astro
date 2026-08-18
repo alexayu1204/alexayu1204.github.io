@@ -6,18 +6,15 @@ const bodies = await Promise.all(pubs.map((p) => render(p)));
 ---
 <Section
   title="publication" kicker="Papers & enquiry"
-  lede="Multimodal generative AI, music information retrieval, and the governance and authorship of creative machines."
-  description="Publications and research by Haoting (Alexa) Yu: creative MRAG governance, automatic drum transcription, and curatorial agency in AI art."
+  lede="Creative Computing, Human-AI Co-Creation, Multimodal Generative AI"
+  description="Publications by Haoting (Alexa) Yu: creative MRAG control and governance, and curatorial agency in AI art."
 >
   {pubs.map((p, i) => {
     const Body = bodies[i].Content;
-    const st = p.data.status.toLowerCase().includes('accept') ? 'accepted' : 'review';
     return (
       <article class="entry">
         <h2 class="entry__title">{p.data.title}</h2>
         <p class="entry__meta">
-          <span class="pill">{p.data.kind}</span>
-          <span class={`pill pill--${st}`}>{p.data.status}</span>
           <span>{p.data.venue}</span>
         </p>
         <div class="entry__body"><Body /></div>

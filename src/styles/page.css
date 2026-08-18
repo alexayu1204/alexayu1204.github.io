@@ -84,8 +84,6 @@ body { color: var(--pg-ink); font-family: var(--sans); }
   display: inline-block; padding: 3px 10px; border: 1px solid var(--pg-rule);
   border-radius: 2px; font-size: .72rem; letter-spacing: .14em; color: var(--pg-dim);
 }
-.pill--accepted { color: #a8c49a; border-color: rgba(168, 196, 154, .34); }
-.pill--review { color: var(--pg-rose); border-color: rgba(196, 138, 134, .34); }
 
 .link-row { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px; }
 .link {
