@@ -1,11 +1,12 @@
 ---
 title: "Sentiment Classification"
-order: 6
-tags: ["ai", "nlp"]
+order: 7
+tags: ["LLM"]
 period: "Oct 2022 – Dec 2022"
-summary: "Developed robust sentiment classification for movie reviews by integrating NLP and ML feature extraction, with RoBERTa-based model achieving 87.06% accuracy for binary classification."
-cover: "/assets/projects/ph-sentiment.svg"
+cover: ""
 links: [{"label": "View Project", "href": "https://github.com/alexayu1204/Movie-Reviews-Sentiment-Classification"}, {"label": "Report (PDF)", "href": "/assets/projects/AML.pdf"}]
+group: "Machine learning & vision"
 ---
 
-Developed robust sentiment classification for movie reviews by integrating NLP and ML feature extraction, with RoBERTa-based model achieving 87.06% accuracy for binary classification.
+- Built a sentiment-classification pipeline benchmarking a fine-tuned RoBERTa model against classical baselines (Bag-of-Words, TF-IDF) on a corpus of 10K+ movie reviews.
+- RoBERTa reached 87.06% binary-classification accuracy , evaluated against Logistic Regression, SVM, and neural baselines with hyperparameter tuning.

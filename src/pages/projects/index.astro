@@ -1,34 +1,94 @@
 ---
 import Section from '../../layouts/Section.astro';
 import { getCollection, render } from 'astro:content';
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const bodies = await Promise.all(projects.map((p) => render(p)));
+
+const all = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const bodies = await Promise.all(all.map((p) => render(p)));
+
+const GROUPS = ['Creative AI systems', 'Machine learning & vision', 'Optimisation & statistics'] as const;
+// deliberate order, not alphabetical — heaviest first
+const TAG_ORDER = ['LLM', 'generative', 'vision', 'data', 'creative coding'];
+const tags = TAG_ORDER.filter((t) => all.some((p) => p.data.tags.includes(t)));
 ---
 <Section
-  wide title="projects" kicker="Selected work"
-  lede="Interactive, technical and creative-coding work — courtrooms staged by language models, constellations built from survey text, neural networks hung as pictures."
+  title="projects" kicker="Selected work"
+  lede="Ten pieces of technical and creative-coding work — a courtroom staged by language models, a constellation built from survey text, a neural network hung as a picture."
   description="Projects by Haoting (Alexa) Yu: multi-agent LLM systems, generative models, computer vision, optimisation and creative computing."
 >
-  {projects.map((p, i) => {
-    const Body = bodies[i].Content;
-    return (
-      <article class="entry">
-        <h2 class="entry__title">{p.data.title}</h2>
-        {(p.data.period || p.data.tags.length > 0) && (
-          <p class="entry__meta">
-            {p.data.period && <span>{p.data.period}</span>}
-            {p.data.tags.map((t) => <span class="pill">{t}</span>)}
-          </p>
-        )}
-        <div class="entry__body"><Body /></div>
-        {p.data.links.length > 0 && (
-          <p class="link-row">
-            {p.data.links.map((l) => (
-              <a class="link" href={l.href} target="_blank" rel="noopener noreferrer">{l.label} &rarr;</a>
-            ))}
-          </p>
-        )}
-      </article>
-    );
-  })}
+  <div class="filters" role="group" aria-label="Filter projects by technique">
+    <button class="filter is-on" type="button" data-tag="" aria-pressed="true">all</button>
+    {tags.map((t) => (
+      <button class="filter" type="button" data-tag={t} aria-pressed="false">{t}</button>
+    ))}
+  </div>
+  <p class="filters__count" aria-live="polite">{all.length} projects</p>
+
+  {GROUPS.map((g) => (
+    <section class="group" data-group={g}>
+      <h2 class="group__head">{g}</h2>
+      {all.map((p, i) => {
+        if (p.data.group !== g) return null;
+        const Body = bodies[i].Content;
+        return (
+          <article class="entry" data-tags={`|${p.data.tags.join('|')}|`}>
+            <h3 class="entry__title">{p.data.title}</h3>
+            <p class="entry__meta">
+              {p.data.period && <span>{p.data.period}</span>}
+              {p.data.tags.map((t) => <span class="pill">{t}</span>)}
+            </p>
+            <div class="entry__body"><Body /></div>
+            {p.data.links.length > 0 && (
+              <p class="link-row">
+                {p.data.links.map((l) => (
+                  <a class="link" href={l.href} target="_blank" rel="noopener noreferrer">{l.label} &rarr;</a>
+                ))}
+              </p>
+            )}
+          </article>
+        );
+      })}
+    </section>
+  ))}
+
+  <script>
+    // Progressive enhancement: every project is in the static HTML and visible.
+    // Without this script the page is simply an unfiltered list, which is the
+    // correct fallback for a page whose whole job is to be readable.
+    const bar = document.querySelector<HTMLElement>('.filters')!;
+    const count = document.querySelector<HTMLElement>('.filters__count')!;
+    const items = [...document.querySelectorAll<HTMLElement>('article[data-tags]')];
+    const groups = [...document.querySelectorAll<HTMLElement>('.group')];
+    const total = items.length;
+
+    function apply(tag: string, push = true) {
+      for (const el of items) {
+        el.hidden = !!tag && !el.dataset.tags!.includes(`|${tag}|`);
+      }
+      // a group heading must never sit above nothing
+      for (const g of groups) g.hidden = !g.querySelector('article:not([hidden])');
+
+      for (const b of bar.querySelectorAll<HTMLButtonElement>('.filter')) {
+        const on = (b.dataset.tag || '') === tag;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-pressed', String(on));
+      }
+      const shown = items.filter((el) => !el.hidden).length;
+      count.textContent = tag ? `showing ${shown} of ${total}` : `${total} projects`;
+      if (push) {
+        history.replaceState(null, '', tag ? `#${encodeURIComponent(tag)}` : location.pathname);
+      }
+    }
+
+    bar.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>('.filter');
+      if (b) apply(b.dataset.tag || '');
+    });
+
+    // a filtered view is linkable and the back button behaves
+    const fromHash = decodeURIComponent(location.hash.slice(1));
+    if (fromHash && [...bar.querySelectorAll<HTMLButtonElement>('.filter')].some((b) => b.dataset.tag === fromHash)) {
+      apply(fromHash, false);
+    }
+    addEventListener('hashchange', () => apply(decodeURIComponent(location.hash.slice(1)), false));
+  </script>
 </Section>

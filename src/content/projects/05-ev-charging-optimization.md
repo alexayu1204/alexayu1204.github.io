@@ -1,11 +1,12 @@
 ---
 title: "EV Charging Optimization"
-order: 5
+order: 10
 tags: ["data"]
-period: ""
-summary: "A grid-based model for EV charging deployment in Dundee, dividing the city into 434 grids and recommending new charger installations to meet demand efficiently and cost-effectively."
-cover: "/assets/projects/ph-ev-charging.svg"
+period: "Oct 2022 – Nov 2022"
+cover: ""
 links: [{"label": "View Project", "href": "https://github.com/alexayu1204/Optimising-EV-Charging-Infrastructure"}, {"label": "Report (PDF)", "href": "/assets/projects/MMCS.pdf"}]
+group: "Optimisation & statistics"
 ---
 
-A grid-based model for EV charging deployment in Dundee, dividing the city into 434 grids and recommending new charger installations to meet demand efficiently and cost-effectively.
+- Formulated a linear programming model in Xpress/Python to optimize placement and scheduling for EV charging stations.
+- Integrated city demand forecasts and spatial constraints, streamlining resource allocation and usage patterns.

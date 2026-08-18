@@ -1,11 +1,12 @@
 ---
 title: "Neural Illumination"
-order: 3
-tags: ["ai", "ml", "generative", "creative"]
+order: 2
+tags: ["generative", "creative coding"]
 period: "2026"
-summary: "A from-scratch neural network that trains live in the browser — every neuron, synapse, and gradient rendered as flowing light with p5.js. AI made visible as algorithmic art."
-cover: "/assets/projects/ph-neuron-art.svg"
+cover: ""
 links: [{"label": "View Project", "href": "https://github.com/jerryzhao173985/neuron-art"}]
+group: "Creative AI systems"
 ---
 
-A from-scratch neural network that trains live in the browser — every neuron, synapse, and gradient rendered as flowing light with p5.js. AI made visible as algorithmic art.
+- Implemented a neural network from scratch in the browser — a 64→16→2 classifier with ReLU and softmax, real backpropagation and SGD (~1,000 parameters) and Xavier/He initialisation — that genuinely trains to separate shapes, with no ML libraries.
+- Rendered every neuron, weight, and gradient as flowing light and particles with p5.js (activation → brightness, weight → thickness, forward/backward pass → particle direction), with a live "show the math" mode, seed-reproducible runs, and interactive controls at ~60 FPS.

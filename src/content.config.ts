@@ -15,8 +15,10 @@ export const collections = {
     loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
     schema: z.object({
       title: z.string(), order: z.coerce.number(), tags: z.array(z.string()).default([]),
-      period: z.string().default(''), summary: z.string().default(''),
-      cover: z.string().default(''), links: linkSchema,
+      period: z.string().default(''), cover: z.string().default(''), links: linkSchema,
+      // the domain a project belongs to; tags cut ACROSS these on purpose, so that
+      // filtering by technique does not just re-select one group
+      group: z.enum(['Creative AI systems', 'Machine learning & vision', 'Optimisation & statistics']),
     }),
   }),
   artwork: defineCollection({
