@@ -6,7 +6,7 @@ somewhere inside a wall of HTML.
 
 Nothing here is invented. If the old site did not say it, it does not appear.
 """
-import re, html, json, os, unicodedata
+import re, html, json, os, sys, unicodedata
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 SRC = open(os.path.join(ROOT, 'legacy/index.html')).read()
@@ -25,7 +25,20 @@ def slug(s):
 def yamlq(s):
     return '"' + str(s).replace('\\', '\\\\').replace('"', '\\"') + '"'
 
+FORCE = '--force' in sys.argv
+
+def guard(path):
+    """This script was a one-time migration out of the old monolith. The files it
+    produced are hand-edited content now, so re-running it must not quietly undo
+    that work. Pass --force to overwrite deliberately."""
+    if os.path.exists(path) and not FORCE:
+        print(f'  skip (edited since migration): {os.path.relpath(path, ROOT)}')
+        return False
+    return True
+
 def write(path, front, body):
+    if not guard(path):
+        return
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fm = '\n'.join(f'{k}: {v}' for k, v in front.items())
     open(path, 'w').write(f'---\n{fm}\n---\n\n{body.strip()}\n')
@@ -158,7 +171,8 @@ about = [txt(p) for p in re.findall(r'<p[^>]*>(.*?)</p>', SRC[SRC.index('id="abo
 cv = {'about': [p for p in about if len(p) > 60],
       'work': accordion('work'), 'education': accordion('edu'), 'skills': skills}
 os.makedirs(f'{ROOT}/src/data', exist_ok=True)
-json.dump(cv, open(f'{ROOT}/src/data/cv.json', 'w'), indent=1, ensure_ascii=False)
+if guard(f'{ROOT}/src/data/cv.json'):
+    json.dump(cv, open(f'{ROOT}/src/data/cv.json', 'w'), indent=1, ensure_ascii=False)
 counts['work'] = len(cv['work']); counts['education'] = len(cv['education']); counts['skills'] = len(skills)
 
 site = {
@@ -174,7 +188,8 @@ site = {
   'cvFile': '/Resume.pdf',
   'artistStatement': statement,
 }
-json.dump(site, open(f'{ROOT}/src/data/site.json', 'w'), indent=1, ensure_ascii=False)
+if guard(f'{ROOT}/src/data/site.json'):
+    json.dump(site, open(f'{ROOT}/src/data/site.json', 'w'), indent=1, ensure_ascii=False)
 
 for k, v in counts.items():
     print(f'  {k:<14} {v}')
