@@ -18,7 +18,7 @@ import '../styles/room.css';
       <!-- The room itself is laid out in SCREEN space so wall, ceiling and floor
            always reach the viewport edges; only their mouldings are pinned to the
            design canvas's own boundaries. -->
-      <div class="room__world" data-depth="0.2" aria-hidden="true">
+      <div class="room__world" aria-hidden="true">
         <div class="wall__paper"></div>
         <div class="wall__falloff"></div>
         <div class="wall__halo"></div>
@@ -31,13 +31,13 @@ import '../styles/room.css';
       </div>
 
       <div class="stage" id="stage">
-        <div class="layer layer--frames" data-depth="0.5">
+        <div class="layer layer--frames">
           {FRAMES.map((def) => <Frame def={def} />)}
         </div>
       </div>
 
       <div class="stage stage--vec">
-        <svg class="layer layer--vec" id="room-vec" data-depth="0.85"
+        <svg class="layer layer--vec" id="room-vec"
              viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
           <Chandelier />
           <Pull />

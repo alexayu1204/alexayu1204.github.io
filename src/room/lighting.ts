@@ -16,7 +16,7 @@ import { forceWake } from './flashlight';
 
 let tl: gsap.core.Timeline | null = null;
 
-const candles = () => Array.from(document.querySelectorAll<SVGGElement>('.candle'));
+const bulbs = () => Array.from(document.querySelectorAll<SVGGElement>('.bulb'));
 const frameEls = () => Array.from(document.querySelectorAll<HTMLElement>('.frame'));
 const root = () => document.documentElement;
 
@@ -43,7 +43,7 @@ export function ignite() {
   light.locked = true;
   gsap.to(light, { tx: c.x, ty: c.y, duration: 1.1, ease: 'power2.inOut' });
 
-  const cs = candles();
+  const cs = bulbs();
   tl = gsap.timeline({
     onComplete() {
       room.setPhase('lit');
@@ -53,20 +53,20 @@ export function ignite() {
     },
   });
 
-  // 120ms — the first filament stutters. Three uneven steps; a clean fade reads electric,
-  // and this room is meant to read as candle-and-brass.
+  // 120ms — the first filament stutters up. A clean fade reads like a dimmer;
+  // an old filament on a mechanical switch does not come up evenly.
   if (cs[0]) {
-    tl.to(cs[0], { duration: 0.05, '--flame': 0.35 }, 0.12)
-      .to(cs[0], { duration: 0.07, '--flame': 0.10 }, 0.17)
-      .to(cs[0], { duration: 0.12, '--flame': 0.62 }, 0.24)
-      .to(cs[0], { duration: 0.45, '--flame': 1 }, 0.36);
+    tl.to(cs[0], { duration: 0.05, '--glow': 0.35 }, 0.12)
+      .to(cs[0], { duration: 0.07, '--glow': 0.10 }, 0.17)
+      .to(cs[0], { duration: 0.12, '--glow': 0.62 }, 0.24)
+      .to(cs[0], { duration: 0.45, '--glow': 1 }, 0.36);
   }
-  // 180–420ms — the rest catch, unevenly. A perfectly even stagger reads mechanical.
+  // 180–420ms — the rest come up, unevenly: one switch, six ageing filaments.
   const order = [3, 1, 5, 2, 6, 4];
   order.forEach((idx, i) => {
     const el = cs[idx];
     if (!el) return;
-    tl!.to(el, { duration: 0.5, '--flame': 1, ease: 'power2.out' }, 0.18 + i * 0.042 + (i % 2) * 0.012);
+    tl!.to(el, { duration: 0.5, '--glow': 1, ease: 'power2.out' }, 0.18 + i * 0.042 + (i % 2) * 0.012);
   });
 
   // 300–800ms — the halo blooms outward from the fixture
@@ -101,11 +101,11 @@ export function litInstantly(fade = true) {
   const LIT = { spread: 15, bite: 1, darkness: 0.1, warm: 0.02, vignette: 0.38 };
   if (fade) {
     // a returning visitor gets the room warming up around them, not a hard cut
-    candles().forEach((el, i) =>
-      gsap.to(el, { duration: 0.35, '--flame': 1, ease: 'power2.out', delay: i * 0.03 }));
+    bulbs().forEach((el, i) =>
+      gsap.to(el, { duration: 0.35, '--glow': 1, ease: 'power2.out', delay: i * 0.03 }));
     gsap.to(light, { ...LIT, duration: 0.6, ease: 'power2.inOut' });
   } else {
-    candles().forEach((el) => el.style.setProperty('--flame', '1'));
+    bulbs().forEach((el) => el.style.setProperty('--glow', '1'));
     Object.assign(light, LIT);
   }
   frameEls().forEach((el) => {
@@ -129,8 +129,8 @@ export function douse(onDone?: () => void) {
       onDone?.();
     },
   });
-  candles().forEach((el, i) =>
-    t.to(el, { duration: 0.18, '--flame': 0, ease: 'power2.in' }, i * 0.035)
+  bulbs().forEach((el, i) =>
+    t.to(el, { duration: 0.18, '--glow': 0, ease: 'power2.in' }, i * 0.035)
   );
   t.to(root(), { duration: 0.4, '--bloom': 0, ease: 'power2.in' }, 0.1)
     .to(root(), { duration: 0.5, '--exposure': 0, ease: 'power2.in' }, 0.15)

@@ -6,7 +6,6 @@ import { initFlashlight, pointTo, tickFlashlight, forceWake } from './flashlight
 import { initPull, tickPull, yank, retirePull, rearmPull } from './pull';
 import { ignite, litInstantly, douse } from './lighting';
 import { initCamera, enterFrame, warmArt, openFromReturn, resetCamera } from './camera';
-import { initParallax, aimParallax, tickParallax } from './parallax';
 import { initAudio, unlockAudio, playClick, playIgnite, startAmbience, toggleMute } from './audio';
 
 const q = <T extends Element>(sel: string) => document.querySelector(sel) as T;
@@ -154,14 +153,11 @@ export function bootRoom() {
     hit: q<HTMLButtonElement>('#pull-hit'),
     glint: q<SVGGElement>('#pull-glint'),
   });
-  initParallax(stage);
 
   /* ---- pointer ---- */
   const COARSE_LIFT = 80; // a fingertip covers exactly what it is meant to reveal
-  const aim = (x: number, y: number) => {
-    pointTo(x, media.coarse() ? y - COARSE_LIFT : y);
-    aimParallax(x, y);
-  };
+  // the room does not lean toward the cursor: it stays put and the light moves
+  const aim = (x: number, y: number) => pointTo(x, media.coarse() ? y - COARSE_LIFT : y);
   addEventListener('pointermove', (e) => aim(e.clientX, e.clientY), { passive: true });
   addEventListener('pointerdown', (e) => { unlockAudio(); aim(e.clientX, e.clientY); }, { passive: true });
 
@@ -247,7 +243,6 @@ export function bootRoom() {
     t += dt;
     tickFlashlight(dt);
     tickPull(dt);
-    tickParallax(dt);
     requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);

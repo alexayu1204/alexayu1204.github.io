@@ -1,21 +1,28 @@
 ---
 /**
- * Six arms, six candles, hung slightly crooked.
+ * An early-electric brass chandelier: six arms, six filament bulbs.
  *
- * Drawn as an illustration rather than as vector art: every shape carries a heavy
- * dark contour, the fills are flat with hand-placed highlights instead of smooth
- * gradients, and no two arms are mirror images. Perfect symmetry and glossy
- * gradients are exactly what made the first version read as fake.
+ * NOT candles. The fixture is worked by a pull switch on the wall, and a switch
+ * that lights wax is nonsense — the whole opening depends on that mechanism
+ * reading as real. Fixtures of exactly this period did mimic candelabra, but with
+ * glass envelopes and visible filaments on brass sockets, which is what these are.
+ *
+ * Each crystal hangs on a short link from the underside of its own arm-end cup.
+ * They were previously floating mid-span, attached to nothing.
  */
 const arms = [
-  { x: 158,  y: -64,  c1: '56,28',   c2: '144,10',  drop: 0.58, wax: 26, lean: 1.5 },
-  { x: -151, y: -70,  c1: '-52,24',  c2: '-137,2',  drop: 0.62, wax: 22, lean: -2.5 },
-  { x: 103,  y: -83,  c1: '38,22',   c2: '93,-9',   drop: 0.60, wax: 28, lean: -1 },
-  { x: -107, y: -80,  c1: '-40,18',  c2: '-97,-13', drop: 0.55, wax: 24, lean: 2 },
-  { x: 50,   y: -99,  c1: '20,16',   c2: '46,-27',  drop: 0.64, wax: 21, lean: 0.5 },
-  { x: -55,  y: -103, c1: '-22,12',  c2: '-51,-31', drop: 0.57, wax: 27, lean: -1.5 },
+  { x: 158,  y: -64,  c1: '56,28',   c2: '144,10',  bulb: 27, lean: 1.5 },
+  { x: -151, y: -70,  c1: '-52,24',  c2: '-137,2',  bulb: 24, lean: -2.5 },
+  { x: 103,  y: -83,  c1: '38,22',   c2: '93,-9',   bulb: 28, lean: -1 },
+  { x: -107, y: -80,  c1: '-40,18',  c2: '-97,-13', bulb: 25, lean: 2 },
+  { x: 50,   y: -99,  c1: '20,16',   c2: '46,-27',  bulb: 26, lean: 0.5 },
+  { x: -55,  y: -103, c1: '-22,12',  c2: '-51,-31', bulb: 27, lean: -1.5 },
 ];
 const INK = '#241a0e';
+const GLASS = (a: { x: number; y: number; bulb: number }) =>
+  `M${a.x - 8} ${a.y - 13}
+   C${a.x - 11} ${a.y - 13 - a.bulb * 0.44} ${a.x - 8.6} ${a.y - 13 - a.bulb * 0.93} ${a.x} ${a.y - 13 - a.bulb}
+   C${a.x + 8.6} ${a.y - 13 - a.bulb * 0.93} ${a.x + 11} ${a.y - 13 - a.bulb * 0.44} ${a.x + 8} ${a.y - 13}Z`;
 ---
 <g id="chandelier-group">
   <defs>
@@ -26,18 +33,19 @@ const INK = '#241a0e';
       <stop offset=".74" stop-color="#8e6f2c"/>
       <stop offset="1" stop-color="#4c3818"/>
     </linearGradient>
-    <radialGradient id="flameG">
-      <stop offset="0" stop-color="#fff6dd"/>
-      <stop offset=".42" stop-color="#ffd489"/>
-      <stop offset="1" stop-color="#e07a2a" stop-opacity="0"/>
+    <radialGradient id="bulbHalo">
+      <stop offset="0" stop-color="#ffe6b4" stop-opacity=".9"/>
+      <stop offset=".45" stop-color="#ffc879" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffab52" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="candleGlow">
-      <stop offset="0" stop-color="#ffd79a" stop-opacity=".8"/>
-      <stop offset="1" stop-color="#ffb060" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="glassG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff4d8"/>
+      <stop offset=".5" stop-color="#ffd98f"/>
+      <stop offset="1" stop-color="#e9a949"/>
+    </linearGradient>
   </defs>
 
-  <!-- chain: links drawn one at a time, none quite vertical -->
+  <!-- chain, drawn link by link; none of them quite vertical -->
   <g stroke={INK} stroke-width="3.4" fill="none" stroke-linecap="round">
     {Array.from({ length: 9 }, (_, i) => (
       <ellipse cx={i % 2 ? 1.4 : -1.2} cy={-166 + i * 8} rx="3.6" ry="4.6"
@@ -51,7 +59,7 @@ const INK = '#241a0e';
     ))}
   </g>
 
-  <!-- central column: a turned urn, contour first then fill -->
+  <!-- ceiling rose and turned column -->
   <path d="M-16 -100 C-14 -104 14 -104 16 -100 C14 -96 -14 -96 -16 -100Z"
         fill="url(#brassV)" stroke={INK} stroke-width="2.4"/>
   <path d="M-8 -98 C-20 -80 -24 -60 -13 -47 C-25 -35 -25 -18 -11 -8
@@ -66,48 +74,58 @@ const INK = '#241a0e';
 
   <!-- arms -->
   {arms.map((a) => (
+    <path d={`M0 -2 C${a.c1} ${a.c2} ${a.x} ${a.y}`} fill="none"
+          stroke={INK} stroke-width="11" stroke-linecap="round"/>
+  ))}
+  {arms.map((a) => (
+    <path d={`M0 -2 C${a.c1} ${a.c2} ${a.x} ${a.y}`} fill="none"
+          stroke="url(#brassV)" stroke-width="6.4" stroke-linecap="round"/>
+  ))}
+
+  <!-- a cut drop on a short link, hung from the UNDERSIDE OF ITS OWN CUP -->
+  {arms.map((a) => (
     <g>
-      <path d={`M0 -2 C${a.c1} ${a.c2} ${a.x} ${a.y}`} fill="none"
-            stroke={INK} stroke-width="11" stroke-linecap="round"/>
-      <path d={`M0 -2 C${a.c1} ${a.c2} ${a.x} ${a.y}`} fill="none"
-            stroke="url(#brassV)" stroke-width="6.4" stroke-linecap="round"/>
-      {/* a cut drop on a short wire, hung inboard of the cup */}
-      <path d={`M${a.x * a.drop} ${a.y * a.drop + 14} v9`} stroke={INK} stroke-width="1.5"/>
-      <path d={`M${a.x * a.drop} ${a.y * a.drop + 22}
-                Q${a.x * a.drop + 6} ${a.y * a.drop + 31} ${a.x * a.drop} ${a.y * a.drop + 42}
-                Q${a.x * a.drop - 6} ${a.y * a.drop + 31} ${a.x * a.drop} ${a.y * a.drop + 22}Z`}
-            fill="#e6eef4" opacity=".5" stroke={INK} stroke-width="1.2" stroke-linejoin="round"/>
-      <path d={`M${a.x * a.drop - 2} ${a.y * a.drop + 27} v8`} stroke="#ffffff" stroke-width="1.2" opacity=".55"/>
+      <path d={`M${a.x} ${a.y + 5} v7`} stroke={INK} stroke-width="1.6"/>
+      <path d={`M${a.x} ${a.y + 11} Q${a.x + 5.5} ${a.y + 19} ${a.x} ${a.y + 29}
+                Q${a.x - 5.5} ${a.y + 19} ${a.x} ${a.y + 11}Z`}
+            fill="#e6eef4" opacity=".48" stroke={INK} stroke-width="1.2" stroke-linejoin="round"/>
+      <path d={`M${a.x - 1.8} ${a.y + 15} v7`} stroke="#ffffff" stroke-width="1.1" opacity=".5"/>
     </g>
   ))}
 
-  <!-- candles: different heights, all leaning a little, all dripping -->
+  <!-- bulbs -->
   {arms.map((a, i) => (
-    <g class="candle" style="--flame:0" data-candle={i}>
-      <circle cx={a.x} cy={a.y - a.wax - 8} r="44" fill="url(#candleGlow)" class="candle__pool"/>
+    <g class="bulb" style="--glow:0" data-bulb={i}>
+      <circle cx={a.x} cy={a.y - a.bulb - 8} r="46" fill="url(#bulbHalo)" class="bulb__pool"/>
+      {/* socket cup */}
       <path d={`M${a.x - 12} ${a.y + 1} C${a.x - 6} ${a.y - 6} ${a.x + 6} ${a.y - 6} ${a.x + 12} ${a.y + 1}
                 C${a.x + 6} ${a.y + 6} ${a.x - 6} ${a.y + 6} ${a.x - 12} ${a.y + 1}Z`}
             fill="url(#brassV)" stroke={INK} stroke-width="2.2"/>
       <g transform={`rotate(${a.lean} ${a.x} ${a.y})`}>
-        <path d={`M${a.x - 6} ${a.y - 2} L${a.x - 4.4} ${a.y - a.wax}
-                  L${a.x + 4.4} ${a.y - a.wax} L${a.x + 6} ${a.y - 2}Z`}
-              fill="#efe1c4" stroke={INK} stroke-width="1.8" stroke-linejoin="round"/>
-        <path d={`M${a.x - 6} ${a.y - 2} L${a.x - 4.4} ${a.y - a.wax} L${a.x - 1.6} ${a.y - a.wax} L${a.x - 2.6} ${a.y - 2}Z`}
-              fill="#fffaf0" opacity=".55"/>
-        <path d={`M${a.x + 3.6} ${a.y - a.wax + 2} q3.4 ${a.wax * 0.3} -0.6 ${a.wax * 0.45}`}
-              stroke="#e0d0ad" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d={`M${a.x - 3.2} ${a.y - a.wax + 4} q-2.6 6 0.4 9`}
-              stroke="#e0d0ad" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-        <path d={`M${a.x} ${a.y - a.wax} v-3.5`} stroke={INK} stroke-width="1.5"/>
-        <g class="candle__flame">
-          <circle cx={a.x} cy={a.y - a.wax - 9} r="16" fill="url(#flameG)" opacity=".6"/>
-          <path d={`M${a.x} ${a.y - a.wax - 19} C${a.x + 5} ${a.y - a.wax - 11} ${a.x + 4} ${a.y - a.wax - 4} ${a.x} ${a.y - a.wax - 2}
-                    C${a.x - 4} ${a.y - a.wax - 4} ${a.x - 5} ${a.y - a.wax - 11} ${a.x} ${a.y - a.wax - 19}Z`}
-                fill="#ffd98e"/>
-          <path d={`M${a.x} ${a.y - a.wax - 14} C${a.x + 2.4} ${a.y - a.wax - 9} ${a.x + 2} ${a.y - a.wax - 5} ${a.x} ${a.y - a.wax - 4}
-                    C${a.x - 2} ${a.y - a.wax - 5} ${a.x - 2.4} ${a.y - a.wax - 9} ${a.x} ${a.y - a.wax - 14}Z`}
-                fill="#fff8e2"/>
+        {/* brass screw base, with its threads */}
+        <path d={`M${a.x - 6} ${a.y - 2} L${a.x - 5.4} ${a.y - 13} L${a.x + 5.4} ${a.y - 13} L${a.x + 6} ${a.y - 2}Z`}
+              fill="url(#brassV)" stroke={INK} stroke-width="1.8" stroke-linejoin="round"/>
+        <path d={`M${a.x - 5.6} ${a.y - 6} H${a.x + 5.6} M${a.x - 5.2} ${a.y - 9.5} H${a.x + 5.2}`}
+              stroke={INK} stroke-width="1.1" opacity=".8"/>
+        {/* Glass envelope, drawn twice: warm underneath, cold over the top. A single
+            path cannot change hue via fill-opacity, and a bulb that stays grey while
+            its filament burns looks broken. Rounded, not pointed — a pointed
+            envelope just reads as a flame again. */}
+        <path d={GLASS(a)} fill="url(#glassG)" stroke={INK} stroke-width="1.7" stroke-linejoin="round"/>
+        <path d={GLASS(a)} class="bulb__glass" stroke={INK} stroke-width="1.7" stroke-linejoin="round"/>
+        {/* the filament — a loop on two posts, which is what says 'electric' */}
+        <g class="bulb__light">
+          <path d={`M${a.x - 2.6} ${a.y - 14} V${a.y - 13 - a.bulb * 0.52}
+                    M${a.x + 2.6} ${a.y - 14} V${a.y - 13 - a.bulb * 0.52}`}
+                stroke="#8a6a2e" stroke-width="1"/>
+          <path d={`M${a.x - 2.6} ${a.y - 13 - a.bulb * 0.52}
+                    q1.3 ${-a.bulb * 0.16} 2.6 0 q1.3 ${a.bulb * 0.16} 2.6 0`}
+                fill="none" stroke="#fff3d2" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx={a.x} cy={a.y - 13 - a.bulb * 0.55} r="7" fill="url(#bulbHalo)"/>
         </g>
+        {/* a highlight on the glass, always there so it reads as glass when dark */}
+        <path d={`M${a.x - 5} ${a.y - 17} C${a.x - 6} ${a.y - 13 - a.bulb * 0.62} ${a.x - 4} ${a.y - 13 - a.bulb * 0.78} ${a.x - 1.5} ${a.y - 13 - a.bulb * 0.86}`}
+              fill="none" stroke="#ffffff" stroke-width="1.4" opacity=".38" stroke-linecap="round"/>
       </g>
     </g>
   ))}

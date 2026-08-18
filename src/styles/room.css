@@ -15,7 +15,7 @@
   --walnut-lo: #150e11;
   --brass: #b98f4e;
   --brass-hi: #f0d69a;
-  --candle: #e8b878;
+  --lamp: #e8b878;
   --cream: #efe3c6;
   --paper: #e6dcc4;
 
@@ -49,7 +49,7 @@ body { color: var(--paper); font-family: var(--serif); }
 .stage--vec { pointer-events: none; }
 
 /* ---- wall -------------------------------------------------------------- */
-/* Screen space, with overscan so parallax never exposes an edge. The mouldings
+/* Screen space, with a little overscan. The mouldings
    are pinned to the design canvas's boundaries via vars set in stage.ts, so the
    room reads as taller or shorter rather than as a letterboxed picture. */
 .room__world { position: absolute; inset: calc(-1 * var(--os)); --os: 34px; }
@@ -61,7 +61,7 @@ body { color: var(--paper); font-family: var(--serif); }
   background: var(--wall) url('/scene/damask.svg') repeat;
   background-size: calc(118px * var(--fit-scale, 1)) calc(118px * var(--fit-scale, 1));
 }
-/* a candle-lit wall is never evenly lit: it pools high and centre and dies at the
+/* a lamp-lit wall is never evenly lit: it pools high and centre and dies at the
    skirting and the corners. This is most of what separates the room from a flat fill. */
 .wall__falloff {
   top: calc(var(--canvas-top) + var(--os));
@@ -152,15 +152,14 @@ body { color: var(--paper); font-family: var(--serif); }
   pointer-events: none;
 }
 
-/* The ignition animates --flame on each candle. Nothing read it, so the whole
-   staggered catch was invisible and the candles were simply always alight. */
-.candle__flame {
-  opacity: var(--flame, 0);
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  transform: scaleY(calc(.5 + .5 * var(--flame, 0)));
+/* Ignition animates --glow on each bulb: the filament comes up, the glass warms
+   from cold grey to amber, and the pool of light on the wall follows. */
+.bulb__light { opacity: var(--glow, 0); }
+.bulb__pool { opacity: calc(var(--glow, 0) * .62); }
+.bulb__glass {          /* the cold glass, laid over the warm one and faded out */
+  fill: #322d2b;
+  opacity: calc(1 - var(--glow, 0));
 }
-.candle__pool { opacity: calc(var(--flame, 0) * .6); }
 
 /* ---- frames ------------------------------------------------------------ */
 .frame {
