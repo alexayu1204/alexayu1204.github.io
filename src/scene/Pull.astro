@@ -35,9 +35,12 @@
         stroke-dasharray="5 10" opacity=".45"/>
 
   <!-- the highlight that travels the cord unprompted after a while -->
+  <!-- x and the travel distance are set from the live anchor in pull.ts: hardcoding
+       them put this bar 25px clear of the cord on the narrow wall, where it read as
+       a flash in empty space rather than light catching the rope -->
   <g id="pull-glint" style="opacity:0">
-    <rect x="144" y="0" width="12" height="90" fill="url(#glintG)"
-          style="transform: translateY(calc(var(--glint, 0) * 420px))"/>
+    <rect id="pull-glint-bar" x="143" y="0" width="14" height="110" fill="url(#glintG)"
+          style="transform: translateY(calc(var(--glint, 0) * var(--glint-travel, 420px)))"/>
   </g>
 
   <g id="pull-bob">

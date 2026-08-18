@@ -3,10 +3,7 @@
  *
  * The room is never revealed by fading black to zero. Instead the spot the visitor
  * has been carrying *grows* — drifting toward the chandelier as it opens — until it
- * has swallowed the screen. Frames then fade in sorted by their distance from the
- * chandelier, so the light demonstrably arrives from the fixture rather than from
- * everywhere at once. That ordering is what sells the whole illusion, and it costs
- * one sort.
+ * has swallowed the screen, and the pictures come up with it.
  */
 import gsap from 'gsap';
 import { light, room, emit, rememberLit } from './state';
@@ -19,19 +16,6 @@ let tl: gsap.core.Timeline | null = null;
 const bulbs = () => Array.from(document.querySelectorAll<SVGGElement>('.bulb'));
 const frameEls = () => Array.from(document.querySelectorAll<HTMLElement>('.frame'));
 const root = () => document.documentElement;
-
-/** frames sorted by how far they sit from the chandelier, nearest first */
-function framesByDistance() {
-  const fx = FIXTURES[fit.mode].chandelier;
-  return frameEls()
-    .map((el) => {
-      const x = +(el.dataset.cx || 0);
-      const y = +(el.dataset.cy || 0);
-      return { el, d: Math.hypot(x - fx.x, y - fx.y) };
-    })
-    .sort((a, b) => a.d - b.d)
-    .map((o) => o.el);
-}
 
 export function ignite() {
   if (tl) return;
@@ -81,10 +65,10 @@ export function ignite() {
   tl.fromTo(root(), { '--exposure': 0 }, { duration: 0.9, '--exposure': 1, ease: 'power2.inOut' }, 0.9)
     .to(light, { duration: 0.9, vignette: 0.38, ease: 'power2.inOut' }, 0.9);
 
-  // 1500–2200ms — frames arrive nearest-the-light first
-  framesByDistance().forEach((el, i) => {
-    tl!.to(el, { duration: 0.5, opacity: 1, ease: 'power2.out' }, 1.5 + i * 0.04);
-  });
+  // 800–1600ms — the pictures come up TOGETHER, with the light, not one after
+  // another. They are what the room is for; parading them in sequence made the
+  // reveal about the animation instead of about the wall.
+  tl.to(frameEls(), { duration: 0.8, opacity: 1, ease: 'power2.out' }, 0.8);
 
   tl.call(() => { light.locked = false; }, undefined, 1.4);
   tl.to({}, { duration: 0.1 }, 2.2);

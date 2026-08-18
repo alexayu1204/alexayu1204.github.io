@@ -61,6 +61,13 @@ export function initPull(els: {
     const g = document.getElementById('ropeG');
     g?.setAttribute('x1', String(anchorX - 5));
     g?.setAttribute('x2', String(anchorX + 5));
+    // the travelling highlight has to follow the anchor too, and travel the
+    // length of THIS rope rather than a number baked in for the wide wall
+    const bar = document.getElementById('pull-glint-bar');
+    bar?.setAttribute('x', String(anchorX - 7 * bobScale));
+    bar?.setAttribute('width', String(14 * bobScale));
+    bar?.setAttribute('height', String(110 * bobScale));
+    glint.style.setProperty('--glint-travel', (restLen - 40 * bobScale) + 'px');
     for (const el of [rope, document.getElementById('pull-rope-twist')]) {
       (el as SVGElement | null)?.setAttribute('stroke-width',
         el === rope ? String(9 * bobScale) : String(3 * bobScale));
@@ -182,12 +189,13 @@ export function tickPull(dt: number) {
   // after ~10s of no contact the cord catches its own highlight, unprompted
   if (!interacted && !fired && room.phase === 'dark') {
     glintTimer += dt;
-    const DELAY = 10, SWEEP = 1.6, CYCLE = 9;
+    const DELAY = 10, SWEEP = 2.4, CYCLE = 11;   // slower, rarer
     if (glintTimer > DELAY) {
       const k = ((glintTimer - DELAY) % CYCLE) / SWEEP; // 0→1 across one travel
       if (k <= 1) {
         glint.style.setProperty('--glint', k.toFixed(3));
-        glint.style.opacity = (Math.sin(k * Math.PI) * 0.85).toFixed(3);
+        // 0.85 peaked hard enough to read as a flash; this is light catching rope
+        glint.style.opacity = (Math.sin(k * Math.PI) * 0.4).toFixed(3);
       } else if (glint.style.opacity !== '0') glint.style.opacity = '0';
     }
   } else if (glint.style.opacity !== '0') {
