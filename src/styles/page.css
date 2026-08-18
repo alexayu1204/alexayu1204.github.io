@@ -142,6 +142,26 @@ body { color: var(--pg-ink); font-family: var(--sans); }
 }
 @media (max-width: 900px) { .gallery--four { grid-template-columns: repeat(2, 1fr); } }
 
+/* ---- photographs ------------------------------------------------------- */
+/* Sized by HEIGHT, not width. At the container's full width a 2:3 portrait would
+   render ~1680px tall — nearly two screens — while a 3:2 landscape sits at 747px,
+   and the column would lurch. Capping the height instead gives every print about
+   the same vertical weight; landscapes come out wider than portraits, which is
+   what actually happens on a wall. */
+.prints { display: flex; flex-direction: column; align-items: center; gap: 9vh; margin-top: 40px; }
+.print { margin: 0; }
+.print img {
+  display: block;
+  max-height: 78vh;
+  max-width: 100%;
+  width: auto; height: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .45), 0 22px 60px rgba(0, 0, 0, .5);
+}
+@media (max-width: 700px) {
+  .prints { gap: 6vh; }
+  .print img { max-height: 62vh; }
+}
+
 .gallery { columns: 3 260px; column-gap: 22px; margin-top: 34px; }
 .gallery__item { break-inside: avoid; margin: 0 0 22px; }
 .gallery__frame {

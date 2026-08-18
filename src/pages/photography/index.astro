@@ -5,16 +5,17 @@ const photos = (await getCollection('photography')).sort((a, b) => a.data.order 
 ---
 <Section
   wide title="photography" kicker="Light, held still"
-  lede="A small, edited wall — magnolia, alpine dusk, a city at night."
   description="Photography by Haoting (Alexa) Yu."
 >
-  <div class="gallery">
-    {photos.map((p) => (
-      <figure class="gallery__item">
-        <a class="gallery__frame" href={p.data.image} target="_blank" rel="noopener">
-          <img src={p.data.thumb} alt={p.data.title} loading="lazy" decoding="async" />
-        </a>
-        <figcaption class="gallery__cap">{p.data.title}</figcaption>
+  <div class="prints">
+    {photos.map((p, i) => (
+      <figure class="print">
+        <img
+          src={p.data.image}
+          alt={p.data.alt}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          decoding="async"
+        />
       </figure>
     ))}
   </div>

@@ -41,7 +41,12 @@ export const collections = {
   photography: defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/photography' }),
     schema: z.object({
-      title: z.string(), order: z.coerce.number(), image: z.string(), thumb: z.string(),
+      title: z.string(), order: z.coerce.number(), image: z.string(),
+      // required, exactly as artwork: the descriptions exist and had never shipped
+      alt: z.string().min(10),
+      // nothing renders a thumbnail any more — at one-per-row the full image is
+      // what displays, and a thumb would only be a second download
+      thumb: z.string().optional(),
     }),
   }),
 };

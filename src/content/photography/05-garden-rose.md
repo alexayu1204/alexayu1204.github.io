@@ -1,8 +1,6 @@
 ---
-title: "Garden Rose"
+title: "Garden rose"
 order: 5
 image: "/assets/photography/garden-rose.jpg"
-thumb: "/assets/photography/garden-rose-thumb.jpg"
+alt: "A white garden rose at dusk with a small hand-drawn figure beside it"
 ---
-
-
