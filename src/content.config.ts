@@ -28,6 +28,14 @@ export const collections = {
     schema: z.object({
       title: z.string(), series: z.string(), order: z.coerce.number(),
       image: z.string(), thumb: z.string(),
+      // which of the three kinds of image this is — an installation view, one of
+      // the works, documentation, or a standalone studio piece. The page treats
+      // each differently; a flat gallery is what lost the work's structure.
+      role: z.enum(['install', 'page', 'documentation', 'work']),
+      year: z.string().optional(),
+      // required: an art page whose images have no accessible description is not
+      // acceptable, and this writing already exists
+      alt: z.string().min(10),
     }),
   }),
   photography: defineCollection({

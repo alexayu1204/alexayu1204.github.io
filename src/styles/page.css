@@ -95,6 +95,53 @@ body { color: var(--pg-ink); font-family: var(--sans); }
 .link:hover, .link:focus-visible { color: #f0d9a6; border-color: #f0d9a6; }
 
 /* ---- galleries: hung, not tiled --------------------------------------- */
+/* ---- artwork ----------------------------------------------------------- */
+.work { margin-top: 54px; }
+.work:first-of-type { margin-top: 34px; }
+.work__title {
+  margin: 0 0 22px; font-family: var(--serif); font-weight: 400;
+  font-size: 1.68rem; line-height: 1.25; letter-spacing: .005em;
+}
+.work__meta {
+  margin: 18px 0 4px; font-size: .78rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--pg-dim);
+}
+.work__credit { margin: 0 0 22px; font-family: var(--serif); font-size: 1.06rem; color: var(--pg-brass); }
+.work__statement { max-width: 62ch; margin: 0; color: #d6cabc; line-height: 1.75; font-size: 1.06rem; }
+
+/* the same moulding the room uses, so the plates still belong to the house */
+.plate {
+  display: block; margin: 0; padding: 9px;
+  background-image:
+    linear-gradient(148deg,#6a501d 0%,#bfa05c 20%,#dfcb96 34%,#8e6f2a 52%,#4f3b12 76%,#a68a48 100%);
+  box-shadow:
+    0 3px 5px rgba(0,0,0,.5), 8px 14px 26px rgba(0,0,0,.44),
+    inset 0 0 0 1px rgba(255,232,190,.13);
+}
+.plate img { display: block; width: 100%; height: auto; background: #241b16; }
+.plate--wide { margin-top: 4px; }
+.plate--doc { margin-top: 38px; max-width: 640px; }
+
+/* five pages in a row, 2018 on the left. The columns step down rather than
+   scroll: five 570x760 portraits across a 390px phone would be 66px wide. */
+.strip {
+  list-style: none; margin: 34px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+}
+.strip__item { margin: 0; }
+.strip__year {
+  margin: 10px 0 0; text-align: center;
+  font-size: .78rem; letter-spacing: .18em; color: var(--pg-dim);
+}
+@media (max-width: 900px) { .strip { grid-template-columns: repeat(3, 1fr); gap: 14px; } }
+@media (max-width: 560px) { .strip { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+.gallery--four {
+  columns: auto; display: grid;
+  grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 28px;
+}
+@media (max-width: 900px) { .gallery--four { grid-template-columns: repeat(2, 1fr); } }
+
 .gallery { columns: 3 260px; column-gap: 22px; margin-top: 34px; }
 .gallery__item { break-inside: avoid; margin: 0 0 22px; }
 .gallery__frame {
@@ -105,7 +152,6 @@ body { color: var(--pg-ink); font-family: var(--sans); }
 }
 .gallery__item:nth-child(3n) .gallery__frame { background-image: linear-gradient(148deg,#2b1a15 0%,#5a3d2f 22%,#74503c 36%,#3a251d 56%,#190e0b 78%,#4a3126 100%); }
 .gallery__item:nth-child(4n) .gallery__frame { background-image: linear-gradient(148deg,#0c090b 0%,#2f272d 24%,#483c46 38%,#1c1619 58%,#080607 80%,#383038 100%); }
-.gallery__frame:hover { transform: translateY(-3px); box-shadow: 0 4px 7px rgba(0,0,0,.5), 14px 24px 42px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,236,198,.22); }
 .gallery__frame img { display: block; width: 100%; height: auto; background: #241b16; }
 .gallery__cap { margin: 9px 2px 0; font-family: var(--serif); font-size: .95rem; color: var(--pg-dim); }
 
