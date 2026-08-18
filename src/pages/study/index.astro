@@ -1,0 +1,42 @@
+---
+import Section from '../../layouts/Section.astro';
+import cv from '../../data/cv.json';
+import site from '../../data/site.json';
+---
+<Section
+  title="The Study" kicker="About & curriculum vitae"
+  lede={site.role}
+  description="About Haoting (Alexa) Yu — education, experience, skills and downloadable CV."
+>
+  {cv.about.map((p) => <p class="entry__body">{p}</p>)}
+
+  <p class="link-row"><a class="link" href={site.cvFile} download>Download the CV (PDF) &darr;</a></p>
+
+  <h2 class="entry__title" style="margin-top:56px">Education</h2>
+  {cv.education.map((e) => (
+    <article class="entry">
+      <h3 class="entry__title" style="font-size:1.34rem">{e.title}</h3>
+      <p class="entry__meta"><span>{e.period}</span></p>
+      <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>
+    </article>
+  ))}
+
+  <h2 class="entry__title" style="margin-top:56px">Experience</h2>
+  {cv.work.map((w) => (
+    <article class="entry">
+      <h3 class="entry__title" style="font-size:1.34rem">{w.title}</h3>
+      <p class="entry__meta"><span>{w.period}</span></p>
+      <ul>{w.points.map((pt) => <li>{pt}</li>)}</ul>
+    </article>
+  ))}
+
+  <h2 class="entry__title" style="margin-top:56px">Skills</h2>
+  <div class="skill-groups">
+    {cv.skills.map((g) => (
+      <div>
+        <h3>{g.group}</h3>
+        <ul>{g.items.map((i) => <li>{i}</li>)}</ul>
+      </div>
+    ))}
+  </div>
+</Section>

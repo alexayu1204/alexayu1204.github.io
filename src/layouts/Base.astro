@@ -1,0 +1,49 @@
+---
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Haoting (Alexa) Yu',
+  alternateName: 'Alexa Yu',
+  jobTitle: 'Creative Computing Researcher',
+  url: 'https://alexayu1204.github.io/',
+  email: 'mailto:alexy1204@yahoo.com',
+  knowsAbout: ['Multimodal generative AI', 'Music information retrieval',
+    'Automatic drum transcription', 'Retrieval-augmented generation',
+    'Authorship in AI art', 'Creative computing', 'Mathematics', 'Operational research'],
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of British Columbia' },
+    { '@type': 'CollegeOrUniversity', name: 'University of Edinburgh' },
+    { '@type': 'CollegeOrUniversity', name: 'University of the Arts London' },
+  ],
+  sameAs: ['https://github.com/alexayu1204', 'https://www.linkedin.com/in/alexa-yu'],
+};
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={url} />
+  <meta name="theme-color" content="#1a1016" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={url} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap" />
+  <set:html value={`<script type="application/ld+json">${JSON.stringify(person)}</script>`} />
+  <slot name="head" />
+</head>
+<body>
+  <slot />
+</body>
+</html>

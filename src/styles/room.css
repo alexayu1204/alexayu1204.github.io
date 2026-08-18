@@ -1,0 +1,319 @@
+/* ============================================================================
+   The room.
+   Only transform and opacity are ever animated per-frame; everything expensive
+   (filters, shadows, gradients) is either static or moves once, during ignition.
+   ========================================================================== */
+
+:root {
+  --bloom: 0;      /* chandelier halo, 0 → 1 */
+  --exposure: 0;   /* room lighting, 0 → 1 */
+
+  --ink: #120d14;
+  --pitch: #07050a;
+  --wall: #4d3039;
+  --walnut: #241a1d;
+  --walnut-lo: #150e11;
+  --brass: #b98f4e;
+  --brass-hi: #f0d69a;
+  --candle: #e8b878;
+  --cream: #efe3c6;
+  --paper: #e6dcc4;
+
+  --serif: 'Cormorant Garamond', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--pitch);
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+body { color: var(--paper); font-family: var(--serif); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---- the box the world lives in --------------------------------------- */
+.room { position: fixed; inset: 0; cursor: default; }
+.room__camera { position: absolute; inset: 0; transform-origin: 0 0; will-change: transform; }
+.stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+.layer { position: absolute; inset: 0; will-change: transform; }
+.layer--vec { overflow: visible; }
+.stage--vec { pointer-events: none; }
+
+/* ---- wall -------------------------------------------------------------- */
+/* Screen space, with overscan so parallax never exposes an edge. The mouldings
+   are pinned to the design canvas's boundaries via vars set in stage.ts, so the
+   room reads as taller or shorter rather than as a letterboxed picture. */
+.room__world { position: absolute; inset: calc(-1 * var(--os)); --os: 34px; }
+.room__world > * { position: absolute; left: 0; right: 0; pointer-events: none; }
+
+.wall__paper {
+  top: calc(var(--canvas-top) + var(--os) + var(--cornice-h) - 2px);
+  bottom: calc(100% - var(--dado-top) - var(--os));
+  background: var(--wall) url('/scene/damask.svg') repeat;
+  background-size: calc(118px * var(--fit-scale, 1)) calc(118px * var(--fit-scale, 1));
+}
+/* a candle-lit wall is never evenly lit: it pools high and centre and dies at the
+   skirting and the corners. This is most of what separates the room from a flat fill. */
+.wall__falloff {
+  top: calc(var(--canvas-top) + var(--os));
+  bottom: calc(100% - var(--dado-top) - var(--os));
+  background:
+    radial-gradient(84% 66% at 50% 2%, rgba(255, 214, 156, .30), rgba(255, 176, 116, .09) 40%, rgba(0,0,0,0) 68%),
+    radial-gradient(128% 108% at 50% 22%, rgba(0,0,0,0) 26%, rgba(22, 11, 22, .48) 66%, rgba(11, 5, 13, .84) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0) 34%, rgba(13, 7, 15, .72) 100%);
+  mix-blend-mode: multiply;
+  opacity: calc(.42 + var(--exposure) * .58);
+}
+.wall__halo {
+  left: var(--halo-x); top: var(--halo-y); right: auto; bottom: auto;
+  width: calc(1500px * var(--fit-scale, 1)); height: calc(1120px * var(--fit-scale, 1));
+  transform: translate(-50%, -42%);
+  background: radial-gradient(ellipse at 50% 42%,
+    rgba(255, 208, 148, .52), rgba(255, 172, 104, .19) 28%, rgba(150, 78, 58, .05) 52%, rgba(0,0,0,0) 70%);
+  mix-blend-mode: screen;
+  opacity: var(--bloom);
+}
+
+.wall__ceiling {
+  top: 0; height: calc(var(--canvas-top) + var(--os) + var(--cornice-h) * .5);
+  background:
+    radial-gradient(70% 160% at 50% 100%, rgba(90, 58, 46, .5), rgba(0,0,0,0) 70%),
+    linear-gradient(to bottom, #0a070c, #16101a);
+}
+.wall__cornice {
+  top: calc(var(--canvas-top) + var(--os)); height: var(--cornice-h);
+  background: linear-gradient(to bottom,
+    #0d090f 0%, #2b1e24 26%, #4a323b 44%, #6a4954 52%, #2c1f25 66%, #150e12 86%, #0b070d 100%);
+  box-shadow: 0 8px 22px rgba(0,0,0,.7);
+}
+.wall__cornice::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px;
+  background: linear-gradient(to bottom, rgba(244, 216, 158, .5), rgba(0,0,0,.4));
+  opacity: calc(var(--exposure) * .85);
+}
+.wall__dado {
+  top: calc(var(--dado-top) + var(--os));
+  height: calc(194px * var(--fit-scale, 1));
+  background: linear-gradient(to bottom, #2b1d23 0%, #1c1317 34%, #100a0d 100%);
+}
+.wall__dado::before { /* the rail */
+  content: ''; position: absolute; left: 0; right: 0; top: 0;
+  height: calc(17px * var(--fit-scale, 1));
+  background: linear-gradient(to bottom, #543a44 0%, #77515e 22%, #3a2830 58%, #150e12 100%);
+  box-shadow: 0 6px 18px rgba(0,0,0,.62);
+}
+.wall__dado::after { /* recessed panels, lit along their top edge only */
+  content: ''; position: absolute;
+  left: calc(46px * var(--fit-scale, 1)); right: calc(46px * var(--fit-scale, 1));
+  top: calc(46px * var(--fit-scale, 1)); bottom: calc(38px * var(--fit-scale, 1));
+  background: repeating-linear-gradient(to right,
+    rgba(255, 218, 168, .05) 0 calc(2px * var(--fit-scale, 1)),
+    rgba(0, 0, 0, .42) calc(2px * var(--fit-scale, 1)) calc(7px * var(--fit-scale, 1)),
+    rgba(0,0,0,0) calc(7px * var(--fit-scale, 1)) calc(228px * var(--fit-scale, 1)));
+  border-top: 1px solid rgba(255, 220, 170, .09);
+  border-bottom: 1px solid rgba(0,0,0,.55);
+  opacity: calc(.3 + var(--exposure) * .7);
+}
+.wall__floor {
+  top: calc(var(--canvas-bottom) + var(--os)); bottom: 0;
+  background: linear-gradient(to bottom, #0d080f, #060409);
+}
+/* the room turns away at both edges */
+.wall__corner { top: 0; bottom: 0; width: calc(200px * var(--fit-scale, 1)); }
+.wall__corner--l { left: 0; right: auto; background: linear-gradient(to right, rgba(8, 4, 10, .9), rgba(8, 4, 10, 0)); }
+.wall__corner--r { right: 0; left: auto; background: linear-gradient(to left,  rgba(8, 4, 10, .9), rgba(8, 4, 10, 0)); }
+
+/* the chandelier's falloff lands on the pictures as well as the paper behind them —
+   without this the frames read as stickers pasted onto a lit wall */
+.room__cast {
+  position: absolute; inset: 0;
+  background: radial-gradient(116% 96% at 50% 14%,
+    rgba(0,0,0,0) 30%, rgba(20, 10, 22, .40) 68%, rgba(10, 5, 12, .74) 100%);
+  mix-blend-mode: multiply;
+  opacity: var(--exposure);
+  pointer-events: none;
+}
+
+/* the room in shadow before the chandelier catches */
+.room__shade {
+  position: absolute; inset: 0;
+  background: #2a1b34;
+  mix-blend-mode: multiply;
+  opacity: calc((1 - var(--exposure)) * .72);
+  pointer-events: none;
+}
+
+/* ---- frames ------------------------------------------------------------ */
+.frame {
+  position: absolute;
+  opacity: 0;                       /* ignition fades these in, nearest the light first */
+  padding: 11px;
+  background-image: var(--moulding);
+  transform: rotate(var(--rot, 0deg));
+  transform-origin: 50% 8%;         /* hung from a nail near the top, so it swings from there */
+  box-shadow:
+    0 2px 3px rgba(0,0,0,.5),
+    6px 10px 20px rgba(0,0,0,.42),
+    inset 0 0 0 1px rgba(255, 232, 190, .13),
+    inset 0 0 12px rgba(0,0,0,.5);
+  text-decoration: none;
+  will-change: transform, opacity;
+}
+.frame__well {
+  display: block; width: 100%; height: 100%;
+  padding: 4px;
+  background: var(--mat);
+  box-shadow: inset 0 2px 7px rgba(0,0,0,.75);
+}
+.frame__art {
+  display: block; width: 100%; height: 100%;
+  background-size: cover; background-position: center;
+}
+.frame__varnish {
+  position: absolute; inset: 11px;
+  background: linear-gradient(152deg, rgba(255, 236, 200, .16) 0%, rgba(255,255,255,0) 34%);
+  pointer-events: none;
+}
+.frame__glint {
+  position: absolute; inset: 0;
+  background: linear-gradient(145deg, rgba(255, 240, 205, .5) 0%, rgba(255, 240, 205, 0) 30%);
+  opacity: 0;
+  transition: opacity 420ms cubic-bezier(.22, .61, .36, 1);
+  pointer-events: none;
+}
+
+.is-gilt   { --moulding: linear-gradient(148deg,#6a501d 0%,#bfa05c 20%,#dfcb96 34%,#8e6f2a 52%,#4f3b12 76%,#a68a48 100%); --mat: #241c15; }
+.is-walnut { --moulding: linear-gradient(148deg,#2b1a15 0%,#5a3d2f 22%,#74503c 36%,#3a251d 56%,#190e0b 78%,#4a3126 100%); --mat: #241b16; }
+.is-brass  { --moulding: linear-gradient(148deg,#553b14 0%,#a37e44 22%,#c6ac72 36%,#7c5c26 56%,#422e11 78%,#927340 100%); --mat: #1f1911; }
+.is-ebony  { --moulding: linear-gradient(148deg,#0c090b 0%,#2f272d 24%,#483c46 38%,#1c1619 58%,#080607 80%,#383038 100%); --mat: #171317; }
+
+.is-oval, .is-oval .frame__well, .is-oval .frame__art, .is-oval .frame__glint, .is-oval .frame__varnish { border-radius: 50%; }
+.is-tondo, .is-tondo .frame__well, .is-tondo .frame__art, .is-tondo .frame__glint, .is-tondo .frame__varnish { border-radius: 50%; }
+.is-tondo { padding: 14px; }
+.is-arch, .is-arch .frame__well, .is-arch .frame__art, .is-arch .frame__glint, .is-arch .frame__varnish {
+  border-radius: 50% 50% 4px 4px / 34% 34% 3px 3px;
+}
+
+/* a wall label, the way a room like this would actually caption a picture */
+.frame__label {
+  position: absolute; left: 50%; top: calc(100% + 12px);
+  transform: translateX(-50%) translateY(-3px);
+  font-family: var(--serif);
+  font-size: 19px; font-style: italic; letter-spacing: .04em;
+  color: rgba(240, 226, 198, .88);
+  text-shadow: 0 1px 3px rgba(0,0,0,.85);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 380ms ease 180ms, transform 380ms cubic-bezier(.22,.61,.36,1) 180ms;
+  pointer-events: none;
+}
+
+/* hover and keyboard focus get the *same* treatment — the frame acknowledges you
+   however you arrived. Slow and small: nothing bounces, nothing pops. */
+.frame--nav {
+  cursor: pointer;
+  transition:
+    transform 420ms cubic-bezier(.22, .61, .36, 1),
+    box-shadow 420ms cubic-bezier(.22, .61, .36, 1),
+    filter 420ms ease;
+}
+.frame--nav:hover, .frame--nav:focus-visible {
+  transform: rotate(calc(var(--rot, 0deg) * .45)) translateY(-3px) scale(1.011);
+  filter: brightness(1.07) saturate(1.04);
+  box-shadow:
+    0 3px 5px rgba(0,0,0,.5),
+    12px 22px 40px rgba(0,0,0,.5),
+    inset 0 0 0 1px rgba(255, 236, 198, .22),
+    inset 0 0 12px rgba(0,0,0,.45);
+  outline: none;
+}
+.frame--nav:hover .frame__glint, .frame--nav:focus-visible .frame__glint { opacity: 1; }
+.frame--nav:hover .frame__label, .frame--nav:focus-visible .frame__label { opacity: 1; transform: translateX(-50%) translateY(0); }
+.frame--nav:focus-visible { box-shadow: 0 0 0 2px rgba(240, 214, 154, .55), 12px 22px 40px rgba(0,0,0,.5); }
+.frame.is-entering { z-index: 40; }
+
+.frame--orb { cursor: default; }
+[data-frame-id='orb-key'] { cursor: pointer; }
+[data-frame-id='orb-key']:hover .frame__glint,
+[data-frame-id='orb-key']:focus-visible .frame__glint { opacity: .8; }
+
+/* frames are inert until there is light to see them by — no tabbing into the dark */
+.room[data-lit='0'] .frame { pointer-events: none; }
+
+/* ---- overlays ---------------------------------------------------------- */
+.room__dark, .room__dust {
+  position: fixed; inset: 0; pointer-events: none;
+}
+.room__dark { z-index: 20; }
+.room__dust { z-index: 21; mix-blend-mode: screen; }
+.room__grain {
+  position: fixed; inset: 0; z-index: 22; pointer-events: none;
+  background: url('/scene/grain.svg') repeat;
+  background-size: 180px 180px;
+  opacity: .055;
+  mix-blend-mode: overlay;
+}
+.room__curtain {
+  position: fixed; inset: 0; z-index: 30; pointer-events: none;
+  background: #1a1016;
+  opacity: 0;
+}
+
+/* ---- controls ---------------------------------------------------------- */
+.pull-hit {
+  position: fixed; z-index: 25;
+  appearance: none; border: 0; background: transparent; padding: 0;
+  cursor: grab; touch-action: none;
+}
+.pull-hit:active { cursor: grabbing; }
+.pull-hit:focus-visible { outline: 2px solid rgba(240, 214, 154, .6); outline-offset: 4px; border-radius: 40px; }
+.pull-hit[disabled] { display: none; }
+html.is-pulling, html.is-pulling * { cursor: grabbing !important; user-select: none; }
+
+.skip, .mute {
+  position: fixed; z-index: 26; right: 22px; bottom: 20px;
+  appearance: none; border: 0; background: transparent;
+  font-family: var(--serif); font-size: 14px; font-style: italic;
+  letter-spacing: .08em; color: rgba(232, 216, 186, .5);
+  cursor: pointer; padding: 8px 10px;
+  opacity: 0; transition: opacity 900ms ease, color 300ms ease;
+}
+.skip[data-visible='1'] { opacity: .55; }
+.skip:hover, .mute:hover { color: rgba(245, 232, 206, .95); opacity: 1; }
+.skip:focus-visible, .mute:focus-visible {
+  opacity: 1; outline: 1px solid rgba(240, 214, 154, .5); outline-offset: 2px; border-radius: 3px;
+}
+.mute { opacity: .34; right: 22px; bottom: 20px; font-size: 15px; }
+.mute::after { content: 'sound off'; }
+html[data-muted='false'] .mute::after { content: 'sound on'; }
+
+/* a real way through for keyboards, visible the instant it is focused */
+.room__escape {
+  position: fixed; z-index: 40; left: 50%; top: 14px; transform: translate(-50%, -160%);
+  background: #1d1319; color: var(--paper); border: 1px solid rgba(240, 214, 154, .35);
+  padding: 10px 18px; border-radius: 3px; font-family: var(--serif); font-size: 15px;
+  text-decoration: none; transition: transform 220ms ease;
+}
+.room__escape:focus { transform: translate(-50%, 0); }
+
+/* ---- reduced motion ---------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .frame--nav { transition: filter 120ms ease; }
+  .frame--nav:hover, .frame--nav:focus-visible { transform: rotate(var(--rot, 0deg)); }
+  .frame__label { transition: opacity 120ms ease; }
+  .room__dust { display: none; }
+}
+
+/* on touch the cord is never hidden: a fingertip covers exactly what it reveals,
+   so the pull sits in a faint ember from the start and only the drag is required */
+html.is-coarse .room[data-lit='0'] #pull-bob { filter: drop-shadow(0 0 12px rgba(232, 176, 110, .75)); }
+html.is-coarse .room[data-lit='0'] #pull-rope { opacity: .9; }

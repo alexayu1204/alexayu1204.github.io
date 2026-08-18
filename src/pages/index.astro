@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import { FRAMES, NAV_FRAMES } from '../scene/composition';
+import Frame from '../scene/Frame.astro';
+import Chandelier from '../scene/Chandelier.astro';
+import Pull from '../scene/Pull.astro';
+import '../styles/room.css';
+---
+<Base
+  title="Haoting (Alexa) Yu"
+  description="Creative Computing researcher, artist and photographer. Multimodal AI, music information retrieval, and authorship in AI art."
+>
+  <a class="room__escape" href="#index">Skip the room</a>
+
+  <div class="room" id="room" data-lit="0">
+    <div class="room__camera" id="camera">
+
+      <!-- The room itself is laid out in SCREEN space so wall, ceiling and floor
+           always reach the viewport edges; only their mouldings are pinned to the
+           design canvas's own boundaries. -->
+      <div class="room__world" data-depth="0.2" aria-hidden="true">
+        <div class="wall__paper"></div>
+        <div class="wall__falloff"></div>
+        <div class="wall__halo"></div>
+        <div class="wall__ceiling"></div>
+        <div class="wall__cornice"></div>
+        <div class="wall__dado"></div>
+        <div class="wall__floor"></div>
+        <div class="wall__corner wall__corner--l"></div>
+        <div class="wall__corner wall__corner--r"></div>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="layer layer--frames" data-depth="0.5">
+          {FRAMES.map((def) => <Frame def={def} />)}
+        </div>
+      </div>
+
+      <div class="room__cast" aria-hidden="true"></div>
+      <div class="room__shade" aria-hidden="true"></div>
+
+      <div class="stage stage--vec">
+        <svg class="layer layer--vec" id="room-vec" data-depth="0.85"
+             viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+          <Chandelier />
+          <Pull />
+        </svg>
+      </div>
+    </div>
+
+    <canvas class="room__dark" id="dark" aria-hidden="true"></canvas>
+    <canvas class="room__dust" id="dust" aria-hidden="true"></canvas>
+    <div class="room__grain" aria-hidden="true"></div>
+    <div class="room__curtain" id="curtain" aria-hidden="true"></div>
+
+    <button class="pull-hit" id="pull-hit" type="button" aria-label="Pull the light cord"></button>
+    <button class="skip" id="skip" type="button">turn on the light</button>
+    <button class="mute" id="mute" type="button" hidden aria-label="Toggle sound"></button>
+  </div>
+
+  <!-- Real content, present in the HTML from the first byte. A homepage that is only a
+       black canvas is invisible to search engines and to anyone this link is sent to. -->
+  <h1 class="sr-only">Haoting (Alexa) Yu — Creative Computing researcher, artist and photographer</h1>
+  <p class="sr-only">
+    Multimodal generative AI, music information retrieval, and the governance and
+    authorship of creative machines. MRes Creative Computing, University of the Arts
+    London; MSc Operational Research with Data Science, Edinburgh; BSc Mathematics, UBC.
+  </p>
+  <nav id="index" class="sr-only" aria-label="Sections">
+    <ul>
+      {NAV_FRAMES.map((f) => <li><a href={f.href}>{f.title}</a></li>)}
+    </ul>
+  </nav>
+
+  <script>
+    import { bootRoom } from '../room/index';
+    bootRoom();
+  </script>
+</Base>

@@ -1,0 +1,88 @@
+---
+/**
+ * Seven candles on six swept arms. Drawn at the hang point: the chain runs up out of
+ * frame, the body hangs below. Every flame is an independent element so ignition can
+ * stagger them unevenly — a chandelier whose candles all catch at once reads electric,
+ * and this room is brass and wax.
+ */
+// six arms that sweep down and back up, the way a cast-brass chandelier actually does
+const arms = [
+  { x: 156, y: -66, c1: '54,26', c2: '140,6' },
+  { x: -156, y: -66, c1: '-54,26', c2: '-140,6' },
+  { x: 104, y: -86, c1: '38,20', c2: '94,-12' },
+  { x: -104, y: -86, c1: '-38,20', c2: '-94,-12' },
+  { x: 52, y: -100, c1: '20,14', c2: '48,-30' },
+  { x: -52, y: -100, c1: '-20,14', c2: '-48,-30' },
+];
+const candles = arms.map((a, i) => ({ x: a.x, y: a.y, i }));
+---
+<g id="chandelier-group">
+  <defs>
+    <linearGradient id="brassV" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6d4f22"/>
+      <stop offset=".32" stop-color="#c9a35a"/>
+      <stop offset=".52" stop-color="#efd79b"/>
+      <stop offset=".72" stop-color="#b3873f"/>
+      <stop offset="1" stop-color="#5e421c"/>
+    </linearGradient>
+    <radialGradient id="flameG">
+      <stop offset="0" stop-color="#fff6dd"/>
+      <stop offset=".45" stop-color="#ffd489"/>
+      <stop offset="1" stop-color="#e07a2a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="candleGlow">
+      <stop offset="0" stop-color="#ffd79a" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#ffb060" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- chain up to the ceiling -->
+  <path d="M0 -168 V -100" stroke="#3a2c16" stroke-width="6" stroke-linecap="round"/>
+  <path d="M0 -168 V -100" stroke="url(#brassV)" stroke-width="4"
+        stroke-dasharray="8 5" stroke-linecap="round"/>
+
+  <!-- central column: a tall urn, which is what gives the fixture its silhouette -->
+  <ellipse cx="0" cy="-100" rx="15" ry="6.5" fill="url(#brassV)"/>
+  <path d="M-8 -100 C-19 -82 -23 -62 -13 -48 C-24 -36 -24 -20 -11 -10
+           C-18 8 -16 24 0 38 C16 24 18 8 11 -10 C24 -20 24 -36 13 -48
+           C23 -62 19 -82 8 -100Z" fill="url(#brassV)"/>
+  <path d="M-10 -48 H10" stroke="#4a381c" stroke-width="1.4" opacity=".7"/>
+  <path d="M-12 -10 H12" stroke="#4a381c" stroke-width="1.4" opacity=".7"/>
+  <ellipse cx="0" cy="-72" rx="20" ry="7" fill="url(#brassV)"/>
+  <path d="M0 38 C7 47 7 58 0 66 C-7 58 -7 47 0 38Z" fill="url(#brassV)"/>
+
+  <!-- arms -->
+  {arms.map((a) => (
+    <g>
+      <path d={`M0 -2 C${a.c1} ${a.c2} ${a.x} ${a.y}`} fill="none"
+            stroke="#3a2c16" stroke-width="8.5" stroke-linecap="round"/>
+      <path d={`M0 -2 C${a.c1} ${a.c2} ${a.x} ${a.y}`} fill="none"
+            stroke="url(#brassV)" stroke-width="5.6" stroke-linecap="round"/>
+      <path d={`M${a.x * 0.62} ${a.y * 0.34 + 16} v14`} stroke="url(#brassV)"
+            stroke-width="1.4" stroke-linecap="round" opacity=".8"/>
+      <ellipse cx={a.x * 0.62} cy={a.y * 0.34 + 38} rx="4.5" ry="8" fill="#e4edf3" opacity=".3"/>
+    </g>
+  ))}
+
+  <!-- candles -->
+  {candles.map((c) => (
+    <g class="candle" style="--flame:0" data-candle={c.i}>
+      <circle cx={c.x} cy={c.y - 26} r="46" fill="url(#candleGlow)" class="candle__pool"/>
+      <ellipse cx={c.x} cy={c.y} rx="11" ry="4.5" fill="url(#brassV)"/>
+      <path d={`M${c.x - 5.5} ${c.y - 2} L${c.x - 4.2} ${c.y - 26} L${c.x + 4.2} ${c.y - 26} L${c.x + 5.5} ${c.y - 2}Z`}
+            fill="#f2e6cd"/>
+      <path d={`M${c.x - 5.5} ${c.y - 2} L${c.x - 4.2} ${c.y - 26} L${c.x - 1} ${c.y - 26} L${c.x - 2} ${c.y - 2}Z`}
+            fill="#fffaf0" opacity=".6"/>
+      <path d={`M${c.x + 3.4} ${c.y - 24} q3 6 -0.6 9`} stroke="#e2d3b4" stroke-width="1.6"
+            fill="none" stroke-linecap="round"/>
+      <path d={`M${c.x} ${c.y - 26} v-3`} stroke="#3a2f22" stroke-width="1.2"/>
+      <g class="candle__flame">
+        <circle cx={c.x} cy={c.y - 34} r="17" fill="url(#flameG)" opacity=".55"/>
+        <path d={`M${c.x} ${c.y - 44} C${c.x + 5} ${c.y - 36} ${c.x + 4} ${c.y - 29} ${c.x} ${c.y - 27}
+                  C${c.x - 4} ${c.y - 29} ${c.x - 5} ${c.y - 36} ${c.x} ${c.y - 44}Z`} fill="#ffd98e"/>
+        <path d={`M${c.x} ${c.y - 39} C${c.x + 2.4} ${c.y - 34} ${c.x + 2} ${c.y - 30} ${c.x} ${c.y - 29}
+                  C${c.x - 2} ${c.y - 30} ${c.x - 2.4} ${c.y - 34} ${c.x} ${c.y - 39}Z`} fill="#fff8e2"/>
+      </g>
+    </g>
+  ))}
+</g>

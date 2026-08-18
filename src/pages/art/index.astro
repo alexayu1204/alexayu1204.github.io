@@ -1,0 +1,30 @@
+---
+import Section from '../../layouts/Section.astro';
+import { getCollection } from 'astro:content';
+import site from '../../data/site.json';
+const all = (await getCollection('artwork')).sort((a, b) => a.data.order - b.data.order);
+const series = [...new Set(all.map((a) => a.data.series))];
+---
+<Section
+  wide title="Artwork" kicker="Studio & installation"
+  lede="Inbox Archive — Learning to Sound Like Myself, shown in The Mosaic of Becoming at the Nunnery Gallery, London — alongside ink, mixed media and small abstract work."
+  description="Artwork by Haoting (Alexa) Yu: the Inbox Archive installation, Chinese ink-and-brush painting, mixed media and abstract work."
+>
+  {site.artistStatement && <p class="entry__body" style="max-width:62ch">{site.artistStatement}</p>}
+
+  {series.map((s) => (
+    <section>
+      <h2 class="entry__title" style="margin-top:46px">{s}</h2>
+      <div class="gallery">
+        {all.filter((a) => a.data.series === s).map((a) => (
+          <figure class="gallery__item">
+            <a class="gallery__frame" href={a.data.image} target="_blank" rel="noopener">
+              <img src={a.data.thumb} alt={a.data.title} loading="lazy" decoding="async" />
+            </a>
+            <figcaption class="gallery__cap">{a.data.title}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  ))}
+</Section>

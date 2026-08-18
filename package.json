@@ -1,0 +1,22 @@
+{
+  "name": "alexayu1204-room",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "verify:wall": "node scripts/verify-wall.mjs",
+    "verify:easing": "node scripts/verify-easing.mjs",
+    "verify": "npm run verify:wall && npm run verify:easing",
+    "art": "python3 scripts/make-paintings.py && python3 scripts/make-wallpaper.py",
+    "content": "python3 scripts/extract-content.py",
+    "shots": "bash scripts/capture.sh"
+  },
+  "dependencies": {
+    "astro": "^5.16.2",
+    "gsap": "^3.13.0"
+  }
+}

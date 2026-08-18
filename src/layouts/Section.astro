@@ -1,0 +1,36 @@
+---
+import Base from './Base.astro';
+import '../styles/page.css';
+interface Props { title: string; kicker: string; lede?: string; description: string; wide?: boolean }
+const { title, kicker, lede, description, wide = false } = Astro.props;
+---
+<Base title={`${title} — Haoting (Alexa) Yu`} description={description}>
+  <div class:list={['page', wide && 'page--wide']} id="page">
+    <div class="page__wall" aria-hidden="true"></div>
+    <div class="page__grain" aria-hidden="true"></div>
+
+    <header class="page__head">
+      <a class="page__back" href="/">&larr; back to the room</a>
+      <p class="page__kicker">{kicker}</p>
+      <h1 class="page__title">{title}</h1>
+      {lede && <p class="page__lede">{lede}</p>}
+      <hr class="page__rule" />
+    </header>
+
+    <div class="page__inner"><slot /></div>
+
+    <footer class="page__foot">
+      <span>Haoting (Alexa) Yu</span>
+      <a href="/">Return to the room</a>
+    </footer>
+
+    <div class="page__curtain" aria-hidden="true"></div>
+  </div>
+
+  <script>
+    // Arrive on the next frame so the curtain paints first — otherwise the
+    // transition can be skipped entirely and the page snaps in.
+    const page = document.getElementById('page')!;
+    requestAnimationFrame(() => requestAnimationFrame(() => page.classList.add('is-arrived')));
+  </script>
+</Base>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+<style>:root{--m1:#573742;--m2:#42282f;--m3:#5e3d49}</style>
+<rect width="160" height="160" fill="#4d3039"/>
+<g opacity=".85">
+<g transform="translate(80 80) scale(1.0)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g>
+<g transform="translate(0 0) scale(1.0)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g><g transform="translate(160 0) scale(1.0)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g><g transform="translate(0 160) scale(1.0)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g><g transform="translate(160 160) scale(1.0)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g>
+<g transform="translate(0 80) scale(0.42)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g><g transform="translate(160 80) scale(0.42)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g><g transform="translate(80 0) scale(0.42)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g><g transform="translate(80 160) scale(0.42)" >
+  <path d="M0 -30 C7 -19 10 -7 0 7 C-10 -7 -7 -19 0 -30Z" fill="var(--m1)"/>
+  <path d="M-3 3 C-16 -4 -23 -16 -19 -26 C-10 -21 -4 -10 -3 3Z" fill="var(--m2)"/>
+  <path d="M3 3 C16 -4 23 -16 19 -26 C10 -21 4 -10 3 3Z" fill="var(--m2)"/>
+  <path d="M-9 6 L9 6 L7 13 L-7 13Z" fill="var(--m1)"/>
+  <path d="M0 13 C4 20 3 27 0 31 C-3 27 -4 20 0 13Z" fill="var(--m2)"/>
+  <path d="M-16 12 C-24 18 -26 27 -21 32 C-16 27 -16 19 -16 12Z" fill="var(--m2)" opacity=".8"/>
+  <path d="M16 12 C24 18 26 27 21 32 C16 27 16 19 16 12Z" fill="var(--m2)" opacity=".8"/>
+  <circle cx="0" cy="-33" r="2.4" fill="var(--m3)"/>
+</g>
+</g>
+</svg>

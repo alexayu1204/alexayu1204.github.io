@@ -1,49 +1,8 @@
-# System files
-.DS_Store
-Thumbs.db
-*/.DS_Store
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Desktop.ini
-
-# Editor and IDE files
-.cursor/
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-.project
-*.swp
-*.swo
-.vs/
-
-# Build and temp files
 node_modules/
 dist/
-build/
-.tmp/
-.sass-cache/
-npm-debug.log
-yarn-error.log
-package-lock.json
-yarn.lock
-
-# Environment variables
+.astro/
+.DS_Store
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Log files
-logs/
+.vercel
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Backup files
-*.bak
-*.backup
-*~
+.playwright-mcp/

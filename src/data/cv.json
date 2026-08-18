@@ -1,0 +1,143 @@
+{
+ "about": [
+  "I am a researcher and creative technologist pursuing an MRes in Creative Computing at the University of the Arts London. My work sits at the intersection of AI and creative practice — multimodal retrieval-augmented generation, automatic drum transcription, and authorship in AI art. It builds on a quantitative foundation: a BSc in Mathematics (UBC) and an MSc in Operational Research with Data Science (Edinburgh), plus hands-on machine learning and data work in industry.",
+  "Yet my creative journey truly began in 2016, when I wrote my first poem and discovered an unparalleled sense of fulfillment. Despite following a path in science and engineering, I have never lost my love for the creative arts. Today I integrate photography, poetry, and design thinking into my work, marrying technical precision with artistic expression."
+ ],
+ "work": [
+  {
+   "title": "Laboratory Quality Engineer - Fugro",
+   "period": "Aug 2024 – Mar 2025",
+   "points": [
+    "Calibrate transducers and manage the Microsoft Access database to maintain calibration records, test results, and equipment performance data.",
+    "Developed a Python script to automate data processing workflows in Origin, improving efficiency and reproducibility in geotechnical analysis.",
+    "Initiated an inter-lab comparison project using R, establishing frameworks for benchmarking and enhancing lab quality control across multiple locations.",
+    "Implemented a YOLO v9-based machine learning model for soil particle/grain detection, advancing automation in sediment analysis."
+   ]
+  },
+  {
+   "title": "Data Analyst Intern - Shanghai BaiLiYuan Pharmaceutical Group Co. (Shanghai, China)",
+   "period": "Dec 2023 - June 2024",
+   "points": [
+    "Conducted data analysis on pharmaceutical sales and distribution, leveraging Python (Pandas, NumPy) to analyse large datasets on product performance across regions.",
+    "Queried databases with SQL to extract inventory data, optimizing stock replenishment and reducing overstocking by 15%.",
+    "Presented key findings to senior management through Power BI and Tableau, highlighting the correlation between marketing strategies and sales growth."
+   ]
+  },
+  {
+   "title": "Mathematics Science Instructor - HD Education (Remote)",
+   "period": "May 2022 - Nov 2023",
+   "points": [
+    "Led one-on-one and group tutoring sessions for undergraduate-level calculus, algebra, and statistics.",
+    "Developed customized instructional approaches to clarify complex theories and foster solid analytical skills.",
+    "Guided students through exam preparations and coursework, enhancing academic performance."
+   ]
+  },
+  {
+   "title": "Math Department Teaching Assistant - UBC Faculty of Science",
+   "period": "Sep 2021 - May 2022",
+   "points": [
+    "Prepared course materials and weekly lab assignments for a variety of math modules.",
+    "Provided hands-on workshop support, helping students reinforce core mathematical principles."
+   ]
+  },
+  {
+   "title": "Doctoral Examinations Student Assistant - UBC Graduate & Postdoctoral Studies",
+   "period": "Sep 2021 - May 2022",
+   "points": [
+    "Managed administrative duties, ensuring accurate maintenance of doctoral examination data.",
+    "Utilized Microsoft Excel for data collection, analysis, and record-keeping across multiple programs."
+   ]
+  },
+  {
+   "title": "Consultant Intern - Ipsos Strategy3 (Beijing, China)",
+   "period": "April 2021 - Aug 2021",
+   "points": [
+    "Researched the Chinese radiotherapy market, consolidating findings in Excel for further analysis.",
+    "Conducted in-depth interviews and maintained data integrity with SQL-based repositories.",
+    "Delivered final reports to Varian, supported by Power BI dashboards and PowerPoint slides."
+   ]
+  },
+  {
+   "title": "Investment Analyst Intern - Britbots Fund (London, UK - Remote)",
+   "period": "May 2020 - Sep 2020",
+   "points": [
+    "Analyzed China's industrial robotics sector, performing DCF, SWOT, and P/S analyses for ZOA Robotics.",
+    "Explored various funding sources and created Power BI dashboards to guide investment decisions.",
+    "Used Python (Scikit-learn) data modeling and Tableau to predict emerging market segmentation trends."
+   ]
+  }
+ ],
+ "education": [
+  {
+   "title": "BSc in Mathematics – University of British Columbia",
+   "period": "Sep 2018 - May 2022",
+   "points": [
+    "Accolades: Dean's honor list (2020); Dean's list (2018)",
+    "Core Courses: Calculus I-IV, Linear Algebra, Linear Programming, Partial Differential Equations, Probability, Stochastic Process"
+   ]
+  },
+  {
+   "title": "MSc in Operational Research with Data Science – University of Edinburgh",
+   "period": "Sep 2022 – Sep 2023",
+   "points": [
+    "Result: Merit",
+    "Core Courses: Fundamentals of Operational Research, Fundamentals of Optimization, Operational Research, Applied Machine Learning, Reinforcement Learning, Biomedical Data Science"
+   ]
+  },
+  {
+   "title": "MRes in Creative Computing – University of the Arts London",
+   "period": "Sep 2025 – Sep 2026",
+   "points": [
+    "Focus: Practice-based research at the intersection of artificial intelligence and creative practice — multimodal generative AI, music information retrieval, and the governance, explainability, and authorship of AI-driven creative systems."
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "group": "Languages & Tools",
+   "items": [
+    "Python",
+    "R",
+    "SQL",
+    "MATLAB",
+    "C++",
+    "JavaScript"
+   ]
+  },
+  {
+   "group": "Machine Learning & AI",
+   "items": [
+    "Machine Learning",
+    "PyTorch",
+    "TensorFlow",
+    "Scikit-learn",
+    "Multimodal AI",
+    "Generative AI",
+    "LLMs (GPT, Claude, Gemini)",
+    "Prompt Engineering",
+    "LangChain"
+   ]
+  },
+  {
+   "group": "Data & Visualization",
+   "items": [
+    "NumPy",
+    "Pandas",
+    "SciPy",
+    "Power BI",
+    "Tableau",
+    "Origin"
+   ]
+  },
+  {
+   "group": "Creative & Communication",
+   "items": [
+    "Textile Design",
+    "Writing & Photography",
+    "Content Creation",
+    "Mandarin (Native)",
+    "English (Fluent)"
+   ]
+  }
+ ]
+}

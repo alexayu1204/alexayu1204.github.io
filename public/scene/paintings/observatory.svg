@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="240" height="180" role="img"><filter id="g1" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="1"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.30"/></feComponentTransfer></filter>
+<linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#12111a"/><stop offset=".62" stop-color="#2a2740"/>
+  <stop offset="1" stop-color="#5c4a52"/></linearGradient>
+<rect width="240" height="180" fill="url(#sky1)"/>
+<circle cx="58.8" cy="14.0" r="1.1" fill="#efe3c6" opacity="0.51"/><circle cx="24.9" cy="5.1" r="0.9" fill="#efe3c6" opacity="0.69"/><circle cx="181.5" cy="26.7" r="0.9" fill="#efe3c6" opacity="0.40"/><circle cx="44.1" cy="14.4" r="0.7" fill="#efe3c6" opacity="0.77"/><circle cx="9.9" cy="71.6" r="0.9" fill="#efe3c6" opacity="0.69"/><circle cx="48.9" cy="36.2" r="0.9" fill="#efe3c6" opacity="0.30"/><circle cx="144.6" cy="74.9" r="0.7" fill="#efe3c6" opacity="0.35"/><circle cx="113.9" cy="12.6" r="0.9" fill="#efe3c6" opacity="0.25"/><circle cx="71.7" cy="78.4" r="0.9" fill="#efe3c6" opacity="0.72"/><circle cx="121.9" cy="47.3" r="0.9" fill="#efe3c6" opacity="0.49"/><circle cx="41.4" cy="35.6" r="0.6" fill="#efe3c6" opacity="0.29"/><circle cx="111.3" cy="109.7" r="1.1" fill="#efe3c6" opacity="0.64"/><circle cx="37.7" cy="75.1" r="0.6" fill="#efe3c6" opacity="0.48"/><circle cx="51.0" cy="70.7" r="0.9" fill="#efe3c6" opacity="0.35"/><circle cx="105.1" cy="66.0" r="0.7" fill="#efe3c6" opacity="0.75"/><circle cx="27.4" cy="9.6" r="0.7" fill="#efe3c6" opacity="0.40"/><circle cx="139.1" cy="95.2" r="0.6" fill="#efe3c6" opacity="0.43"/><circle cx="45.2" cy="52.1" r="0.6" fill="#efe3c6" opacity="0.45"/><circle cx="23.2" cy="106.2" r="0.9" fill="#efe3c6" opacity="0.65"/><circle cx="226.7" cy="4.9" r="0.9" fill="#efe3c6" opacity="0.43"/><circle cx="39.5" cy="72.8" r="0.6" fill="#efe3c6" opacity="0.41"/><circle cx="48.4" cy="50.5" r="0.7" fill="#efe3c6" opacity="0.39"/><circle cx="142.9" cy="20.0" r="0.6" fill="#efe3c6" opacity="0.45"/><circle cx="109.5" cy="42.1" r="0.9" fill="#efe3c6" opacity="0.80"/><circle cx="136.6" cy="50.0" r="0.7" fill="#efe3c6" opacity="0.48"/><circle cx="52.2" cy="9.3" r="0.6" fill="#efe3c6" opacity="0.66"/><circle cx="142.2" cy="106.9" r="0.6" fill="#efe3c6" opacity="0.55"/><circle cx="139.2" cy="37.4" r="0.6" fill="#efe3c6" opacity="0.32"/><circle cx="126.8" cy="85.8" r="1.1" fill="#efe3c6" opacity="0.61"/><circle cx="50.5" cy="24.6" r="1.1" fill="#efe3c6" opacity="0.48"/><circle cx="12.6" cy="48.1" r="0.7" fill="#efe3c6" opacity="0.61"/><circle cx="103.3" cy="26.1" r="0.7" fill="#efe3c6" opacity="0.27"/><circle cx="63.0" cy="28.9" r="0.7" fill="#efe3c6" opacity="0.67"/><circle cx="100.8" cy="31.0" r="0.9" fill="#efe3c6" opacity="0.28"/><circle cx="219.3" cy="63.5" r="1.1" fill="#efe3c6" opacity="0.78"/><circle cx="155.5" cy="96.2" r="0.6" fill="#efe3c6" opacity="0.52"/><circle cx="25.6" cy="25.6" r="0.7" fill="#efe3c6" opacity="0.44"/><circle cx="156.4" cy="88.5" r="0.9" fill="#efe3c6" opacity="0.70"/>
+<circle cx="196" cy="34" r="11" fill="#efe3c6" opacity=".82"/>
+<circle cx="191" cy="31" r="11" fill="#2a2740" opacity=".95"/>
+<!-- far ridge -->
+<path d="M0 132 L34 118 L62 126 L96 106 L128 120 L166 104 L200 118 L240 108 L240 180 L0 180Z" fill="#3a3346" opacity=".85"/>
+<!-- near hill -->
+<path d="M0 152 L46 140 L92 148 L140 134 L190 146 L240 138 L240 180 L0 180Z" fill="#221f2c"/>
+<!-- the beam, before the building, so the building sits in front of it -->
+<path d="M120 92 L206 40 L214 56 L124 100Z" fill="#e6b878" opacity=".16"/>
+<!-- tower -->
+<path d="M104 146 L104 104 L136 104 L136 146Z" fill="#2e2833"/>
+<path d="M104 146 L104 104 L118 104 L118 146Z" fill="#3b3440"/>
+<rect x="112" y="114" width="6" height="9" rx="2" fill="#e6b878" opacity=".9"/>
+<rect x="124" y="126" width="6" height="9" rx="2" fill="#e6b878" opacity=".55"/>
+<!-- the dome, built as a drum: shell, hoop, lugs, tension rods -->
+<path d="M98 104 A22 20 0 0 1 142 104 Z" fill="#4a4150"/>
+<path d="M98 104 A22 20 0 0 1 120 84 L120 104 Z" fill="#574d5e"/>
+<ellipse cx="120" cy="104" rx="22" ry="3.4" fill="#7d5c2c"/>
+<ellipse cx="120" cy="101.5" rx="22" ry="3.4" fill="#b98f4e"/>
+<path d="M100 92 A21 19 0 0 1 140 92" fill="none" stroke="#dcb877" stroke-width="1.5" opacity=".8"/>
+<rect x="139.9" y="90.1" width="2.8" height="9" rx="1" fill="#b98f4e" opacity=".9"/><rect x="133.9" y="90.9" width="2.8" height="9" rx="1" fill="#b98f4e" opacity=".9"/><rect x="123.2" y="92.4" width="2.8" height="9" rx="1" fill="#b98f4e" opacity=".9"/><rect x="114.0" y="92.4" width="2.8" height="9" rx="1" fill="#b98f4e" opacity=".9"/><rect x="103.3" y="90.9" width="2.8" height="9" rx="1" fill="#b98f4e" opacity=".9"/><rect x="97.3" y="90.1" width="2.8" height="9" rx="1" fill="#b98f4e" opacity=".9"/>
+<!-- the slit -->
+<path d="M120 84 L120 101" stroke="#e6b878" stroke-width="2.6" opacity=".75"/>
+<path d="M0 152 L46 140 L92 148 L140 134 L190 146 L240 138" fill="none" stroke="#4a4150" stroke-width=".8" opacity=".5"/>
+<rect width="240" height="180" filter="url(#g1)" opacity=".62" style="mix-blend-mode:overlay"/><radialGradient id="v1" cx="50%" cy="42%" r="72%"><stop offset=".45" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0b0810" stop-opacity=".62"/></radialGradient><rect width="240" height="180" fill="url(#v1)"/></svg>

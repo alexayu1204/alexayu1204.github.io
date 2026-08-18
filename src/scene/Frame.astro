@@ -1,0 +1,22 @@
+---
+import type { FrameDef } from './composition';
+interface Props { def: FrameDef }
+const { def } = Astro.props;
+const isNav = def.kind === 'nav';
+const Tag = isNav ? 'a' : 'div';
+const art = `/scene/paintings/${def.art}.svg`;
+---
+<Tag
+  class:list={['frame', `is-${def.shape}`, `is-${def.style}`, isNav ? 'frame--nav' : 'frame--orb']}
+  data-frame-id={def.id}
+  data-hi={art}
+  {...isNav ? { href: def.href } : {}}
+  {...def.id === 'orb-key' ? { role: 'button', tabindex: '0', 'aria-label': 'Put the light out' } : {}}
+>
+  <span class="frame__well">
+    <span class="frame__art" style={`background-image:url(${art})`}></span>
+    <span class="frame__varnish"></span>
+  </span>
+  <span class="frame__glint" aria-hidden="true"></span>
+  {isNav && <span class="frame__label">{def.title}</span>}
+</Tag>
