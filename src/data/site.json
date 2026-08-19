@@ -1,21 +1,7 @@
 {
- "name": "Haoting (Alexa) Yu",
- "role": "Creative Computing researcher · artist · photographer",
  "email": "alexy1204@yahoo.com",
+ "phone": "+44 7831 223687",
+ "phoneHref": "tel:+447831223687",
  "location": "London, UK",
- "links": [
-  {
-   "label": "GitHub",
-   "href": "https://github.com/alexayu1204"
-  },
-  {
-   "label": "LinkedIn",
-   "href": "https://www.linkedin.com/in/alexa-yu"
-  },
-  {
-   "label": "Studio site",
-   "href": "https://alexy1204.wixsite.com/website"
-  }
- ],
  "cvFile": "/Resume.pdf"
 }

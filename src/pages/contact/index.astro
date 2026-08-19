@@ -4,18 +4,12 @@ import site from '../../data/site.json';
 ---
 <Section
   title="contact" kicker="A lit window"
-  lede="Do write. Research collaborations, exhibitions, commissions, or a question about any of the work here."
-  description="Contact Haoting (Alexa) Yu — email, GitHub, LinkedIn."
+  description="Contact Haoting (Alexa) Yu — email, phone and location."
 >
   <ul class="contact-list">
     <li><span class="contact-key">Email</span><a class="link" href={`mailto:${site.email}`}>{site.email}</a></li>
+    <li><span class="contact-key">Phone</span><a class="link" href={site.phoneHref}>{site.phone}</a></li>
     <li><span class="contact-key">Based in</span><span>{site.location}</span></li>
-    {site.links.map((l) => (
-      <li>
-        <span class="contact-key">{l.label}</span>
-        <a class="link" href={l.href} target="_blank" rel="noopener noreferrer">{l.href.replace(/^https?:\/\//, '')}</a>
-      </li>
-    ))}
     <li><span class="contact-key">CV</span><a class="link" href={site.cvFile} download>Resume.pdf</a></li>
   </ul>
 </Section>
