@@ -4,7 +4,7 @@ interface Props { def: FrameDef }
 const { def } = Astro.props;
 const isNav = def.kind === 'nav';
 const Tag = isNav ? 'a' : 'div';
-const art = `/scene/paintings/${def.art}.svg`;
+const art = `/scene/paintings/${def.art}`;   // art carries its own extension
 ---
 <Tag
   class:list={['frame', `is-${def.shape}`, `is-${def.style}`, isNav ? 'frame--nav' : 'frame--orb']}

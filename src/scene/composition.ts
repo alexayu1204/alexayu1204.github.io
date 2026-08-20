@@ -93,7 +93,7 @@ export const FRAMES: FrameDef[] = [
     href: '/publication/',
     shape: 'rect',
     style: 'gilt',
-    art: 'stillife', // after Still Life with Chair Caning (1912) — papers, a glass, a pipe
+    art: 'stillife.svg', // after Still Life with Chair Caning (1912) — papers, a glass, a pipe
     wide: { x: 941,  y: 577, w: 432, h: 322, rot: -0.4 },
     narrow: { x: 833, y: 566,  w: 420, h: 320, rot: -0.4 },
     z: 6,
@@ -105,7 +105,7 @@ export const FRAMES: FrameDef[] = [
     href: '/art/',
     shape: 'rect',
     style: 'walnut',
-    art: 'guitar', // after Three Musicians (1921) — harlequin, guitar, sheet music
+    art: 'p-art.webp',
     wide: { x: 1333, y: 550, w: 296, h: 376, rot: 0.35 },
     narrow: { x: 330, y: 1036, w: 280, h: 330, rot: 0.35 },
     z: 6,
@@ -117,7 +117,7 @@ export const FRAMES: FrameDef[] = [
     href: '/projects/',
     shape: 'rect',
     style: 'ebony',
-    art: 'factory', // after The Factory at Horta de Ebro (1909)
+    art: 'p-projects.webp',
     wide: { x: 571,  y: 640, w: 252, h: 196, rot: 0.7 },
     narrow: { x: 623, y: 1104, w: 250, h: 194, rot: 0.7 },
     z: 5,
@@ -129,7 +129,7 @@ export const FRAMES: FrameDef[] = [
     href: '/photography/',
     shape: 'rect',
     style: 'brass',
-    art: 'landscape', // after Landscape at Céret (1911) — analytic cubism
+    art: 'landscape.svg', // after Landscape at Céret (1911) — analytic cubism
     wide: { x: 1625, y: 594, w: 232, h: 288, rot: -0.55 },
     narrow: { x: 485, y: 590,  w: 220, h: 272, rot: -0.55 },
     z: 5,
@@ -141,7 +141,7 @@ export const FRAMES: FrameDef[] = [
     href: '/education/',
     shape: 'oval',
     style: 'gilt',
-    art: 'woman', // after Girl with a Mandolin (1910) — a reader instead
+    art: 'woman.svg', // after Girl with a Mandolin (1910) — a reader instead
     wide: { x: 545,  y: 396, w: 196, h: 250, rot: 0.25 },
     narrow: { x: 252, y: 606,  w: 190, h: 240, rot: 0.25 },
     z: 6,
@@ -151,11 +151,11 @@ export const FRAMES: FrameDef[] = [
     kind: 'nav',
     title: 'contact',
     href: '/contact/',
-    shape: 'tondo',
+    shape: 'rect',
     style: 'ebony',
-    art: 'bluewindow', // Blue Period — a lit window, and someone still up
-    wide: { x: 1725, y: 366, w: 138, h: 138, rot: -0.3 },
-    narrow: { x: 856, y: 1131, w: 140, h: 140, rot: -0.3 },
+    art: 'p-contact.webp',
+    wide: { x: 1725, y: 366, w: 200, h: 147, rot: -0.3 },
+    narrow: { x: 856, y: 1131, w: 190, h: 140, rot: -0.3 },
     z: 5,
   },
 
@@ -165,7 +165,7 @@ export const FRAMES: FrameDef[] = [
     kind: 'orbiter',
     shape: 'oval',
     style: 'brass',
-    art: 'dove', // after La Colombe (1949)
+    art: 'dove.svg', // after La Colombe (1949)
     wide: { x: 995,  y: 833, w: 76,  h: 94,  rot: 1.2 },
     narrow: { x: 300, y: 804,  w: 84,  h: 104, rot: 1.2 },
     z: 4,
@@ -175,7 +175,7 @@ export const FRAMES: FrameDef[] = [
     kind: 'orbiter',
     shape: 'rect',
     style: 'gilt',
-    art: 'profiles', // the double profile
+    art: 'profiles.svg', // the double profile
     wide: { x: 1555, y: 346, w: 116, h: 100, rot: -0.9 },
     narrow: null,
     z: 4,
@@ -185,7 +185,7 @@ export const FRAMES: FrameDef[] = [
     kind: 'orbiter',
     shape: 'rect',
     style: 'walnut',
-    art: 'houses',
+    art: 'houses.svg',
     wide: { x: 795,  y: 836, w: 148, h: 96,  rot: 0.55 },
     narrow: { x: 830, y: 808,  w: 150, h: 96,  rot: 0.55 },
     z: 4,
@@ -195,7 +195,7 @@ export const FRAMES: FrameDef[] = [
     kind: 'orbiter',
     shape: 'arch',
     style: 'walnut',
-    art: 'bouquet',
+    art: 'bouquet.svg',
     wide: { x: 385,  y: 436, w: 112, h: 132, rot: 0.4 },
     narrow: null,
     z: 4,
@@ -206,7 +206,7 @@ export const FRAMES: FrameDef[] = [
     kind: 'orbiter',
     shape: 'oval',
     style: 'brass',
-    art: 'key',
+    art: 'key.svg',
     wide: { x: 1655, y: 835, w: 72,  h: 98,  rot: -0.5 },
     narrow: { x: 560, y: 806,  w: 74,  h: 100, rot: -0.5 },
     z: 4,
