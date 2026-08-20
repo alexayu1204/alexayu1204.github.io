@@ -18,11 +18,21 @@ import numpy as np
 SRC = '/Users/haotingyu/Downloads/web_page'
 OUT = os.path.join(os.path.dirname(__file__), '..', 'public', 'scene', 'paintings')
 
-# source file  ->  (output name, target aspect w/h)
+# source file -> (output, target aspect, vertical band position 0..1)
+#
+# `band` places the crop when a source is much taller than its frame. Chosen by
+# eye from rendered candidates, not by rule:
+#   publication  0.30 — the only band holding the complete quill AND inkwell while
+#                       keeping the "A" and the quote marks. Lower loses the "A";
+#                       higher cuts the inkwell out from under the quill.
+#   photography  0.50 — puts the standing form's head at a portrait height with the
+#                       burgundy block and sage base balanced above and below.
 JOBS = [
-    ('Screenshot 2026-08-20 at 7.39.12 pm.png', 'p-art',      296/376),
-    ('Screenshot 2026-08-20 at 7.39.23 pm.png', 'p-contact',  200/147),
-    ('Screenshot 2026-08-20 at 7.42.47 pm.png', 'p-projects', 252/196),
+    ('Screenshot 2026-08-20 at 7.39.12 pm.png',  'p-art',         296/376, 0.5),
+    ('Screenshot 2026-08-20 at 7.39.23 pm.png',  'p-contact',     200/147, 0.5),
+    ('Screenshot 2026-08-20 at 7.42.47 pm.png',  'p-projects',    252/196, 0.5),
+    ('Screenshot 2026-08-20 at 9.52.46 pm.png',  'p-publication', 432/322, 0.30),
+    ('Screenshot 2026-08-20 at 10.11.16 pm.png', 'p-photography', 232/288, 0.50),
 ]
 INSET = 0.018      # trims the thin outer moulding edge the rail detector leaves
 
@@ -31,7 +41,7 @@ if missing:
     raise SystemExit(f'FATAL: not found: {missing} — nothing written')
 
 results = []
-for fname, out, target in JOBS:
+for fname, out, target, band in JOBS:
     im = Image.open(os.path.join(SRC, fname)).convert('RGB')
     a = np.asarray(im).astype(int)
     h, w, _ = a.shape
@@ -42,17 +52,22 @@ for fname, out, target in JOBS:
     top = int(h * 0.6)
     cand = [y for y in range(top, h)
             if warm[y] > warm[:top].mean() + 12 and dark[y] < dark[:top].mean()]
-    rail = cand[0] if cand else int(h * 0.86)
+    # no rail means the source is a full-bleed painting with no moulding of its
+    # own — take the whole height rather than guessing at a fraction
+    rail = cand[0] if cand else h
 
     dx, dy = int(w * INSET), int(rail * INSET)
     im = im.crop((dx, dy, w - dx, rail - dy))
 
-    # cover-fit to the frame's aspect, trimming the long side only
+    # fit to the frame's aspect. Horizontal excess is always centred; vertical
+    # excess is placed by `band`, because which slice of a tall painting you keep
+    # is a compositional decision, not a default.
     cw, ch = im.size
     if cw / ch > target:
         nw = int(ch * target); im = im.crop(((cw - nw) // 2, 0, (cw - nw) // 2 + nw, ch))
     else:
-        nh = int(cw / target); im = im.crop((0, (ch - nh) // 2, cw, (ch - nh) // 2 + nh))
+        nh = int(cw / target); off = int((ch - nh) * band)
+        im = im.crop((0, off, cw, off + nh))
 
     dst = os.path.join(OUT, out + '.webp')
     im.save(dst, 'WEBP', quality=88, method=6)

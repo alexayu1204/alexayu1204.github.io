@@ -93,7 +93,7 @@ export const FRAMES: FrameDef[] = [
     href: '/publication/',
     shape: 'rect',
     style: 'gilt',
-    art: 'stillife.svg', // after Still Life with Chair Caning (1912) — papers, a glass, a pipe
+    art: 'p-publication.webp',
     wide: { x: 941,  y: 577, w: 432, h: 322, rot: -0.4 },
     narrow: { x: 833, y: 566,  w: 420, h: 320, rot: -0.4 },
     z: 6,
@@ -129,7 +129,7 @@ export const FRAMES: FrameDef[] = [
     href: '/photography/',
     shape: 'rect',
     style: 'brass',
-    art: 'landscape.svg', // after Landscape at Céret (1911) — analytic cubism
+    art: 'p-photography.webp',
     wide: { x: 1625, y: 594, w: 232, h: 288, rot: -0.55 },
     narrow: { x: 485, y: 590,  w: 220, h: 272, rot: -0.55 },
     z: 5,
