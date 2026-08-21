@@ -7,7 +7,9 @@ export const collections = {
   publications: defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/publications' }),
     schema: z.object({
-      title: z.string(), venue: z.string(), order: z.coerce.number(),
+      title: z.string(), order: z.coerce.number(),
+      // venue now lives inside the citation bullet, in the owner's own format
+      venue: z.string().optional(),
       // kind/status are no longer displayed; kept optional so re-adding either to a
       // front-matter block does not fail the build
       kind: z.string().optional(), status: z.string().optional(),

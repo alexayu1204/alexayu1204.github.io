@@ -78,6 +78,15 @@ body { color: var(--pg-ink); font-family: var(--sans); }
 .entry__body { margin: 0; color: #d6cabc; line-height: 1.75; font-size: 1.06rem; }
 .entry__body + .entry__body { margin-top: 12px; }
 .entry ul { margin: 10px 0 0; padding-left: 1.1em; color: #d6cabc; line-height: 1.72; font-size: 1.02rem; }
+/* links written inside Markdown bodies never carry the .link class, so a DOI
+   rendered straight from the citation came out in default browser blue */
+.entry__body a {
+  color: var(--pg-brass);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(207, 168, 99, .3);
+  transition: color 240ms ease, border-color 240ms ease;
+}
+.entry__body a:hover, .entry__body a:focus-visible { color: #f0d9a6; border-color: #f0d9a6; }
 .entry li { margin-bottom: 7px; }
 
 .pill {

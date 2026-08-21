@@ -171,7 +171,7 @@ body { color: var(--paper); font-family: var(--serif); }
   transform-origin: 50% 8%;         /* hung from a nail near the top, so it swings from there */
   box-shadow:
     0 2px 3px rgba(0,0,0,.5),
-    6px 10px 20px rgba(0,0,0,.42),
+    var(--sx, 6px) var(--sy, 10px) 20px rgba(0,0,0,.42),
     inset 0 0 0 1px rgba(255, 232, 190, .13),
     inset 0 0 12px rgba(0,0,0,.5);
   text-decoration: none;
@@ -188,21 +188,23 @@ body { color: var(--paper); font-family: var(--serif); }
 }
 .frame__varnish {
   position: absolute; inset: 11px;
-  background: linear-gradient(152deg, rgba(255, 236, 200, .16) 0%, rgba(255,255,255,0) 34%);
+  background: linear-gradient(var(--glint-angle, 152deg),
+    rgba(255, 236, 200, calc(.18 * var(--glint-power, 1))) 0%, rgba(255,255,255,0) 38%);
   pointer-events: none;
 }
 .frame__glint {
   position: absolute; inset: 0;
-  background: linear-gradient(145deg, rgba(255, 240, 205, .5) 0%, rgba(255, 240, 205, 0) 30%);
+  background: linear-gradient(var(--glint-angle, 145deg),
+    rgba(255, 240, 205, calc(.58 * var(--glint-power, 1))) 0%, rgba(255, 240, 205, 0) 32%);
   opacity: 0;
   transition: opacity 420ms cubic-bezier(.22, .61, .36, 1);
   pointer-events: none;
 }
 
-.is-gilt   { --moulding: linear-gradient(148deg,#6a501d 0%,#bfa05c 20%,#dfcb96 34%,#8e6f2a 52%,#4f3b12 76%,#a68a48 100%); --mat: #241c15; }
-.is-walnut { --moulding: linear-gradient(148deg,#2b1a15 0%,#5a3d2f 22%,#74503c 36%,#3a251d 56%,#190e0b 78%,#4a3126 100%); --mat: #241b16; }
-.is-brass  { --moulding: linear-gradient(148deg,#553b14 0%,#a37e44 22%,#c6ac72 36%,#7c5c26 56%,#422e11 78%,#927340 100%); --mat: #1f1911; }
-.is-ebony  { --moulding: linear-gradient(148deg,#0c090b 0%,#2f272d 24%,#483c46 38%,#1c1619 58%,#080607 80%,#383038 100%); --mat: #171317; }
+.is-gilt   { --moulding: linear-gradient(var(--glint-angle, 148deg),#6a501d 0%,#bfa05c 20%,#dfcb96 34%,#8e6f2a 52%,#4f3b12 76%,#a68a48 100%); --mat: #241c15; }
+.is-walnut { --moulding: linear-gradient(var(--glint-angle, 148deg),#2b1a15 0%,#5a3d2f 22%,#74503c 36%,#3a251d 56%,#190e0b 78%,#4a3126 100%); --mat: #241b16; }
+.is-brass  { --moulding: linear-gradient(var(--glint-angle, 148deg),#553b14 0%,#a37e44 22%,#c6ac72 36%,#7c5c26 56%,#422e11 78%,#927340 100%); --mat: #1f1911; }
+.is-ebony  { --moulding: linear-gradient(var(--glint-angle, 148deg),#0c090b 0%,#2f272d 24%,#483c46 38%,#1c1619 58%,#080607 80%,#383038 100%); --mat: #171317; }
 
 .is-oval, .is-oval .frame__well, .is-oval .frame__art, .is-oval .frame__glint, .is-oval .frame__varnish { border-radius: 50%; }
 .is-tondo, .is-tondo .frame__well, .is-tondo .frame__art, .is-tondo .frame__glint, .is-tondo .frame__varnish { border-radius: 50%; }

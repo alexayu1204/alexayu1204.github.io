@@ -1,6 +1,6 @@
 /** Boots the room and owns the single animation loop everything else ticks from. */
 import { FRAMES, FIXTURES, CANVAS, RESERVED, placementFor, type FrameDef } from '../scene/composition';
-import { light, media, room, on, hasLitBefore } from './state';
+import { light, media, room, on, hasLitBefore, clamp } from './state';
 import { initStage, onFit, fit, measure } from './stage';
 import { initFlashlight, pointTo, tickFlashlight, forceWake } from './flashlight';
 import { initPull, tickPull, yank, retirePull, rearmPull } from './pull';
@@ -36,10 +36,27 @@ export function bootRoom() {
   })).filter((f) => f.el);
 
   function layoutFrames() {
+    const ch = FIXTURES[fit.mode].chandelier;
     for (const { def, el } of frames) {
       const p = placementFor(def, fit.mode);
       if (!p) { el.hidden = true; continue; }
       el.hidden = false;
+
+      /* Light comes from the chandelier, so every frame catches it on the edge
+       * that faces the fixture — not on the same fixed diagonal regardless of
+       * where it hangs. A CSS gradient's first stop sits at the START of its
+       * line, so the gradient must POINT AWAY from the light for the bright end
+       * to land on the side nearest it. */
+      const dx = p.x - ch.x;
+      const dy = p.y - ch.y;
+      const angle = (Math.atan2(dx, -dy) * 180 / Math.PI + 360) % 360;
+      const dist = Math.hypot(dx, dy) || 1;
+      el.style.setProperty('--glint-angle', angle.toFixed(1) + 'deg');
+      // gentle falloff — true inverse-square would black out the far corners
+      el.style.setProperty('--glint-power', clamp(1.2 - dist / 1500, 0.45, 1).toFixed(2));
+      // and the shadow falls the other way, directly away from the fixture
+      el.style.setProperty('--sx', ((dx / dist) * 9).toFixed(1) + 'px');
+      el.style.setProperty('--sy', ((dy / dist) * 9 + 4).toFixed(1) + 'px');
       el.style.left = p.x - p.w / 2 + 'px';
       el.style.top = p.y - p.h / 2 + 'px';
       el.style.width = p.w + 'px';

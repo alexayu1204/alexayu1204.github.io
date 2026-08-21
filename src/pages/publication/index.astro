@@ -14,9 +14,6 @@ const bodies = await Promise.all(pubs.map((p) => render(p)));
     return (
       <article class="entry">
         <h2 class="entry__title">{p.data.title}</h2>
-        <p class="entry__meta">
-          <span>{p.data.venue}</span>
-        </p>
         <div class="entry__body"><Body /></div>
       </article>
     );
